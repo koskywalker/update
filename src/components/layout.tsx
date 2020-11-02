@@ -2,8 +2,8 @@ import React from "react"
 import { Link } from "gatsby"
 
 interface LayoutProps {
-  location: Location;
-  title: string;
+  location: Location
+  title: string
 }
 
 const Layout: React.FC<LayoutProps> = ({ location, title, children }) => {

@@ -1,17 +1,17 @@
-require("ts-node").register({
+require(`ts-node`).register({
   compilerOptions: {
-    module: "commonjs",
-    target: "esnext",
+    module: `commonjs`,
+    target: `esnext`,
   },
 })
 
-require("./src/__generated__/gatsby-types")
+require(`./src/__generated__/gatsby-types`)
 
 const {
   createPages,
   onCreateNode,
   createSchemaCustomization,
-} = require("./src/gatsby-node/index")
+} = require(`./src/gatsby-node/index`)
 
 exports.createPages = createPages
 exports.onCreateNode = onCreateNode

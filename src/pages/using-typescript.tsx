@@ -29,11 +29,11 @@ const UsingTypescript: React.FC<PageProps<DataProps>> = ({
       run <em>tsc --init</em> to create a <em>.tsconfig</em> file.
     </p>
     <p>
-      You're currently on the page "{path}" which was built on{" "}
+      You're currently on the page "{path}" which was built on{` `}
       {data.site.buildTime}.
     </p>
     <p>
-      To learn more, head over to our{" "}
+      To learn more, head over to our{` `}
       <a href="https://www.gatsbyjs.com/docs/typescript/">
         documentation about TypeScript
       </a>
