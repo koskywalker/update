@@ -2,14 +2,20 @@ import path from "path"
 import { Actions, GatsbyNode } from "gatsby"
 import { createFilePath } from "gatsby-source-filesystem"
 
-export const createPages: GatsbyNode["createPages"] = async ({ graphql, actions, reporter }) => {
+export const createPages: GatsbyNode["createPages"] = async ({
+  graphql,
+  actions,
+  reporter,
+}) => {
   const { createPage } = actions
 
   // Define a template for blog post
   const blogPost = path.resolve(`./src/templates/blog-post.tsx`)
 
   // Get all markdown blog posts sorted by date
-  const result = await graphql<{ allMarkdownRemark: Pick<GatsbyTypes.Query["allMarkdownRemark"], "nodes"> }>(
+  const result = await graphql<{
+    allMarkdownRemark: Pick<GatsbyTypes.Query["allMarkdownRemark"], "nodes">
+  }>(
     `
       {
         allMarkdownRemark(
@@ -35,7 +41,7 @@ export const createPages: GatsbyNode["createPages"] = async ({ graphql, actions,
     return
   }
 
-  const posts = result.data?.allMarkdownRemark.nodes!
+  const posts = result.data?.allMarkdownRemark.nodes || []
 
   // Create blog posts pages
   // But only if there's at least one markdown file found at "content/blog" (defined in gatsby-config.js)
@@ -47,7 +53,7 @@ export const createPages: GatsbyNode["createPages"] = async ({ graphql, actions,
       const nextPostId = index === posts.length - 1 ? null : posts[index + 1].id
 
       createPage({
-        path: post.fields?.slug!,
+        path: post.fields?.slug || ``,
         component: blogPost,
         context: {
           id: post.id,
@@ -59,7 +65,11 @@ export const createPages: GatsbyNode["createPages"] = async ({ graphql, actions,
   }
 }
 
-export const onCreateNode: GatsbyNode["onCreateNode"] = ({ node, actions, getNode }) => {
+export const onCreateNode: GatsbyNode["onCreateNode"] = ({
+  node,
+  actions,
+  getNode,
+}) => {
   const { createNodeField } = actions
 
   if (node.internal.type === `MarkdownRemark`) {
@@ -73,7 +83,11 @@ export const onCreateNode: GatsbyNode["onCreateNode"] = ({ node, actions, getNod
   }
 }
 
-export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] = async ({ actions }: { actions: Actions }) => {
+export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] = async ({
+  actions,
+}: {
+  actions: Actions
+}) => {
   const { createTypes } = actions
 
   // Explicitly define the siteMetadata {} object
