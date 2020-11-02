@@ -38,5 +38,6 @@ module.exports = {
     ],
     indent: [`error`, 2, { SwitchCase: 1 }],
     "react/no-unescaped-entities": `off`,
+    "@typescript-eslint/no-var-requires": `off`,
   },
 }
