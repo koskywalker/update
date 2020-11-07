@@ -83,5 +83,6 @@ module.exports = {
         accessToken: process.env.CONTENTFUL_CONTENT_DELIVERY_API_ACCESS_TOKEN,
       },
     },
+    `gatsby-plugin-root-import`,
   ],
 }
