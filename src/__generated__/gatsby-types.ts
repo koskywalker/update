@@ -6329,18 +6329,6 @@ type BlogIndexQuery = { readonly allContentfulBlogPost: { readonly edges: Readon
         )>, readonly tags: Maybe<ReadonlyArray<Maybe<Pick<ContentfulTag, 'slug' | 'name'>>>> }
       ) }> } };
 
-type userskoskywalkerGitKoSkywalkerupdatesrcpagesusingTypescriptTsx2907560070QueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type userskoskywalkerGitKoSkywalkerupdatesrcpagesusingTypescriptTsx2907560070Query = { readonly site: Maybe<Pick<Site, 'buildTime'>> };
-
-type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
-
-type BioQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type BioQuery = { readonly avatar: Maybe<{ readonly childImageSharp: Maybe<{ readonly fixed: Maybe<GatsbyImageSharpFixedFragment> }> }>, readonly site: Maybe<{ readonly siteMetadata: Maybe<{ readonly author: Maybe<Pick<SiteSiteMetadataAuthor, 'name' | 'summary'>>, readonly social: Maybe<Pick<SiteSiteMetadataSocial, 'twitter'>> }> }> };
-
 type SEOQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -6348,5 +6336,12 @@ type SEOQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<(
       Pick<SiteSiteMetadata, 'title' | 'description'>
       & { readonly social: Maybe<Pick<SiteSiteMetadataSocial, 'twitter'>> }
     )> }> };
+
+type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
+
+type BioQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type BioQuery = { readonly avatar: Maybe<{ readonly childImageSharp: Maybe<{ readonly fixed: Maybe<GatsbyImageSharpFixedFragment> }> }>, readonly site: Maybe<{ readonly siteMetadata: Maybe<{ readonly author: Maybe<Pick<SiteSiteMetadataAuthor, 'name' | 'summary'>>, readonly social: Maybe<Pick<SiteSiteMetadataSocial, 'twitter'>> }> }> };
 
 }
