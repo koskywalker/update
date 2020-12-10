@@ -1,16 +1,16 @@
 import React from "react"
 import { Link, graphql, PageProps } from "gatsby"
 
-import Bio from "../components/bio"
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Bio from "src/components/bio"
+import Layout from "src/components/layout"
+import SEO from "src/components/seo"
 
 const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexQuery>> = ({
   data,
   location,
 }) => {
-  const siteTitle = data.site?.siteMetadata?.title || `Title`
-  const posts = data.allMarkdownRemark.nodes
+  const siteTitle = `UPDATE`
+  const posts = data.allContentfulBlogPost.edges
 
   if (posts.length === 0) {
     return (
@@ -28,32 +28,44 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexQuery>> = ({
       <Bio />
       <ol style={{ listStyle: `none` }}>
         {posts.map((post) => {
-          const title = post.frontmatter?.title || post.fields?.slug
+          const postNode = post.node
 
           return (
-            <li key={post.fields?.slug}>
-              <article
-                className="post-list-item"
-                itemScope
-                itemType="http://schema.org/Article"
-              >
+            <li key={postNode.slug}>
+              <article className="post-list-item">
                 <header>
                   <h2>
-                    <Link to={post.fields?.slug || ``} itemProp="url">
-                      <span itemProp="headline">{title}</span>
+                    <Link to={postNode.slug || ``}>
+                      <span>{postNode.title}</span>
                     </Link>
                   </h2>
-                  <small>{post.frontmatter?.date}</small>
+                  <small>{postNode.publishDate}</small>
+                  <small>{postNode.updatedAt}</small>
+                  <img
+                    src={postNode.heroImage?.file?.url}
+                    alt={postNode.heroImage?.description}
+                    width=""
+                    height=""
+                  />
                 </header>
                 <section>
                   <p
                     dangerouslySetInnerHTML={{
-                      __html:
-                        post.frontmatter?.description || post.excerpt || ``,
+                      __html: postNode.description?.description || ``,
                     }}
-                    itemProp="description"
                   />
                 </section>
+                <footer>
+                  <ul style={{ listStyle: `none` }}>
+                    {postNode.tags?.map((tag, index) => {
+                      return (
+                        <li key={index}>
+                          <Link to={tag?.slug || ``}>{tag?.name}</Link>
+                        </li>
+                      )
+                    })}
+                  </ul>
+                </footer>
               </article>
             </li>
           )
@@ -67,21 +79,26 @@ export default BlogIndex
 
 export const pageQuery = graphql`
   query BlogIndex {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
-      nodes {
-        excerpt
-        fields {
+    allContentfulBlogPost(sort: { fields: publishDate, order: DESC }) {
+      edges {
+        node {
           slug
-        }
-        frontmatter {
-          date(formatString: "MMMM DD, YYYY")
           title
-          description
+          updatedAt(formatString: "YYYY/MM/DD")
+          description {
+            description
+          }
+          heroImage {
+            file {
+              url
+            }
+            description
+          }
+          publishDate(formatString: "YYYY/MM/DD")
+          tags {
+            slug
+            name
+          }
         }
       }
     }

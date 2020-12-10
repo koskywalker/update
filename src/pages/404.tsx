@@ -1,8 +1,8 @@
 import React from "react"
 import { graphql, PageProps } from "gatsby"
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Layout from "src/components/layout"
+import SEO from "src/components/seo"
 
 const NotFoundPage: React.FC<PageProps<GatsbyTypes.NotFoundPageQuery>> = ({
   data,

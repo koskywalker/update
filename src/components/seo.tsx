@@ -22,21 +22,19 @@ const SEO: React.FC<SEOProps> = ({
   meta = [],
   title,
 }) => {
-  const { site } = useStaticQuery<GatsbyTypes.SEOQuery>(
-    graphql`
-      query SEO {
-        site {
-          siteMetadata {
-            title
-            description
-            social {
-              twitter
-            }
+  const { site } = useStaticQuery<GatsbyTypes.SEOQuery>(graphql`
+    query SEO {
+      site {
+        siteMetadata {
+          title
+          description
+          social {
+            twitter
           }
         }
       }
-    `
-  )
+    }
+  `)
 
   const metaDescription = description || site?.siteMetadata?.description
   const defaultTitle = site?.siteMetadata?.title

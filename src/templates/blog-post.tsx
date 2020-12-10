@@ -5,9 +5,10 @@ import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-const BlogPostTemplate: React.FC<PageProps<
-  GatsbyTypes.BlogPostBySlugQuery
->> = ({ data, location }) => {
+const BlogPost: React.FC<PageProps<GatsbyTypes.BlogPostBySlugQuery>> = ({
+  data,
+  location,
+}) => {
   const post = data.markdownRemark
   const siteTitle = data.site?.siteMetadata?.title || `Title`
   const { previous, next } = data
@@ -66,43 +67,36 @@ const BlogPostTemplate: React.FC<PageProps<
   )
 }
 
-export default BlogPostTemplate
+export default BlogPost
 
 export const pageQuery = graphql`
-  query BlogPostBySlug(
-    $id: String!
-    $previousPostId: String
-    $nextPostId: String
-  ) {
-    site {
-      siteMetadata {
-        title
+  query BlogPostBySlug($slug: String!) {
+    contentfulBlogPost(slug: { eq: $slug }) {
+      slug
+      title
+      updatedAt(formatString: "YYYY/MM/DD")
+      tags {
+        slug
+        name
       }
-    }
-    markdownRemark(id: { eq: $id }) {
-      id
-      excerpt(pruneLength: 160)
-      html
-      frontmatter {
-        title
-        date(formatString: "MMMM DD, YYYY")
+      publishDate(formatString: "YYYY/MM/DD")
+      heroImage {
+        description
+        file {
+          url
+        }
+      }
+      description {
         description
       }
-    }
-    previous: markdownRemark(id: { eq: $previousPostId }) {
-      fields {
-        slug
+      body {
+        childMarkdownRemark {
+          timeToRead
+        }
+        body
       }
-      frontmatter {
-        title
-      }
-    }
-    next: markdownRemark(id: { eq: $nextPostId }) {
-      fields {
-        slug
-      }
-      frontmatter {
-        title
+      author {
+        name
       }
     }
   }
