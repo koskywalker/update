@@ -1,15 +1,8 @@
-/**
- * Bio component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.com/docs/use-static-query/
- */
-
-import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
+import { graphql, useStaticQuery } from "gatsby"
 import Image from "gatsby-image"
+import React from "react"
 
-const Bio: React.FC = () => {
+export const Bio: React.FC = () => {
   const data = useStaticQuery<GatsbyTypes.BioQuery>(graphql`
     query Bio {
       avatar: file(absolutePath: { regex: "/profile-pic.jpg/" }) {
@@ -44,18 +37,17 @@ const Bio: React.FC = () => {
       {avatar && (
         <Image
           fixed={avatar}
-          alt={author?.name || ``}
+          alt={author?.name || ""}
           className="bio-avatar"
           imgStyle={{
-            borderRadius: `50%`,
+            borderRadius: "50%",
           }}
         />
       )}
       {author?.name && (
         <p>
-          Written by <strong>{author.name}</strong> {author?.summary || null}
-          {` `}
-          <a href={`https://twitter.com/${social?.twitter || ``}`}>
+          Written by <strong>{author.name}</strong> {author?.summary || null}{" "}
+          <a href={`https://twitter.com/${social?.twitter || ""}`}>
             You should follow them on Twitter
           </a>
         </p>
@@ -63,5 +55,3 @@ const Bio: React.FC = () => {
     </div>
   )
 }
-
-export default Bio

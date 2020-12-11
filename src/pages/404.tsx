@@ -1,14 +1,15 @@
+import type { PageProps } from "gatsby"
+import { graphql } from "gatsby"
 import React from "react"
-import { graphql, PageProps } from "gatsby"
 
-import Layout from "src/components/layout"
-import SEO from "src/components/seo"
+import { Layout } from "../components/layout"
+import { SEO } from "../components/seo"
 
 const NotFoundPage: React.FC<PageProps<GatsbyTypes.NotFoundPageQuery>> = ({
   data,
   location,
 }) => {
-  const siteTitle = data.site?.siteMetadata?.title || `UPDATE`
+  const siteTitle = data.site?.siteMetadata?.title || "UPDATE"
 
   return (
     <Layout location={location} title={siteTitle}>
@@ -19,6 +20,7 @@ const NotFoundPage: React.FC<PageProps<GatsbyTypes.NotFoundPageQuery>> = ({
   )
 }
 
+// eslint-disable-next-line import/no-default-export
 export default NotFoundPage
 
 export const pageQuery = graphql`

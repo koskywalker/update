@@ -27,10 +27,10 @@ module.exports = {
     "prefer-arrow-callback": "error",
     "func-style": ["error", "expression"],
     "arrow-body-style": ["error", "always"],
-    "no-restricted-imports": [
-      "error",
-      { paths: [{ name: "react", importNames: ["default"] }] },
-    ],
+    // "no-restricted-imports": [
+    //   "error",
+    //   { paths: [{ name: "react", importNames: ["default"] }] },
+    // ],
     "react/react-in-jsx-scope": 0,
     "react/display-name": "error",
     // "react/destructuring-assignment": ["error", "never"],

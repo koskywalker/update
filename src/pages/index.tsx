@@ -1,15 +1,16 @@
+import type { PageProps } from "gatsby"
+import { graphql, Link } from "gatsby"
 import React from "react"
-import { Link, graphql, PageProps } from "gatsby"
 
-import Bio from "src/components/bio"
-import Layout from "src/components/layout"
-import SEO from "src/components/seo"
+import { Bio } from "../components/bio"
+import { Layout } from "../components/layout"
+import { SEO } from "../components/seo"
 
 const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexQuery>> = ({
   data,
   location,
 }) => {
-  const siteTitle = `UPDATE`
+  const siteTitle = "UPDATE"
   const posts = data.allContentfulBlogPost.edges
 
   if (posts.length === 0) {
@@ -26,7 +27,7 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexQuery>> = ({
     <Layout location={location} title={siteTitle}>
       <SEO title="All posts" />
       <Bio />
-      <ol style={{ listStyle: `none` }}>
+      <ol style={{ listStyle: "none" }}>
         {posts.map((post) => {
           const postNode = post.node
 
@@ -35,7 +36,7 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexQuery>> = ({
               <article className="post-list-item">
                 <header>
                   <h2>
-                    <Link to={postNode.slug || ``}>
+                    <Link to={postNode.slug || ""}>
                       <span>{postNode.title}</span>
                     </Link>
                   </h2>
@@ -51,16 +52,16 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexQuery>> = ({
                 <section>
                   <p
                     dangerouslySetInnerHTML={{
-                      __html: postNode.description?.description || ``,
+                      __html: postNode.description?.description || "",
                     }}
                   />
                 </section>
                 <footer>
-                  <ul style={{ listStyle: `none` }}>
+                  <ul style={{ listStyle: "none" }}>
                     {postNode.tags?.map((tag, index) => {
                       return (
                         <li key={index}>
-                          <Link to={tag?.slug || ``}>{tag?.name}</Link>
+                          <Link to={tag?.slug || ""}>{tag?.name}</Link>
                         </li>
                       )
                     })}
@@ -75,6 +76,7 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexQuery>> = ({
   )
 }
 
+// eslint-disable-next-line import/no-default-export
 export default BlogIndex
 
 export const pageQuery = graphql`
