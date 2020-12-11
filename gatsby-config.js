@@ -68,7 +68,12 @@ module.exports = {
     },
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-offline",
-    "gatsby-plugin-typegen",
+    {
+      resolve: "gatsby-plugin-typegen",
+      options: {
+        outputPath: `src/__generated__/gatsby-types.d.ts`,
+      },
+    },
     {
       resolve: "gatsby-source-contentful",
       options: {
