@@ -9,9 +9,11 @@ type IContainerProps = {
   data: GatsbyTypes.PostBySlugQuery
 }
 
-type IProps = IContainerProps
+type IProps = IContainerProps & {
+  location: Location
+}
 
-const BlogPost: React.FC<IProps> = ({ data }) => {
+const BlogPost: React.FC<IProps> = ({ data, location }) => {
   const post = data.contentfulBlogPost
   const siteTitle = "UPDATE"
 

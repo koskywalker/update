@@ -8,9 +8,11 @@ type IContainerProps = {
   data: GatsbyTypes.NotFoundPageQuery
 }
 
-type IProps = IContainerProps
+type IProps = IContainerProps & {
+  location: Location
+}
 
-const NotFoundPage: React.FC<IProps> = ({ data }) => {
+const NotFoundPage: React.FC<IProps> = ({ data, location }) => {
   const siteTitle = data.site?.siteMetadata?.title || "UPDATE"
 
   return (

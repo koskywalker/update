@@ -9,9 +9,11 @@ type IContainerProps = {
   data: GatsbyTypes.BlogIndexQuery
 }
 
-type IProps = IContainerProps
+type IProps = IContainerProps & {
+  location: Location
+}
 
-const BlogIndex: React.FC<IProps> = ({ data }) => {
+const BlogIndex: React.FC<IProps> = ({ data, location }) => {
   const siteTitle = "UPDATE"
   const posts = data.allContentfulBlogPost.edges
 
