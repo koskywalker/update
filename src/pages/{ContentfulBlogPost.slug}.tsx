@@ -1,21 +1,23 @@
-import type { PageProps } from "gatsby"
 import { graphql, Link } from "gatsby"
 import React from "react"
 
 import { Bio } from "../components/bio"
 import { Layout } from "../components/layout"
-import { SEO } from "../components/seo"
+import { Seo } from "../components/seo"
 
-const BlogPost: React.FC<PageProps<GatsbyTypes.PostBySlugQuery>> = ({
-  data,
-  location,
-}) => {
+type IContainerProps = {
+  data: GatsbyTypes.PostBySlugQuery
+}
+
+type IProps = IContainerProps
+
+const BlogPost: React.FC<IProps> = ({ data }) => {
   const post = data.contentfulBlogPost
   const siteTitle = "UPDATE"
 
   return (
     <Layout location={location} title={siteTitle}>
-      <SEO
+      <Seo
         title={post?.title || ""}
         description={post?.description?.description || ""}
       />

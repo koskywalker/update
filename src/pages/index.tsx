@@ -1,22 +1,24 @@
-import type { PageProps } from "gatsby"
 import { graphql, Link } from "gatsby"
 import React from "react"
 
 import { Bio } from "../components/bio"
 import { Layout } from "../components/layout"
-import { SEO } from "../components/seo"
+import { Seo } from "../components/seo"
 
-const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexQuery>> = ({
-  data,
-  location,
-}) => {
+type IContainerProps = {
+  data: GatsbyTypes.BlogIndexQuery
+}
+
+type IProps = IContainerProps
+
+const BlogIndex: React.FC<IProps> = ({ data }) => {
   const siteTitle = "UPDATE"
   const posts = data.allContentfulBlogPost.edges
 
   if (posts.length === 0) {
     return (
       <Layout location={location} title={siteTitle}>
-        <SEO title="All posts" />
+        <Seo title="All posts" />
         <Bio />
         <p>No blog posts found. Add markdown posts.</p>
       </Layout>
@@ -25,7 +27,7 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexQuery>> = ({
 
   return (
     <Layout location={location} title={siteTitle}>
-      <SEO title="All posts" />
+      <Seo title="All posts" />
       <Bio />
       <ol style={{ listStyle: "none" }}>
         {posts.map((post) => {

@@ -2,32 +2,34 @@ import { graphql, useStaticQuery } from "gatsby"
 import React from "react"
 import { Helmet } from "react-helmet"
 
-interface SEOProps {
+interface SeoProps {
   description?: string
   lang?: string
   meta?: any[]
   title: string
 }
 
-export const SEO: React.FC<SEOProps> = ({
+export const Seo: React.FC<SeoProps> = ({
   description = "",
   lang = "ja",
   meta = [],
   title,
 }) => {
-  const { site } = useStaticQuery<GatsbyTypes.SEOQuery>(graphql`
-    query SEO {
-      site {
-        siteMetadata {
-          title
-          description
-          social {
-            twitter
+  const { site } = useStaticQuery<GatsbyTypes.SeoQuery>(
+    graphql`
+      query Seo {
+        site {
+          siteMetadata {
+            title
+            description
+            social {
+              twitter
+            }
           }
         }
       }
-    }
-  `)
+    `
+  )
 
   const metaDescription = description || site?.siteMetadata?.description
   const defaultTitle = site?.siteMetadata?.title

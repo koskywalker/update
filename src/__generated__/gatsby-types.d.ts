@@ -406,6 +406,7 @@ type ContentfulBlogPost = ContentfulReference & ContentfulEntry & Node & {
   readonly updatedAt: Maybe<Scalars['Date']>;
   readonly sys: Maybe<ContentfulBlogPostSys>;
   readonly author: Maybe<ContentfulPerson>;
+  readonly gatsbyPath: Maybe<Scalars['String']>;
   readonly parent: Maybe<Node>;
   readonly children: ReadonlyArray<Node>;
   readonly internal: Internal;
@@ -435,6 +436,11 @@ type ContentfulBlogPost_updatedAtArgs = {
   fromNow: Maybe<Scalars['Boolean']>;
   difference: Maybe<Scalars['String']>;
   locale: Maybe<Scalars['String']>;
+};
+
+
+type ContentfulBlogPost_gatsbyPathArgs = {
+  filePath: Maybe<Scalars['String']>;
 };
 
 type contentfulBlogPostBodyTextNode = Node & {
@@ -1042,6 +1048,7 @@ enum ContentfulBlogPostFieldsEnum {
   tags___blog_post___author___createdAt = 'tags.blog_post.author.createdAt',
   tags___blog_post___author___updatedAt = 'tags.blog_post.author.updatedAt',
   tags___blog_post___author___children = 'tags.blog_post.author.children',
+  tags___blog_post___gatsbyPath = 'tags.blog_post.gatsbyPath',
   tags___blog_post___parent___id = 'tags.blog_post.parent.id',
   tags___blog_post___parent___children = 'tags.blog_post.parent.children',
   tags___blog_post___children = 'tags.blog_post.children',
@@ -1302,6 +1309,7 @@ enum ContentfulBlogPostFieldsEnum {
   author___blog_post___author___createdAt = 'author.blog_post.author.createdAt',
   author___blog_post___author___updatedAt = 'author.blog_post.author.updatedAt',
   author___blog_post___author___children = 'author.blog_post.author.children',
+  author___blog_post___gatsbyPath = 'author.blog_post.gatsbyPath',
   author___blog_post___parent___id = 'author.blog_post.parent.id',
   author___blog_post___parent___children = 'author.blog_post.parent.children',
   author___blog_post___children = 'author.blog_post.children',
@@ -1363,6 +1371,7 @@ enum ContentfulBlogPostFieldsEnum {
   author___internal___mediaType = 'author.internal.mediaType',
   author___internal___owner = 'author.internal.owner',
   author___internal___type = 'author.internal.type',
+  gatsbyPath = 'gatsbyPath',
   parent___id = 'parent.id',
   parent___parent___id = 'parent.parent.id',
   parent___parent___parent___id = 'parent.parent.parent.id',
@@ -1604,6 +1613,7 @@ type ContentfulBlogPostFilterInput = {
   readonly updatedAt: Maybe<DateQueryOperatorInput>;
   readonly sys: Maybe<ContentfulBlogPostSysFilterInput>;
   readonly author: Maybe<ContentfulPersonFilterInput>;
+  readonly gatsbyPath: Maybe<StringQueryOperatorInput>;
   readonly parent: Maybe<NodeFilterInput>;
   readonly children: Maybe<NodeFilterListInput>;
   readonly internal: Maybe<InternalFilterInput>;
@@ -2106,6 +2116,7 @@ enum ContentfulPersonFieldsEnum {
   blog_post___tags___blog_post___spaceId = 'blog_post.tags.blog_post.spaceId',
   blog_post___tags___blog_post___createdAt = 'blog_post.tags.blog_post.createdAt',
   blog_post___tags___blog_post___updatedAt = 'blog_post.tags.blog_post.updatedAt',
+  blog_post___tags___blog_post___gatsbyPath = 'blog_post.tags.blog_post.gatsbyPath',
   blog_post___tags___blog_post___children = 'blog_post.tags.blog_post.children',
   blog_post___tags___spaceId = 'blog_post.tags.spaceId',
   blog_post___tags___createdAt = 'blog_post.tags.createdAt',
@@ -2198,6 +2209,7 @@ enum ContentfulPersonFieldsEnum {
   blog_post___author___blog_post___spaceId = 'blog_post.author.blog_post.spaceId',
   blog_post___author___blog_post___createdAt = 'blog_post.author.blog_post.createdAt',
   blog_post___author___blog_post___updatedAt = 'blog_post.author.blog_post.updatedAt',
+  blog_post___author___blog_post___gatsbyPath = 'blog_post.author.blog_post.gatsbyPath',
   blog_post___author___blog_post___children = 'blog_post.author.blog_post.children',
   blog_post___author___spaceId = 'blog_post.author.spaceId',
   blog_post___author___createdAt = 'blog_post.author.createdAt',
@@ -2217,6 +2229,7 @@ enum ContentfulPersonFieldsEnum {
   blog_post___author___internal___mediaType = 'blog_post.author.internal.mediaType',
   blog_post___author___internal___owner = 'blog_post.author.internal.owner',
   blog_post___author___internal___type = 'blog_post.author.internal.type',
+  blog_post___gatsbyPath = 'blog_post.gatsbyPath',
   blog_post___parent___id = 'blog_post.parent.id',
   blog_post___parent___parent___id = 'blog_post.parent.parent.id',
   blog_post___parent___parent___children = 'blog_post.parent.parent.children',
@@ -2687,6 +2700,7 @@ enum ContentfulTagFieldsEnum {
   blog_post___tags___blog_post___spaceId = 'blog_post.tags.blog_post.spaceId',
   blog_post___tags___blog_post___createdAt = 'blog_post.tags.blog_post.createdAt',
   blog_post___tags___blog_post___updatedAt = 'blog_post.tags.blog_post.updatedAt',
+  blog_post___tags___blog_post___gatsbyPath = 'blog_post.tags.blog_post.gatsbyPath',
   blog_post___tags___blog_post___children = 'blog_post.tags.blog_post.children',
   blog_post___tags___spaceId = 'blog_post.tags.spaceId',
   blog_post___tags___createdAt = 'blog_post.tags.createdAt',
@@ -2779,6 +2793,7 @@ enum ContentfulTagFieldsEnum {
   blog_post___author___blog_post___spaceId = 'blog_post.author.blog_post.spaceId',
   blog_post___author___blog_post___createdAt = 'blog_post.author.blog_post.createdAt',
   blog_post___author___blog_post___updatedAt = 'blog_post.author.blog_post.updatedAt',
+  blog_post___author___blog_post___gatsbyPath = 'blog_post.author.blog_post.gatsbyPath',
   blog_post___author___blog_post___children = 'blog_post.author.blog_post.children',
   blog_post___author___spaceId = 'blog_post.author.spaceId',
   blog_post___author___createdAt = 'blog_post.author.createdAt',
@@ -2798,6 +2813,7 @@ enum ContentfulTagFieldsEnum {
   blog_post___author___internal___mediaType = 'blog_post.author.internal.mediaType',
   blog_post___author___internal___owner = 'blog_post.author.internal.owner',
   blog_post___author___internal___type = 'blog_post.author.internal.type',
+  blog_post___gatsbyPath = 'blog_post.gatsbyPath',
   blog_post___parent___id = 'blog_post.parent.id',
   blog_post___parent___parent___id = 'blog_post.parent.parent.id',
   blog_post___parent___parent___children = 'blog_post.parent.parent.children',
@@ -4876,6 +4892,7 @@ type Query_sitePageArgs = {
   children: Maybe<NodeFilterListInput>;
   internal: Maybe<InternalFilterInput>;
   isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>;
+  context: Maybe<SitePageContextFilterInput>;
   pluginCreator: Maybe<SitePluginFilterInput>;
   pluginCreatorId: Maybe<StringQueryOperatorInput>;
   componentPath: Maybe<StringQueryOperatorInput>;
@@ -4985,6 +5002,7 @@ type Query_contentfulBlogPostArgs = {
   updatedAt: Maybe<DateQueryOperatorInput>;
   sys: Maybe<ContentfulBlogPostSysFilterInput>;
   author: Maybe<ContentfulPersonFilterInput>;
+  gatsbyPath: Maybe<StringQueryOperatorInput>;
   parent: Maybe<NodeFilterInput>;
   children: Maybe<NodeFilterListInput>;
   internal: Maybe<InternalFilterInput>;
@@ -5486,6 +5504,7 @@ type SitePage = Node & {
   readonly children: ReadonlyArray<Node>;
   readonly internal: Internal;
   readonly isCreatedByStatefulCreatePages: Maybe<Scalars['Boolean']>;
+  readonly context: Maybe<SitePageContext>;
   readonly pluginCreator: Maybe<SitePlugin>;
   readonly pluginCreatorId: Maybe<Scalars['String']>;
   readonly componentPath: Maybe<Scalars['String']>;
@@ -5510,6 +5529,26 @@ type SitePageConnection_groupArgs = {
   skip: Maybe<Scalars['Int']>;
   limit: Maybe<Scalars['Int']>;
   field: SitePageFieldsEnum;
+};
+
+type SitePageContext = {
+  readonly id: Maybe<Scalars['String']>;
+  readonly slug: Maybe<Scalars['String']>;
+  readonly _xparams: Maybe<SitePageContext_xparams>;
+};
+
+type SitePageContext_xparams = {
+  readonly slug: Maybe<Scalars['String']>;
+};
+
+type SitePageContext_xparamsFilterInput = {
+  readonly slug: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePageContextFilterInput = {
+  readonly id: Maybe<StringQueryOperatorInput>;
+  readonly slug: Maybe<StringQueryOperatorInput>;
+  readonly _xparams: Maybe<SitePageContext_xparamsFilterInput>;
 };
 
 type SitePageEdge = {
@@ -5611,6 +5650,9 @@ enum SitePageFieldsEnum {
   internal___owner = 'internal.owner',
   internal___type = 'internal.type',
   isCreatedByStatefulCreatePages = 'isCreatedByStatefulCreatePages',
+  context___id = 'context.id',
+  context___slug = 'context.slug',
+  context____xparams___slug = 'context._xparams.slug',
   pluginCreator___id = 'pluginCreator.id',
   pluginCreator___parent___id = 'pluginCreator.parent.id',
   pluginCreator___parent___parent___id = 'pluginCreator.parent.parent.id',
@@ -5752,6 +5794,7 @@ type SitePageFilterInput = {
   readonly children: Maybe<NodeFilterListInput>;
   readonly internal: Maybe<InternalFilterInput>;
   readonly isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>;
+  readonly context: Maybe<SitePageContextFilterInput>;
   readonly pluginCreator: Maybe<SitePluginFilterInput>;
   readonly pluginCreatorId: Maybe<StringQueryOperatorInput>;
   readonly componentPath: Maybe<StringQueryOperatorInput>;
@@ -6384,5 +6427,20 @@ type PostBySlugQuery = { readonly contentfulBlogPost: Maybe<(
       & { readonly childMarkdownRemark: Maybe<Pick<MarkdownRemark, 'timeToRead'>> }
     )>, readonly author: Maybe<Pick<ContentfulPerson, 'name'>> }
   )> };
+
+type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
+
+type BioQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type BioQuery = { readonly avatar: Maybe<{ readonly childImageSharp: Maybe<{ readonly fixed: Maybe<GatsbyImageSharpFixedFragment> }> }>, readonly site: Maybe<{ readonly siteMetadata: Maybe<{ readonly author: Maybe<Pick<SiteSiteMetadataAuthor, 'name' | 'summary'>>, readonly social: Maybe<Pick<SiteSiteMetadataSocial, 'twitter'>> }> }> };
+
+type SeoQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type SeoQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<(
+      Pick<SiteSiteMetadata, 'title' | 'description'>
+      & { readonly social: Maybe<Pick<SiteSiteMetadataSocial, 'twitter'>> }
+    )> }> };
 
 }

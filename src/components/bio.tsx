@@ -3,28 +3,30 @@ import Image from "gatsby-image"
 import React from "react"
 
 export const Bio: React.FC = () => {
-  const data = useStaticQuery<GatsbyTypes.BioQuery>(graphql`
-    query Bio {
-      avatar: file(absolutePath: { regex: "/profile-pic.jpg/" }) {
-        childImageSharp {
-          fixed(width: 50, height: 50, quality: 95) {
-            ...GatsbyImageSharpFixed
+  const data = useStaticQuery<GatsbyTypes.BioQuery>(
+    graphql`
+      query Bio {
+        avatar: file(absolutePath: { regex: "/profile-pic.jpg/" }) {
+          childImageSharp {
+            fixed(width: 50, height: 50, quality: 95) {
+              ...GatsbyImageSharpFixed
+            }
+          }
+        }
+        site {
+          siteMetadata {
+            author {
+              name
+              summary
+            }
+            social {
+              twitter
+            }
           }
         }
       }
-      site {
-        siteMetadata {
-          author {
-            name
-            summary
-          }
-          social {
-            twitter
-          }
-        }
-      }
-    }
-  `)
+    `
+  )
 
   // Set these values by editing "siteMetadata" in gatsby-config.js
   const author = data.site?.siteMetadata?.author
