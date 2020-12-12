@@ -5532,6 +5532,13 @@ type SitePageConnection_groupArgs = {
 };
 
 type SitePageContext = {
+  readonly pageNumber: Maybe<Scalars['Int']>;
+  readonly humanPageNumber: Maybe<Scalars['Int']>;
+  readonly skip: Maybe<Scalars['Int']>;
+  readonly limit: Maybe<Scalars['Int']>;
+  readonly numberOfPages: Maybe<Scalars['Int']>;
+  readonly previousPagePath: Maybe<Scalars['String']>;
+  readonly nextPagePath: Maybe<Scalars['String']>;
   readonly id: Maybe<Scalars['String']>;
   readonly slug: Maybe<Scalars['String']>;
   readonly _xparams: Maybe<SitePageContext_xparams>;
@@ -5546,6 +5553,13 @@ type SitePageContext_xparamsFilterInput = {
 };
 
 type SitePageContextFilterInput = {
+  readonly pageNumber: Maybe<IntQueryOperatorInput>;
+  readonly humanPageNumber: Maybe<IntQueryOperatorInput>;
+  readonly skip: Maybe<IntQueryOperatorInput>;
+  readonly limit: Maybe<IntQueryOperatorInput>;
+  readonly numberOfPages: Maybe<IntQueryOperatorInput>;
+  readonly previousPagePath: Maybe<StringQueryOperatorInput>;
+  readonly nextPagePath: Maybe<StringQueryOperatorInput>;
   readonly id: Maybe<StringQueryOperatorInput>;
   readonly slug: Maybe<StringQueryOperatorInput>;
   readonly _xparams: Maybe<SitePageContext_xparamsFilterInput>;
@@ -5650,6 +5664,13 @@ enum SitePageFieldsEnum {
   internal___owner = 'internal.owner',
   internal___type = 'internal.type',
   isCreatedByStatefulCreatePages = 'isCreatedByStatefulCreatePages',
+  context___pageNumber = 'context.pageNumber',
+  context___humanPageNumber = 'context.humanPageNumber',
+  context___skip = 'context.skip',
+  context___limit = 'context.limit',
+  context___numberOfPages = 'context.numberOfPages',
+  context___previousPagePath = 'context.previousPagePath',
+  context___nextPagePath = 'context.nextPagePath',
   context___id = 'context.id',
   context___slug = 'context.slug',
   context____xparams___slug = 'context._xparams.slug',
@@ -5737,7 +5758,6 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___crossOrigin = 'pluginCreator.pluginOptions.crossOrigin',
   pluginCreator___pluginOptions___include_favicon = 'pluginCreator.pluginOptions.include_favicon',
   pluginCreator___pluginOptions___cacheDigest = 'pluginCreator.pluginOptions.cacheDigest',
-  pluginCreator___pluginOptions___outputPath = 'pluginCreator.pluginOptions.outputPath',
   pluginCreator___pluginOptions___spaceId = 'pluginCreator.pluginOptions.spaceId',
   pluginCreator___pluginOptions___accessToken = 'pluginCreator.pluginOptions.accessToken',
   pluginCreator___pluginOptions___host = 'pluginCreator.pluginOptions.host',
@@ -5756,6 +5776,7 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___sourceComments = 'pluginCreator.pluginOptions.sourceComments',
   pluginCreator___pluginOptions___sourceMapContents = 'pluginCreator.pluginOptions.sourceMapContents',
   pluginCreator___pluginOptions___sourceMapEmbed = 'pluginCreator.pluginOptions.sourceMapEmbed',
+  pluginCreator___pluginOptions___outputPath = 'pluginCreator.pluginOptions.outputPath',
   pluginCreator___pluginOptions___pathCheck = 'pluginCreator.pluginOptions.pathCheck',
   pluginCreator___pluginOptions___allExtensions = 'pluginCreator.pluginOptions.allExtensions',
   pluginCreator___pluginOptions___isTSX = 'pluginCreator.pluginOptions.isTSX',
@@ -6003,7 +6024,6 @@ enum SitePluginFieldsEnum {
   pluginOptions___crossOrigin = 'pluginOptions.crossOrigin',
   pluginOptions___include_favicon = 'pluginOptions.include_favicon',
   pluginOptions___cacheDigest = 'pluginOptions.cacheDigest',
-  pluginOptions___outputPath = 'pluginOptions.outputPath',
   pluginOptions___spaceId = 'pluginOptions.spaceId',
   pluginOptions___accessToken = 'pluginOptions.accessToken',
   pluginOptions___host = 'pluginOptions.host',
@@ -6022,6 +6042,7 @@ enum SitePluginFieldsEnum {
   pluginOptions___sourceComments = 'pluginOptions.sourceComments',
   pluginOptions___sourceMapContents = 'pluginOptions.sourceMapContents',
   pluginOptions___sourceMapEmbed = 'pluginOptions.sourceMapEmbed',
+  pluginOptions___outputPath = 'pluginOptions.outputPath',
   pluginOptions___pathCheck = 'pluginOptions.pathCheck',
   pluginOptions___allExtensions = 'pluginOptions.allExtensions',
   pluginOptions___isTSX = 'pluginOptions.isTSX',
@@ -6175,7 +6196,6 @@ type SitePluginPluginOptions = {
   readonly crossOrigin: Maybe<Scalars['String']>;
   readonly include_favicon: Maybe<Scalars['Boolean']>;
   readonly cacheDigest: Maybe<Scalars['String']>;
-  readonly outputPath: Maybe<Scalars['String']>;
   readonly spaceId: Maybe<Scalars['String']>;
   readonly accessToken: Maybe<Scalars['String']>;
   readonly host: Maybe<Scalars['String']>;
@@ -6194,6 +6214,7 @@ type SitePluginPluginOptions = {
   readonly sourceComments: Maybe<Scalars['Boolean']>;
   readonly sourceMapContents: Maybe<Scalars['Boolean']>;
   readonly sourceMapEmbed: Maybe<Scalars['Boolean']>;
+  readonly outputPath: Maybe<Scalars['String']>;
   readonly pathCheck: Maybe<Scalars['Boolean']>;
   readonly allExtensions: Maybe<Scalars['Boolean']>;
   readonly isTSX: Maybe<Scalars['Boolean']>;
@@ -6237,7 +6258,6 @@ type SitePluginPluginOptionsFilterInput = {
   readonly crossOrigin: Maybe<StringQueryOperatorInput>;
   readonly include_favicon: Maybe<BooleanQueryOperatorInput>;
   readonly cacheDigest: Maybe<StringQueryOperatorInput>;
-  readonly outputPath: Maybe<StringQueryOperatorInput>;
   readonly spaceId: Maybe<StringQueryOperatorInput>;
   readonly accessToken: Maybe<StringQueryOperatorInput>;
   readonly host: Maybe<StringQueryOperatorInput>;
@@ -6256,6 +6276,7 @@ type SitePluginPluginOptionsFilterInput = {
   readonly sourceComments: Maybe<BooleanQueryOperatorInput>;
   readonly sourceMapContents: Maybe<BooleanQueryOperatorInput>;
   readonly sourceMapEmbed: Maybe<BooleanQueryOperatorInput>;
+  readonly outputPath: Maybe<StringQueryOperatorInput>;
   readonly pathCheck: Maybe<BooleanQueryOperatorInput>;
   readonly allExtensions: Maybe<BooleanQueryOperatorInput>;
   readonly isTSX: Maybe<BooleanQueryOperatorInput>;
@@ -6391,6 +6412,20 @@ type WebPOptions = {
   readonly quality: Maybe<Scalars['Int']>;
 };
 
+type BlogIndexQueryVariables = Exact<{
+  skip: Scalars['Int'];
+  limit: Scalars['Int'];
+}>;
+
+
+type BlogIndexQuery = { readonly allContentfulBlogPost: { readonly edges: ReadonlyArray<{ readonly node: (
+        Pick<ContentfulBlogPost, 'title' | 'slug' | 'publishDate' | 'updatedAt'>
+        & { readonly description: Maybe<Pick<contentfulBlogPostDescriptionTextNode, 'description'>>, readonly heroImage: Maybe<(
+          Pick<ContentfulAsset, 'description'>
+          & { readonly file: Maybe<Pick<ContentfulAssetFile, 'url'>> }
+        )>, readonly tags: Maybe<ReadonlyArray<Maybe<Pick<ContentfulTag, 'name' | 'slug'>>>> }
+      ) }> } };
+
 type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -6400,17 +6435,6 @@ type NotFoundPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type NotFoundPageQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title'>> }> };
-
-type BlogIndexQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type BlogIndexQuery = { readonly allContentfulBlogPost: { readonly edges: ReadonlyArray<{ readonly node: (
-        Pick<ContentfulBlogPost, 'slug' | 'title' | 'updatedAt' | 'publishDate'>
-        & { readonly description: Maybe<Pick<contentfulBlogPostDescriptionTextNode, 'description'>>, readonly heroImage: Maybe<(
-          Pick<ContentfulAsset, 'description'>
-          & { readonly file: Maybe<Pick<ContentfulAssetFile, 'url'>> }
-        )>, readonly tags: Maybe<ReadonlyArray<Maybe<Pick<ContentfulTag, 'slug' | 'name'>>>> }
-      ) }> } };
 
 type PostBySlugQueryVariables = Exact<{
   slug: Scalars['String'];
@@ -6428,13 +6452,6 @@ type PostBySlugQuery = { readonly contentfulBlogPost: Maybe<(
     )>, readonly author: Maybe<Pick<ContentfulPerson, 'name'>> }
   )> };
 
-type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
-
-type BioQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type BioQuery = { readonly avatar: Maybe<{ readonly childImageSharp: Maybe<{ readonly fixed: Maybe<GatsbyImageSharpFixedFragment> }> }>, readonly site: Maybe<{ readonly siteMetadata: Maybe<{ readonly author: Maybe<Pick<SiteSiteMetadataAuthor, 'name' | 'summary'>>, readonly social: Maybe<Pick<SiteSiteMetadataSocial, 'twitter'>> }> }> };
-
 type SeoQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -6442,5 +6459,12 @@ type SeoQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<(
       Pick<SiteSiteMetadata, 'title' | 'description'>
       & { readonly social: Maybe<Pick<SiteSiteMetadataSocial, 'twitter'>> }
     )> }> };
+
+type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
+
+type BioQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type BioQuery = { readonly avatar: Maybe<{ readonly childImageSharp: Maybe<{ readonly fixed: Maybe<GatsbyImageSharpFixedFragment> }> }>, readonly site: Maybe<{ readonly siteMetadata: Maybe<{ readonly author: Maybe<Pick<SiteSiteMetadataAuthor, 'name' | 'summary'>>, readonly social: Maybe<Pick<SiteSiteMetadataSocial, 'twitter'>> }> }> };
 
 }

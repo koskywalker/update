@@ -4,7 +4,7 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    title: "Gatsby Starter Blog",
+    title: "UPDATE",
     author: {
       name: "Kyle Mathews",
       summary: "who lives and works in San Francisco building useful things.",
@@ -56,8 +56,8 @@ module.exports = {
     {
       resolve: "gatsby-plugin-manifest",
       options: {
-        name: "Gatsby Starter Blog",
-        short_name: "GatsbyJS",
+        name: "UPDATE",
+        short_name: "UPDATE",
         start_url: "/",
         background_color: "#ffffff",
         theme_color: "#663399",
@@ -68,12 +68,6 @@ module.exports = {
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-offline",
     {
-      resolve: "gatsby-plugin-typegen",
-      options: {
-        outputPath: `src/__generated__/gatsby-types.d.ts`,
-      },
-    },
-    {
       resolve: "gatsby-source-contentful",
       options: {
         spaceId: process.env.CONTENTFUL_SPACE_ID,
@@ -82,5 +76,11 @@ module.exports = {
     },
     "gatsby-plugin-root-import",
     "gatsby-plugin-sass",
+    {
+      resolve: "gatsby-plugin-typegen",
+      options: {
+        outputPath: `src/__generated__/gatsby-types.d.ts`,
+      },
+    },
   ],
 }

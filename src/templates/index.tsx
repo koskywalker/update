@@ -3,6 +3,7 @@ import React from "react"
 
 import { Bio } from "../components/bio"
 import { Layout } from "../components/layout"
+import { Pager } from "../components/pager"
 import { Seo } from "../components/seo"
 
 type IContainerProps = {
@@ -10,10 +11,11 @@ type IContainerProps = {
 }
 
 type IProps = IContainerProps & {
+  pageContext: any
   location: Location
 }
 
-const BlogIndex: React.FC<IProps> = ({ data, location }) => {
+const Index: React.FC<IProps> = ({ data, pageContext, location }) => {
   const siteTitle = "UPDATE"
   const posts = data.allContentfulBlogPost.edges
 
@@ -32,7 +34,7 @@ const BlogIndex: React.FC<IProps> = ({ data, location }) => {
       <Seo title="All posts" />
       <Bio />
       <ol style={{ listStyle: "none" }}>
-        {posts.map((post) => {
+        {posts.map((post: any) => {
           const postNode = post.node
 
           return (
@@ -62,7 +64,7 @@ const BlogIndex: React.FC<IProps> = ({ data, location }) => {
                 </section>
                 <footer>
                   <ul style={{ listStyle: "none" }}>
-                    {postNode.tags?.map((tag, index) => {
+                    {postNode.tags?.map((tag: any, index: number) => {
                       return (
                         <li key={index}>
                           <Link to={tag?.slug || ""}>{tag?.name}</Link>
@@ -76,34 +78,39 @@ const BlogIndex: React.FC<IProps> = ({ data, location }) => {
           )
         })}
       </ol>
+      <Pager pageContext={pageContext} />
     </Layout>
   )
 }
 
 // eslint-disable-next-line import/no-default-export
-export default BlogIndex
+export default Index
 
 export const pageQuery = graphql`
-  query BlogIndex {
-    allContentfulBlogPost(sort: { fields: publishDate, order: DESC }) {
+  query BlogIndex($skip: Int!, $limit: Int!) {
+    allContentfulBlogPost(
+      limit: $limit
+      sort: { fields: publishDate, order: DESC }
+      skip: $skip
+    ) {
       edges {
         node {
-          slug
           title
+          slug
+          publishDate(formatString: "YYYY/MM/DD")
           updatedAt(formatString: "YYYY/MM/DD")
           description {
             description
           }
           heroImage {
+            description
             file {
               url
             }
-            description
           }
-          publishDate(formatString: "YYYY/MM/DD")
           tags {
-            slug
             name
+            slug
           }
         }
       }
