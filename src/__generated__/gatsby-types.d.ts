@@ -6369,19 +6369,20 @@ type BlogIndexQuery = { readonly allContentfulBlogPost: { readonly edges: Readon
         )>, readonly tags: Maybe<ReadonlyArray<Maybe<Pick<ContentfulTag, 'slug' | 'name'>>>> }
       ) }> } };
 
-type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
-
-type BioQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type BioQuery = { readonly avatar: Maybe<{ readonly childImageSharp: Maybe<{ readonly fixed: Maybe<GatsbyImageSharpFixedFragment> }> }>, readonly site: Maybe<{ readonly siteMetadata: Maybe<{ readonly author: Maybe<Pick<SiteSiteMetadataAuthor, 'name' | 'summary'>>, readonly social: Maybe<Pick<SiteSiteMetadataSocial, 'twitter'>> }> }> };
-
-type SEOQueryVariables = Exact<{ [key: string]: never; }>;
+type PostBySlugQueryVariables = Exact<{
+  slug: Scalars['String'];
+}>;
 
 
-type SEOQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<(
-      Pick<SiteSiteMetadata, 'title' | 'description'>
-      & { readonly social: Maybe<Pick<SiteSiteMetadataSocial, 'twitter'>> }
-    )> }> };
+type PostBySlugQuery = { readonly contentfulBlogPost: Maybe<(
+    Pick<ContentfulBlogPost, 'slug' | 'title' | 'updatedAt' | 'publishDate'>
+    & { readonly tags: Maybe<ReadonlyArray<Maybe<Pick<ContentfulTag, 'slug' | 'name'>>>>, readonly heroImage: Maybe<(
+      Pick<ContentfulAsset, 'description'>
+      & { readonly file: Maybe<Pick<ContentfulAssetFile, 'url'>> }
+    )>, readonly description: Maybe<Pick<contentfulBlogPostDescriptionTextNode, 'description'>>, readonly body: Maybe<(
+      Pick<contentfulBlogPostBodyTextNode, 'body'>
+      & { readonly childMarkdownRemark: Maybe<Pick<MarkdownRemark, 'timeToRead'>> }
+    )>, readonly author: Maybe<Pick<ContentfulPerson, 'name'>> }
+  )> };
 
 }
