@@ -49,7 +49,9 @@ const BlogPost: React.FC<IProps> = ({ data, location }) => {
           />
         </header>
         <section
-          dangerouslySetInnerHTML={{ __html: post?.body?.body || "" }}
+          dangerouslySetInnerHTML={{
+            __html: post?.body?.childMarkdownRemark?.html || "",
+          }}
           itemProp="articleBody"
         />
         <hr />
@@ -87,8 +89,8 @@ export const pageQuery = graphql`
       body {
         childMarkdownRemark {
           timeToRead
+          html
         }
-        body
       }
       author {
         name

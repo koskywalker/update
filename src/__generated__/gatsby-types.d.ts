@@ -5744,7 +5744,6 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___loading = 'pluginCreator.pluginOptions.loading',
   pluginCreator___pluginOptions___disableBgImageOnAlpha = 'pluginCreator.pluginOptions.disableBgImageOnAlpha',
   pluginCreator___pluginOptions___disableBgImage = 'pluginCreator.pluginOptions.disableBgImage',
-  pluginCreator___pluginOptions___wrapperStyle = 'pluginCreator.pluginOptions.wrapperStyle',
   pluginCreator___pluginOptions___base64Width = 'pluginCreator.pluginOptions.base64Width',
   pluginCreator___pluginOptions___stripMetadata = 'pluginCreator.pluginOptions.stripMetadata',
   pluginCreator___pluginOptions___defaultQuality = 'pluginCreator.pluginOptions.defaultQuality',
@@ -5991,7 +5990,6 @@ enum SitePluginFieldsEnum {
   pluginOptions___plugins___pluginOptions___loading = 'pluginOptions.plugins.pluginOptions.loading',
   pluginOptions___plugins___pluginOptions___disableBgImageOnAlpha = 'pluginOptions.plugins.pluginOptions.disableBgImageOnAlpha',
   pluginOptions___plugins___pluginOptions___disableBgImage = 'pluginOptions.plugins.pluginOptions.disableBgImage',
-  pluginOptions___plugins___pluginOptions___wrapperStyle = 'pluginOptions.plugins.pluginOptions.wrapperStyle',
   pluginOptions___plugins___nodeAPIs = 'pluginOptions.plugins.nodeAPIs',
   pluginOptions___plugins___browserAPIs = 'pluginOptions.plugins.browserAPIs',
   pluginOptions___plugins___pluginFilepath = 'pluginOptions.plugins.pluginFilepath',
@@ -6010,7 +6008,6 @@ enum SitePluginFieldsEnum {
   pluginOptions___loading = 'pluginOptions.loading',
   pluginOptions___disableBgImageOnAlpha = 'pluginOptions.disableBgImageOnAlpha',
   pluginOptions___disableBgImage = 'pluginOptions.disableBgImage',
-  pluginOptions___wrapperStyle = 'pluginOptions.wrapperStyle',
   pluginOptions___base64Width = 'pluginOptions.base64Width',
   pluginOptions___stripMetadata = 'pluginOptions.stripMetadata',
   pluginOptions___defaultQuality = 'pluginOptions.defaultQuality',
@@ -6182,7 +6179,6 @@ type SitePluginPluginOptions = {
   readonly loading: Maybe<Scalars['String']>;
   readonly disableBgImageOnAlpha: Maybe<Scalars['Boolean']>;
   readonly disableBgImage: Maybe<Scalars['Boolean']>;
-  readonly wrapperStyle: Maybe<Scalars['String']>;
   readonly base64Width: Maybe<Scalars['Int']>;
   readonly stripMetadata: Maybe<Scalars['Boolean']>;
   readonly defaultQuality: Maybe<Scalars['Int']>;
@@ -6244,7 +6240,6 @@ type SitePluginPluginOptionsFilterInput = {
   readonly loading: Maybe<StringQueryOperatorInput>;
   readonly disableBgImageOnAlpha: Maybe<BooleanQueryOperatorInput>;
   readonly disableBgImage: Maybe<BooleanQueryOperatorInput>;
-  readonly wrapperStyle: Maybe<StringQueryOperatorInput>;
   readonly base64Width: Maybe<IntQueryOperatorInput>;
   readonly stripMetadata: Maybe<BooleanQueryOperatorInput>;
   readonly defaultQuality: Maybe<IntQueryOperatorInput>;
@@ -6328,7 +6323,6 @@ type SitePluginPluginOptionsPluginsPluginOptions = {
   readonly loading: Maybe<Scalars['String']>;
   readonly disableBgImageOnAlpha: Maybe<Scalars['Boolean']>;
   readonly disableBgImage: Maybe<Scalars['Boolean']>;
-  readonly wrapperStyle: Maybe<Scalars['String']>;
 };
 
 type SitePluginPluginOptionsPluginsPluginOptionsFilterInput = {
@@ -6344,7 +6338,6 @@ type SitePluginPluginOptionsPluginsPluginOptionsFilterInput = {
   readonly loading: Maybe<StringQueryOperatorInput>;
   readonly disableBgImageOnAlpha: Maybe<BooleanQueryOperatorInput>;
   readonly disableBgImage: Maybe<BooleanQueryOperatorInput>;
-  readonly wrapperStyle: Maybe<StringQueryOperatorInput>;
 };
 
 type SitePluginSortInput = {
@@ -6467,10 +6460,7 @@ type PostBySlugQuery = { readonly contentfulBlogPost: Maybe<(
     & { readonly tags: Maybe<ReadonlyArray<Maybe<Pick<ContentfulTag, 'slug' | 'name'>>>>, readonly heroImage: Maybe<(
       Pick<ContentfulAsset, 'description'>
       & { readonly file: Maybe<Pick<ContentfulAssetFile, 'url'>> }
-    )>, readonly description: Maybe<Pick<contentfulBlogPostDescriptionTextNode, 'description'>>, readonly body: Maybe<(
-      Pick<contentfulBlogPostBodyTextNode, 'body'>
-      & { readonly childMarkdownRemark: Maybe<Pick<MarkdownRemark, 'timeToRead'>> }
-    )>, readonly author: Maybe<Pick<ContentfulPerson, 'name'>> }
+    )>, readonly description: Maybe<Pick<contentfulBlogPostDescriptionTextNode, 'description'>>, readonly body: Maybe<{ readonly childMarkdownRemark: Maybe<Pick<MarkdownRemark, 'timeToRead' | 'html'>> }>, readonly author: Maybe<Pick<ContentfulPerson, 'name'>> }
   )> };
 
 type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;

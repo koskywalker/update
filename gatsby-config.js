@@ -6,13 +6,15 @@ module.exports = {
   siteMetadata: {
     title: "UPDATE",
     author: {
-      name: "Kyle Mathews",
-      summary: "who lives and works in San Francisco building useful things.",
+      name: "こうすけ (Kosuke Muraka)",
+      summary:
+        "フリーランスのフロントエンドエンジニア. バックエンドも少々. Web 開発, Web 制作, ブログ運営などをメインに活動しています",
     },
-    description: "A starter blog demonstrating what Gatsby can do.",
-    siteUrl: "https://gatsby-starter-blog-demo.netlify.app/",
+    description:
+      "UPDATE は, フロントエンドエンジニアとして活動するこうすけのクリエイターブログです. 主にプログラミング, デザイン, SEO, 普段の活動などについて発信しています.",
+    siteUrl: "https://upd.world",
     social: {
-      twitter: "kylemathews",
+      twitter: "kosuke_upd",
     },
   },
   plugins: [
@@ -39,15 +41,7 @@ module.exports = {
               maxWidth: 630,
             },
           },
-          {
-            resolve: "gatsby-remark-responsive-iframe",
-            options: {
-              wrapperStyle: "margin-bottom: 1.0725rem",
-            },
-          },
           "gatsby-remark-prismjs",
-          "gatsby-remark-copy-linked-files",
-          "gatsby-remark-smartypants",
         ],
       },
     },
