@@ -5532,6 +5532,7 @@ type SitePageConnection_groupArgs = {
 };
 
 type SitePageContext = {
+  readonly lastPageNumber: Maybe<Scalars['Int']>;
   readonly pageNumber: Maybe<Scalars['Int']>;
   readonly humanPageNumber: Maybe<Scalars['Int']>;
   readonly skip: Maybe<Scalars['Int']>;
@@ -5539,6 +5540,7 @@ type SitePageContext = {
   readonly numberOfPages: Maybe<Scalars['Int']>;
   readonly previousPagePath: Maybe<Scalars['String']>;
   readonly nextPagePath: Maybe<Scalars['String']>;
+  readonly tagSlug: Maybe<Scalars['String']>;
   readonly id: Maybe<Scalars['String']>;
   readonly slug: Maybe<Scalars['String']>;
   readonly _xparams: Maybe<SitePageContext_xparams>;
@@ -5553,6 +5555,7 @@ type SitePageContext_xparamsFilterInput = {
 };
 
 type SitePageContextFilterInput = {
+  readonly lastPageNumber: Maybe<IntQueryOperatorInput>;
   readonly pageNumber: Maybe<IntQueryOperatorInput>;
   readonly humanPageNumber: Maybe<IntQueryOperatorInput>;
   readonly skip: Maybe<IntQueryOperatorInput>;
@@ -5560,6 +5563,7 @@ type SitePageContextFilterInput = {
   readonly numberOfPages: Maybe<IntQueryOperatorInput>;
   readonly previousPagePath: Maybe<StringQueryOperatorInput>;
   readonly nextPagePath: Maybe<StringQueryOperatorInput>;
+  readonly tagSlug: Maybe<StringQueryOperatorInput>;
   readonly id: Maybe<StringQueryOperatorInput>;
   readonly slug: Maybe<StringQueryOperatorInput>;
   readonly _xparams: Maybe<SitePageContext_xparamsFilterInput>;
@@ -5664,6 +5668,7 @@ enum SitePageFieldsEnum {
   internal___owner = 'internal.owner',
   internal___type = 'internal.type',
   isCreatedByStatefulCreatePages = 'isCreatedByStatefulCreatePages',
+  context___lastPageNumber = 'context.lastPageNumber',
   context___pageNumber = 'context.pageNumber',
   context___humanPageNumber = 'context.humanPageNumber',
   context___skip = 'context.skip',
@@ -5671,6 +5676,7 @@ enum SitePageFieldsEnum {
   context___numberOfPages = 'context.numberOfPages',
   context___previousPagePath = 'context.previousPagePath',
   context___nextPagePath = 'context.nextPagePath',
+  context___tagSlug = 'context.tagSlug',
   context___id = 'context.id',
   context___slug = 'context.slug',
   context____xparams___slug = 'context._xparams.slug',
@@ -6412,13 +6418,28 @@ type WebPOptions = {
   readonly quality: Maybe<Scalars['Int']>;
 };
 
-type BlogIndexQueryVariables = Exact<{
+type IndexArchiveQueryVariables = Exact<{
   skip: Scalars['Int'];
   limit: Scalars['Int'];
 }>;
 
 
-type BlogIndexQuery = { readonly allContentfulBlogPost: { readonly edges: ReadonlyArray<{ readonly node: (
+type IndexArchiveQuery = { readonly allContentfulBlogPost: { readonly edges: ReadonlyArray<{ readonly node: (
+        Pick<ContentfulBlogPost, 'title' | 'slug' | 'publishDate' | 'updatedAt'>
+        & { readonly description: Maybe<Pick<contentfulBlogPostDescriptionTextNode, 'description'>>, readonly heroImage: Maybe<(
+          Pick<ContentfulAsset, 'description'>
+          & { readonly file: Maybe<Pick<ContentfulAssetFile, 'url'>> }
+        )>, readonly tags: Maybe<ReadonlyArray<Maybe<Pick<ContentfulTag, 'name' | 'slug'>>>> }
+      ) }> } };
+
+type TagsArchiveQueryVariables = Exact<{
+  skip: Scalars['Int'];
+  limit: Scalars['Int'];
+  tagSlug: Maybe<Scalars['String']>;
+}>;
+
+
+type TagsArchiveQuery = { readonly allContentfulBlogPost: { readonly edges: ReadonlyArray<{ readonly node: (
         Pick<ContentfulBlogPost, 'title' | 'slug' | 'publishDate' | 'updatedAt'>
         & { readonly description: Maybe<Pick<contentfulBlogPostDescriptionTextNode, 'description'>>, readonly heroImage: Maybe<(
           Pick<ContentfulAsset, 'description'>
@@ -6452,6 +6473,13 @@ type PostBySlugQuery = { readonly contentfulBlogPost: Maybe<(
     )>, readonly author: Maybe<Pick<ContentfulPerson, 'name'>> }
   )> };
 
+type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
+
+type BioQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type BioQuery = { readonly avatar: Maybe<{ readonly childImageSharp: Maybe<{ readonly fixed: Maybe<GatsbyImageSharpFixedFragment> }> }>, readonly site: Maybe<{ readonly siteMetadata: Maybe<{ readonly author: Maybe<Pick<SiteSiteMetadataAuthor, 'name' | 'summary'>>, readonly social: Maybe<Pick<SiteSiteMetadataSocial, 'twitter'>> }> }> };
+
 type SeoQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -6459,12 +6487,5 @@ type SeoQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<(
       Pick<SiteSiteMetadata, 'title' | 'description'>
       & { readonly social: Maybe<Pick<SiteSiteMetadataSocial, 'twitter'>> }
     )> }> };
-
-type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
-
-type BioQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type BioQuery = { readonly avatar: Maybe<{ readonly childImageSharp: Maybe<{ readonly fixed: Maybe<GatsbyImageSharpFixedFragment> }> }>, readonly site: Maybe<{ readonly siteMetadata: Maybe<{ readonly author: Maybe<Pick<SiteSiteMetadataAuthor, 'name' | 'summary'>>, readonly social: Maybe<Pick<SiteSiteMetadataSocial, 'twitter'>> }> }> };
 
 }

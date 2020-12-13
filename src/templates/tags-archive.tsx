@@ -7,7 +7,7 @@ import { Pager } from "../components/pager"
 import { Seo } from "../components/seo"
 
 type IContainerProps = {
-  data: GatsbyTypes.BlogIndexQuery
+  data: GatsbyTypes.TagsArchiveQuery
 }
 
 type IProps = IContainerProps & {
@@ -15,7 +15,7 @@ type IProps = IContainerProps & {
   location: Location
 }
 
-const Index: React.FC<IProps> = ({ data, pageContext, location }) => {
+const TagsArchive: React.FC<IProps> = ({ data, pageContext, location }) => {
   const siteTitle = "UPDATE"
   const posts = data.allContentfulBlogPost.edges
 
@@ -67,7 +67,9 @@ const Index: React.FC<IProps> = ({ data, pageContext, location }) => {
                     {postNode.tags?.map((tag: any, index: number) => {
                       return (
                         <li key={index}>
-                          <Link to={tag?.slug || ""}>{tag?.name}</Link>
+                          <Link to={`/tags/${tag?.slug}` || ""}>
+                            {tag?.name}
+                          </Link>
                         </li>
                       )
                     })}
@@ -84,14 +86,15 @@ const Index: React.FC<IProps> = ({ data, pageContext, location }) => {
 }
 
 // eslint-disable-next-line import/no-default-export
-export default Index
+export default TagsArchive
 
 export const pageQuery = graphql`
-  query BlogIndex($skip: Int!, $limit: Int!) {
+  query TagsArchive($skip: Int!, $limit: Int!, $tagSlug: String) {
     allContentfulBlogPost(
-      limit: $limit
       sort: { fields: publishDate, order: DESC }
+      limit: $limit
       skip: $skip
+      filter: { tags: { elemMatch: { slug: { eq: $tagSlug } } } }
     ) {
       edges {
         node {
