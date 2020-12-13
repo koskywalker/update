@@ -19,10 +19,17 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: "gatsby-source-filesystem",
+      resolve: "gatsby-source-contentful",
       options: {
-        path: `${__dirname}/content/assets`,
-        name: "assets",
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
+        accessToken: process.env.CONTENTFUL_CONTENT_DELIVERY_API_ACCESS_TOKEN,
+      },
+    },
+    "gatsby-plugin-sass",
+    {
+      resolve: "gatsby-plugin-google-analytics",
+      options: {
+        //trackingId: "ADD YOUR TRACKING ID HERE",
       },
     },
     {
@@ -45,14 +52,9 @@ module.exports = {
         ],
       },
     },
-    "gatsby-transformer-sharp",
-    "gatsby-plugin-sharp",
-    {
-      resolve: "gatsby-plugin-google-analytics",
-      options: {
-        //trackingId: "ADD YOUR TRACKING ID HERE",
-      },
-    },
+    "gatsby-plugin-react-helmet",
+    "gatsby-plugin-sitemap",
+    "gatsby-plugin-offline",
     {
       resolve: "gatsby-plugin-manifest",
       options: {
@@ -62,19 +64,18 @@ module.exports = {
         background_color: "#ffffff",
         theme_color: "#663399",
         display: "minimal-ui",
-        icon: "content/assets/gatsby-icon.png",
+        icon: "./src/images/gatsby-icon.png",
       },
     },
-    "gatsby-plugin-react-helmet",
-    "gatsby-plugin-offline",
+    "gatsby-plugin-sharp",
+    "gatsby-transformer-sharp",
     {
-      resolve: "gatsby-source-contentful",
+      resolve: "gatsby-source-filesystem",
       options: {
-        spaceId: process.env.CONTENTFUL_SPACE_ID,
-        accessToken: process.env.CONTENTFUL_CONTENT_DELIVERY_API_ACCESS_TOKEN,
+        name: "images",
+        path: "./src/images/",
       },
+      __key: "images",
     },
-    "gatsby-plugin-root-import",
-    "gatsby-plugin-sass",
   ],
 }
