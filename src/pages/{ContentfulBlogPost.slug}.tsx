@@ -38,7 +38,7 @@ const BlogPost: React.FC<IProps> = ({ data, location }) => {
             {post?.tags?.map((tag, index) => {
               return (
                 <li key={index}>
-                  <Link to={tag?.slug || ""}>{tag?.name}</Link>
+                  <Link to={`/tags/${tag?.slug}` || ""}>{tag?.name}</Link>
                 </li>
               )
             })}

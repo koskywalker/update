@@ -24,6 +24,12 @@ module.exports = {
       },
     },
     {
+      resolve: "gatsby-plugin-typegen",
+      options: {
+        outputPath: `src/__generated__/gatsby-types.d.ts`,
+      },
+    },
+    {
       resolve: "gatsby-transformer-remark",
       options: {
         plugins: [
@@ -76,11 +82,5 @@ module.exports = {
     },
     "gatsby-plugin-root-import",
     "gatsby-plugin-sass",
-    {
-      resolve: "gatsby-plugin-typegen",
-      options: {
-        outputPath: `src/__generated__/gatsby-types.d.ts`,
-      },
-    },
   ],
 }

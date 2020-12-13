@@ -42,7 +42,7 @@ const IndexArchive: React.FC<IProps> = ({ data, pageContext, location }) => {
               <article className="post-list-item">
                 <header>
                   <h2>
-                    <Link to={postNode.slug || ""}>
+                    <Link to={`/${postNode.slug}` || ""}>
                       <span>{postNode.title}</span>
                     </Link>
                   </h2>
