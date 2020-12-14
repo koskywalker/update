@@ -5738,15 +5738,6 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___pageLimit = 'pluginCreator.pluginOptions.pageLimit',
   pluginCreator___pluginOptions___assetDownloadWorkers = 'pluginCreator.pluginOptions.assetDownloadWorkers',
   pluginCreator___pluginOptions___useNameForId = 'pluginCreator.pluginOptions.useNameForId',
-  pluginCreator___pluginOptions___indentedSyntax = 'pluginCreator.pluginOptions.indentedSyntax',
-  pluginCreator___pluginOptions___indentType = 'pluginCreator.pluginOptions.indentType',
-  pluginCreator___pluginOptions___indentWidth = 'pluginCreator.pluginOptions.indentWidth',
-  pluginCreator___pluginOptions___linefeed = 'pluginCreator.pluginOptions.linefeed',
-  pluginCreator___pluginOptions___omitSourceMapUrl = 'pluginCreator.pluginOptions.omitSourceMapUrl',
-  pluginCreator___pluginOptions___precision = 'pluginCreator.pluginOptions.precision',
-  pluginCreator___pluginOptions___sourceComments = 'pluginCreator.pluginOptions.sourceComments',
-  pluginCreator___pluginOptions___sourceMapContents = 'pluginCreator.pluginOptions.sourceMapContents',
-  pluginCreator___pluginOptions___sourceMapEmbed = 'pluginCreator.pluginOptions.sourceMapEmbed',
   pluginCreator___pluginOptions___head = 'pluginCreator.pluginOptions.head',
   pluginCreator___pluginOptions___anonymize = 'pluginCreator.pluginOptions.anonymize',
   pluginCreator___pluginOptions___respectDNT = 'pluginCreator.pluginOptions.respectDNT',
@@ -6004,15 +5995,6 @@ enum SitePluginFieldsEnum {
   pluginOptions___pageLimit = 'pluginOptions.pageLimit',
   pluginOptions___assetDownloadWorkers = 'pluginOptions.assetDownloadWorkers',
   pluginOptions___useNameForId = 'pluginOptions.useNameForId',
-  pluginOptions___indentedSyntax = 'pluginOptions.indentedSyntax',
-  pluginOptions___indentType = 'pluginOptions.indentType',
-  pluginOptions___indentWidth = 'pluginOptions.indentWidth',
-  pluginOptions___linefeed = 'pluginOptions.linefeed',
-  pluginOptions___omitSourceMapUrl = 'pluginOptions.omitSourceMapUrl',
-  pluginOptions___precision = 'pluginOptions.precision',
-  pluginOptions___sourceComments = 'pluginOptions.sourceComments',
-  pluginOptions___sourceMapContents = 'pluginOptions.sourceMapContents',
-  pluginOptions___sourceMapEmbed = 'pluginOptions.sourceMapEmbed',
   pluginOptions___head = 'pluginOptions.head',
   pluginOptions___anonymize = 'pluginOptions.anonymize',
   pluginOptions___respectDNT = 'pluginOptions.respectDNT',
@@ -6177,15 +6159,6 @@ type SitePluginPluginOptions = {
   readonly pageLimit: Maybe<Scalars['Int']>;
   readonly assetDownloadWorkers: Maybe<Scalars['Int']>;
   readonly useNameForId: Maybe<Scalars['Boolean']>;
-  readonly indentedSyntax: Maybe<Scalars['Boolean']>;
-  readonly indentType: Maybe<Scalars['String']>;
-  readonly indentWidth: Maybe<Scalars['Int']>;
-  readonly linefeed: Maybe<Scalars['String']>;
-  readonly omitSourceMapUrl: Maybe<Scalars['Boolean']>;
-  readonly precision: Maybe<Scalars['Int']>;
-  readonly sourceComments: Maybe<Scalars['Boolean']>;
-  readonly sourceMapContents: Maybe<Scalars['Boolean']>;
-  readonly sourceMapEmbed: Maybe<Scalars['Boolean']>;
   readonly head: Maybe<Scalars['Boolean']>;
   readonly anonymize: Maybe<Scalars['Boolean']>;
   readonly respectDNT: Maybe<Scalars['Boolean']>;
@@ -6240,15 +6213,6 @@ type SitePluginPluginOptionsFilterInput = {
   readonly pageLimit: Maybe<IntQueryOperatorInput>;
   readonly assetDownloadWorkers: Maybe<IntQueryOperatorInput>;
   readonly useNameForId: Maybe<BooleanQueryOperatorInput>;
-  readonly indentedSyntax: Maybe<BooleanQueryOperatorInput>;
-  readonly indentType: Maybe<StringQueryOperatorInput>;
-  readonly indentWidth: Maybe<IntQueryOperatorInput>;
-  readonly linefeed: Maybe<StringQueryOperatorInput>;
-  readonly omitSourceMapUrl: Maybe<BooleanQueryOperatorInput>;
-  readonly precision: Maybe<IntQueryOperatorInput>;
-  readonly sourceComments: Maybe<BooleanQueryOperatorInput>;
-  readonly sourceMapContents: Maybe<BooleanQueryOperatorInput>;
-  readonly sourceMapEmbed: Maybe<BooleanQueryOperatorInput>;
   readonly head: Maybe<BooleanQueryOperatorInput>;
   readonly anonymize: Maybe<BooleanQueryOperatorInput>;
   readonly respectDNT: Maybe<BooleanQueryOperatorInput>;
