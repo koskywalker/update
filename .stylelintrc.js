@@ -1,15 +1,19 @@
 module.exports = {
-  extends: "stylelint-config-recommended",
+  extends: "stylelint-config-standard",
   plugins: ["stylelint-order"],
   rules: {
     "order/properties-alphabetical-order": true,
     "at-rule-no-unknown": [
       true,
       {
-        ignoreAtRules: ["extends", "tailwind"],
+        ignoreAtRules: [
+          "tailwind",
+          "apply",
+          "variants",
+          "responsive",
+          "screen"
+        ],
       },
     ],
-    "block-no-empty": null,
-    "unit-whitelist": ["em", "rem", "s"],
   },
 }
