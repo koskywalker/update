@@ -25,7 +25,6 @@ module.exports = {
         accessToken: process.env.CONTENTFUL_CONTENT_DELIVERY_API_ACCESS_TOKEN,
       },
     },
-    "gatsby-plugin-sass",
     {
       resolve: "gatsby-plugin-google-analytics",
       options: {
@@ -77,5 +76,6 @@ module.exports = {
       },
       __key: "images",
     },
+    "gatsby-plugin-postcss",
   ],
 }

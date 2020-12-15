@@ -1,6 +1,3 @@
-// normalize CSS across browsers
-import "./src/normalize.scss"
-// custom CSS styles
-import "./src/style.scss"
+import "./src/styles/global.css"
 // Highlighting for code blocks
 import "prismjs/themes/prism-okaidia.css"

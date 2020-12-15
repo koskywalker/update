@@ -1,7 +1,11 @@
 {
+  "css.validate": false,
   "editor.formatOnSave": false,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true,
     "source.fixAll.stylelint": true
+  },
+  "tailwindCSS.includeLanguages": {
+    "typescriptreact": "html"
   }
 }
