@@ -1,6 +1,6 @@
 {
   "extends": ["config:base"],
-  "automerge": true,
+  "automerge": false,
   "vulnerabilityAlerts": { "enabled": true },
   "lockFileMaintenance": { "enabled": true }
 }
