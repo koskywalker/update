@@ -2,14 +2,14 @@ import { graphql, useStaticQuery } from "gatsby"
 import React from "react"
 import { Helmet } from "react-helmet"
 
-interface SeoProps {
+type IProps = {
   description?: string
   lang?: string
   meta?: any[]
   title: string
 }
 
-export const Seo: React.FC<SeoProps> = ({
+export const Seo: React.FC<IProps> = ({
   description = "",
   lang = "ja",
   meta = [],

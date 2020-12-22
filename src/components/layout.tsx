@@ -1,16 +1,12 @@
 import { Link } from "gatsby"
 import React from "react"
 
-interface LayoutProps {
+type IProps = {
   location: Location
   title: string
 }
 
-export const Layout: React.FC<LayoutProps> = ({
-  location,
-  title,
-  children,
-}) => {
+export const Layout: React.FC<IProps> = ({ location, title, children }) => {
   const rootPath = `${__PATH_PREFIX__}/`
   const isRootPath = location.pathname === rootPath
   let header
