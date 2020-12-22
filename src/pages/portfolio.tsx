@@ -54,7 +54,7 @@ const PortFolio: React.FC<IProps> = ({ data, location }) => {
 
   return (
     <Layout location={location} title={siteTitle}>
-      <Seo title="{pageTitle}" />
+      <Seo title={pageTitle} />
       <h1>{pageTitle}</h1>
       {items.map((item: any, index: number) => {
         return (
