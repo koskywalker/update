@@ -21,29 +21,42 @@ const Contact: React.FC<IProps> = ({ data, location }) => {
     <Layout location={location} title={siteTitle}>
       <Seo title={pageTitle} />
       <h1>{pageTitle}</h1>
-      <div>
-        <form name="contact" method="post" data-netlify="true">
-          <input type="hidden" name="form-name" value="contact" />
+      <form
+        name="contact"
+        method="post"
+        netlify-honeypot="bot-field"
+        data-netlify="true"
+      >
+        <input type="hidden" name="bot-field" />
+        <input type="hidden" name="form-name" value="contact" />
+        <div>
           <p>
-            <label>
-              Your Name: <input type="text" name="name" />
-            </label>
+            <label htmlFor="name">お名前</label>
           </p>
           <p>
-            <label>
-              Your Email: <input type="email" name="email" />
-            </label>
+            <input type="text" name="name" id="name" />
+          </p>
+        </div>
+        <div>
+          <p>
+            <label htmlFor="email">メールアドレス</label>
           </p>
           <p>
-            <label>
-              Message: <textarea name="message"></textarea>
-            </label>
+            <input type="email" name="email" id="email" />
+          </p>
+        </div>
+        <div>
+          <p>
+            <label htmlFor="message">メッセージ</label>
           </p>
           <p>
-            <button>Send</button>
+            <textarea name="message" id="message"></textarea>
           </p>
-        </form>
-      </div>
+        </div>
+        <p>
+          <button>送信</button>
+        </p>
+      </form>
     </Layout>
   )
 }
