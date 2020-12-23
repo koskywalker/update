@@ -6,14 +6,14 @@ import { Layout } from "../components/layout"
 import { Seo } from "../components/seo"
 
 type IContainerProps = {
-  data: GatsbyTypes.PortFolioQuery
+  data: GatsbyTypes.PortfolioQuery
 }
 
 type IProps = IContainerProps & {
   location: Location
 }
 
-const PortFolio: React.FC<IProps> = ({ data, location }) => {
+const Portfolio: React.FC<IProps> = ({ data, location }) => {
   const siteTitle = data.site?.siteMetadata?.title || "UPDATE"
   const portfolioImageUpdate = data.imageUpdate?.childImageSharp?.fixed
   const portfolioImageCopilin = data.imageCopilin?.childImageSharp?.fixed
@@ -79,10 +79,10 @@ const PortFolio: React.FC<IProps> = ({ data, location }) => {
 }
 
 // eslint-disable-next-line import/no-default-export
-export default PortFolio
+export default Portfolio
 
 export const pageQuery = graphql`
-  query PortFolio {
+  query Portfolio {
     site {
       siteMetadata {
         title
