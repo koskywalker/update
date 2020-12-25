@@ -6417,11 +6417,6 @@ type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
 
-type NotFoundPageQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type NotFoundPageQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title'>> }> };
-
 type ContactQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -6547,5 +6542,10 @@ type GatsbyImageSharpSizes_withWebp_tracedSVGFragment = Pick<ImageSharpSizes, 't
 type GatsbyImageSharpSizes_noBase64Fragment = Pick<ImageSharpSizes, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
 
 type GatsbyImageSharpSizes_withWebp_noBase64Fragment = Pick<ImageSharpSizes, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
+
+type LogoQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type LogoQuery = { readonly file: Maybe<Pick<File, 'publicURL'>>, readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title'>> }> };
 
 }

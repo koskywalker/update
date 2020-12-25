@@ -15,7 +15,7 @@ export const Seo: React.FC<IProps> = ({
   meta = [],
   title,
 }) => {
-  const { site } = useStaticQuery<GatsbyTypes.SeoQuery>(
+  const data = useStaticQuery<GatsbyTypes.SeoQuery>(
     graphql`
       query Seo {
         site {
@@ -31,8 +31,8 @@ export const Seo: React.FC<IProps> = ({
     `
   )
 
-  const metaDescription = description || site?.siteMetadata?.description
-  const defaultTitle = site?.siteMetadata?.title
+  const metaDescription = description || data.site?.siteMetadata?.description
+  const defaultTitle = data.site?.siteMetadata?.title
 
   return (
     <Helmet
@@ -65,7 +65,7 @@ export const Seo: React.FC<IProps> = ({
           },
           {
             name: "twitter:creator",
-            content: site?.siteMetadata?.social?.twitter || "",
+            content: data.site?.siteMetadata?.social?.twitter || "",
           },
           {
             name: "twitter:title",

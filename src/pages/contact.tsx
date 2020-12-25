@@ -18,7 +18,7 @@ const Contact: React.FC<IProps> = ({ data, location }) => {
   const pageTitle = `お問い合わせ - ${siteTitle}`
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout location={location}>
       <Seo title={pageTitle} />
       <h1>{pageTitle}</h1>
       <form

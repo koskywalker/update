@@ -16,12 +16,11 @@ type IProps = IContainerProps & {
 }
 
 const TagsArchive: React.FC<IProps> = ({ data, pageContext, location }) => {
-  const siteTitle = "UPDATE"
   const posts = data.allContentfulBlogPost.edges
 
   if (posts.length === 0) {
     return (
-      <Layout location={location} title={siteTitle}>
+      <Layout location={location}>
         <Seo title="All posts" />
         <Bio />
         <p>No blog posts found. Add markdown posts.</p>
@@ -30,7 +29,7 @@ const TagsArchive: React.FC<IProps> = ({ data, pageContext, location }) => {
   }
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout location={location}>
       <Seo title="All posts" />
       <Bio />
       <ol style={{ listStyle: "none" }}>

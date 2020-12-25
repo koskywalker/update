@@ -53,7 +53,7 @@ const Portfolio: React.FC<IProps> = ({ data, location }) => {
   ]
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout location={location}>
       <Seo title={pageTitle} />
       <h1>{pageTitle}</h1>
       {items.map((item: any, index: number) => {

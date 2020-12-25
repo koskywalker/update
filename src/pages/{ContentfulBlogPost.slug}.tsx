@@ -15,10 +15,9 @@ type IProps = IContainerProps & {
 
 const BlogPost: React.FC<IProps> = ({ data, location }) => {
   const post = data.contentfulBlogPost
-  const siteTitle = "UPDATE"
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout location={location}>
       <Seo
         title={post?.title || ""}
         description={post?.description?.description || ""}
