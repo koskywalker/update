@@ -2,14 +2,10 @@ import React from "react"
 
 import { Header } from "./header"
 
-type IProps = {
-  location: Location
-}
-
-export const Layout: React.FC<IProps> = ({ location, children }) => {
+export const Layout: React.FC = ({ children }) => {
   return (
     <div className="bg-white">
-      <Header location={location} />
+      <Header />
       <main>{children}</main>
       <footer>
         © {new Date().getFullYear()}, Built with{" "}

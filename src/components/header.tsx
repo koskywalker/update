@@ -3,17 +3,13 @@ import React from "react"
 
 import { HeaderLogo } from "./header-logo"
 
-type IProps = {
-  location: Location
-}
-
-export const Header: React.FC<IProps> = ({ location }) => {
+export const Header: React.FC = () => {
   return (
     <header className="relative bg-white">
       <div className="px-4 mx-auto max-w-7xl sm:px-6">
         <div className="flex items-center justify-between py-6 border-b border-gray-200 md:justify-start md:space-x-10">
           <div className="flex justify-start lg:w-0 lg:flex-1">
-            <HeaderLogo location={location} />
+            <HeaderLogo />
           </div>
           <div className="-my-2 -mr-2 md:hidden">
             <button
@@ -67,31 +63,15 @@ export const Header: React.FC<IProps> = ({ location }) => {
           </nav>
           <div className="items-center justify-end hidden md:flex space-x-8 md:flex-1 lg:w-0">
             <Link
-              to="#"
-              className="text-base font-medium text-gray-500 whitespace-nowrap hover:text-gray-900"
-            >
-              Sign in
-            </Link>
-            <Link
-              to="#"
+              to="/contact"
               className="inline-flex items-center justify-center px-4 py-2 text-base font-medium text-purple-600 bg-purple-100 border border-transparent whitespace-nowrap rounded-md hover:bg-purple-200"
             >
-              Sign up
+              お問い合わせ
             </Link>
           </div>
         </div>
       </div>
 
-      {/*
-      Mobile menu, show/hide based on mobile menu state.
-
-      Entering: "duration-200 ease-out"
-        From: "opacity-0 scale-95"
-        To: "opacity-100 scale-100"
-      Leaving: "duration-100 ease-in"
-        From: "opacity-100 scale-100"
-        To: "opacity-0 scale-95"
-    */}
       <div className="absolute inset-x-0 top-0 z-10 p-2 transition transform origin-top-right md:hidden">
         <div className="bg-white rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 divide-y-2 divide-gray-50">
           <div className="px-5 pt-5 pb-6 space-y-6">

@@ -5,51 +5,56 @@ import { Bio } from "../components/bio"
 import { Layout } from "../components/layout"
 import { Seo } from "../components/seo"
 
-type IContainerProps = {
+type IProps = {
   data: GatsbyTypes.PostBySlugQuery
 }
 
-type IProps = IContainerProps & {
-  location: Location
-}
-
-const BlogPost: React.FC<IProps> = ({ data, location }) => {
+const BlogPost: React.FC<IProps> = ({ data }) => {
   const post = data.contentfulBlogPost
 
+  const title = post?.title ?? ""
+  const description = post?.description?.description ?? ""
+  const publishDate = post?.publishDate ?? ""
+  const updateDate = post?.updatedAt ?? ""
+  const timeToRead = post?.body?.childMarkdownRemark?.timeToRead ?? ""
+  const authorName = post?.author?.name ?? ""
+  const tags = post?.tags ?? []
+  const image = {
+    src: post?.heroImage?.file?.url ?? "",
+    alt: post?.heroImage?.description ?? "",
+  }
+  const bodyHtml = post?.body?.childMarkdownRemark?.html ?? ""
+
   return (
-    <Layout location={location}>
-      <Seo
-        title={post?.title || ""}
-        description={post?.description?.description || ""}
-      />
+    <Layout>
+      <Seo pageTitle={title} pageDescription={description} />
       <article
         className="blog-post"
         itemScope
         itemType="http://schema.org/Article"
       >
         <header>
-          <h1 itemProp="headline">{post?.title}</h1>
-          <p>{post?.publishDate}</p>
-          <p>{post?.updatedAt}</p>
-          <p>{post?.body?.childMarkdownRemark?.timeToRead}分</p>
-          <p>{post?.author?.name}</p>
-          <ul>
-            {post?.tags?.map((tag, index) => {
-              return (
-                <li key={index}>
-                  <Link to={`/tags/${tag?.slug}` || ""}>{tag?.name}</Link>
-                </li>
-              )
-            })}
-          </ul>
-          <img
-            src={post?.heroImage?.file?.url}
-            alt={post?.heroImage?.description}
-          />
+          <h1 itemProp="headline">{title}</h1>
+          <p>{publishDate}</p>
+          <p>{updateDate}</p>
+          <p>{timeToRead}分</p>
+          <p>{authorName}</p>
+          {tags.length && (
+            <ul>
+              {tags.map((tag, index) => {
+                return (
+                  <li key={index}>
+                    <Link to={`/tags/${tag?.slug}` || ""}>{tag?.name}</Link>
+                  </li>
+                )
+              })}
+            </ul>
+          )}
+          <img src={image.src} alt={image.alt} />
         </header>
         <section
           dangerouslySetInnerHTML={{
-            __html: post?.body?.childMarkdownRemark?.html || "",
+            __html: bodyHtml,
           }}
           itemProp="articleBody"
         />

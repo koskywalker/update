@@ -5540,6 +5540,7 @@ type SitePageContext = {
   readonly numberOfPages: Maybe<Scalars['Int']>;
   readonly previousPagePath: Maybe<Scalars['String']>;
   readonly nextPagePath: Maybe<Scalars['String']>;
+  readonly tagName: Maybe<Scalars['String']>;
   readonly tagSlug: Maybe<Scalars['String']>;
   readonly id: Maybe<Scalars['String']>;
   readonly slug: Maybe<Scalars['String']>;
@@ -5563,6 +5564,7 @@ type SitePageContextFilterInput = {
   readonly numberOfPages: Maybe<IntQueryOperatorInput>;
   readonly previousPagePath: Maybe<StringQueryOperatorInput>;
   readonly nextPagePath: Maybe<StringQueryOperatorInput>;
+  readonly tagName: Maybe<StringQueryOperatorInput>;
   readonly tagSlug: Maybe<StringQueryOperatorInput>;
   readonly id: Maybe<StringQueryOperatorInput>;
   readonly slug: Maybe<StringQueryOperatorInput>;
@@ -5676,6 +5678,7 @@ enum SitePageFieldsEnum {
   context___numberOfPages = 'context.numberOfPages',
   context___previousPagePath = 'context.previousPagePath',
   context___nextPagePath = 'context.nextPagePath',
+  context___tagName = 'context.tagName',
   context___tagSlug = 'context.tagSlug',
   context___id = 'context.id',
   context___slug = 'context.slug',
@@ -6417,17 +6420,12 @@ type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
 
-type ContactQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type ContactQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title'>> }> };
-
 type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
 type PortfolioQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type PortfolioQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title'>> }>, readonly imageUpdate: Maybe<{ readonly childImageSharp: Maybe<{ readonly fixed: Maybe<GatsbyImageSharpFixedFragment> }> }>, readonly imageCopilin: Maybe<{ readonly childImageSharp: Maybe<{ readonly fixed: Maybe<GatsbyImageSharpFixedFragment> }> }> };
+type PortfolioQuery = { readonly imageUpdate: Maybe<{ readonly childImageSharp: Maybe<{ readonly fixed: Maybe<GatsbyImageSharpFixedFragment> }> }>, readonly imageCopilin: Maybe<{ readonly childImageSharp: Maybe<{ readonly fixed: Maybe<GatsbyImageSharpFixedFragment> }> }> };
 
 type PostBySlugQueryVariables = Exact<{
   slug: Scalars['String'];
@@ -6447,10 +6445,10 @@ type BioQueryVariables = Exact<{ [key: string]: never; }>;
 
 type BioQuery = { readonly avatar: Maybe<{ readonly childImageSharp: Maybe<{ readonly fixed: Maybe<GatsbyImageSharpFixedFragment> }> }>, readonly site: Maybe<{ readonly siteMetadata: Maybe<{ readonly author: Maybe<Pick<SiteSiteMetadataAuthor, 'name' | 'summary'>>, readonly social: Maybe<Pick<SiteSiteMetadataSocial, 'twitter'>> }> }> };
 
-type SeoQueryVariables = Exact<{ [key: string]: never; }>;
+type CommonContextQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type SeoQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<(
+type CommonContextQuery = { readonly file: Maybe<Pick<File, 'publicURL'>>, readonly site: Maybe<{ readonly siteMetadata: Maybe<(
       Pick<SiteSiteMetadata, 'title' | 'description'>
       & { readonly social: Maybe<Pick<SiteSiteMetadataSocial, 'twitter'>> }
     )> }> };
@@ -6542,10 +6540,5 @@ type GatsbyImageSharpSizes_withWebp_tracedSVGFragment = Pick<ImageSharpSizes, 't
 type GatsbyImageSharpSizes_noBase64Fragment = Pick<ImageSharpSizes, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
 
 type GatsbyImageSharpSizes_withWebp_noBase64Fragment = Pick<ImageSharpSizes, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type LogoQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type LogoQuery = { readonly file: Maybe<Pick<File, 'publicURL'>>, readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title'>> }> };
 
 }

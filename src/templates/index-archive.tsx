@@ -12,16 +12,17 @@ type IContainerProps = {
 
 type IProps = IContainerProps & {
   pageContext: any
-  location: Location
 }
 
-const IndexArchive: React.FC<IProps> = ({ data, pageContext, location }) => {
+const IndexArchive: React.FC<IProps> = ({ data, pageContext }) => {
   const posts = data.allContentfulBlogPost.edges
+
+  const pageTitle = "フロントエンドエンジニアこうすけのクリエイターブログ"
 
   if (posts.length === 0) {
     return (
-      <Layout location={location}>
-        <Seo title="All posts" />
+      <Layout>
+        <Seo pageTitle={pageTitle} />
         <Bio />
         <p>No blog posts found. Add markdown posts.</p>
       </Layout>
@@ -29,8 +30,8 @@ const IndexArchive: React.FC<IProps> = ({ data, pageContext, location }) => {
   }
 
   return (
-    <Layout location={location}>
-      <Seo title="All posts" />
+    <Layout>
+      <Seo pageTitle={pageTitle} />
       <Bio />
       <ol style={{ listStyle: "none" }}>
         {posts.map((post: any) => {

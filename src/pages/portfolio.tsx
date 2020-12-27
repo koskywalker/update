@@ -5,21 +5,15 @@ import React from "react"
 import { Layout } from "../components/layout"
 import { Seo } from "../components/seo"
 
-type IContainerProps = {
+type IProps = {
   data: GatsbyTypes.PortfolioQuery
 }
 
-type IProps = IContainerProps & {
-  location: Location
-}
-
-const Portfolio: React.FC<IProps> = ({ data, location }) => {
-  const siteTitle = data.site?.siteMetadata?.title || "UPDATE"
+const Portfolio: React.FC<IProps> = ({ data }) => {
   const portfolioImageUpdate = data.imageUpdate?.childImageSharp?.fixed
   const portfolioImageCopilin = data.imageCopilin?.childImageSharp?.fixed
 
-  const pageTitle = `ポートフォリオ - ${siteTitle}`
-
+  const pageTitle = "ポートフォリオ"
   const items = [
     {
       title: "UPDATE",
@@ -53,8 +47,8 @@ const Portfolio: React.FC<IProps> = ({ data, location }) => {
   ]
 
   return (
-    <Layout location={location}>
-      <Seo title={pageTitle} />
+    <Layout>
+      <Seo pageTitle={pageTitle} />
       <h1>{pageTitle}</h1>
       {items.map((item: any, index: number) => {
         return (
@@ -83,11 +77,6 @@ export default Portfolio
 
 export const pageQuery = graphql`
   query Portfolio {
-    site {
-      siteMetadata {
-        title
-      }
-    }
     imageUpdate: file(absolutePath: { regex: "/portfolio-update.png/" }) {
       childImageSharp {
         fixed(width: 500, height: 282, quality: 95) {
