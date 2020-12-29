@@ -27,7 +27,7 @@ export const Hero: React.FC = () => {
           Hello, I am Kosuke.
         </p>
         <p className="text-5xl font-extrabold text-gray-900 sm:text-center">
-          I&#39;m <span id="typing"></span>
+          <span id="typing"></span>
         </p>
       </div>
     </div>
