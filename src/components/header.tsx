@@ -38,7 +38,7 @@ export const Header: React.FC = () => {
   }
 
   return (
-    <header className="relative bg-white">
+    <header className="relative">
       <div className="px-4 mx-auto max-w-7xl sm:px-6">
         <div className="flex items-center justify-between py-6 border-b border-gray-200 md:justify-start md:space-x-10">
           <div className="flex justify-start lg:w-0 lg:flex-1">

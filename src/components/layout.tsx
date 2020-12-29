@@ -3,11 +3,13 @@ import React from "react"
 
 import { Header } from "./header"
 import { Hero } from "./hero"
+import { Particles } from "./particles"
 
 export const Layout: React.FC = ({ children }) => {
   const rootPath = `${__PATH_PREFIX__}/`
   return (
-    <div className="bg-white">
+    <div>
+      <Particles />
       <Header />
       <Location>
         {({ location }) => {
