@@ -7,8 +7,9 @@ import { Particles } from "./particles"
 
 export const Layout: React.FC = ({ children }) => {
   const rootPath = `${__PATH_PREFIX__}/`
+
   return (
-    <div>
+    <>
       <Particles />
       <Header />
       <Location>
@@ -17,10 +18,7 @@ export const Layout: React.FC = ({ children }) => {
         }}
       </Location>
       <main>{children}</main>
-      <footer>
-        © {new Date().getFullYear()}, Built with{" "}
-        <a href="https://www.gatsbyjs.com">Gatsby</a>
-      </footer>
-    </div>
+      <footer>© 2018 Kosuke Muraka</footer>
+    </>
   )
 }
