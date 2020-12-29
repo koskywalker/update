@@ -2,7 +2,7 @@ import React from "react"
 import TsParticles from "react-tsparticles"
 
 export const Particles: React.FC = () => {
-  const windowInnerWidth = window.innerWidth
+  const windowInnerWidth = typeof window !== undefined ? window.innerWidth : 0
   const breakPoint = 1024
   const particlesOptionsDefault = {
     background: {
