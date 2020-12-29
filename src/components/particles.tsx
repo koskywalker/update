@@ -113,8 +113,10 @@ export const Particles: React.FC = () => {
 
   return (
     <TsParticles
-      className="fixed w-full h-full -z-10"
       id="tsparticles"
+      className="fixed -z-10"
+      width="100vw"
+      height="100vh"
       options={particlesOptions}
     />
   )
