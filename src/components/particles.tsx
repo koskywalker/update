@@ -10,7 +10,17 @@ export const Particles: React.FC = () => {
     },
     particles: {
       color: {
-        value: ["ff7a7a", "ff7aff", "7affff", "7abcff", "bcff7a", "ffff7a"],
+        value: [
+          "#FCA5A5",
+          "#FCD34D",
+          "#BEF264",
+          "#6EE7B7",
+          "#67E8F9",
+          "#93C5FD",
+          "#C4B5FD",
+          "#F0ABFC",
+          "#FDA4AF",
+        ],
       },
       links: {
         color: "#eee",
