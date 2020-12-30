@@ -1,6 +1,7 @@
-import { graphql, Link } from "gatsby"
+import { graphql } from "gatsby"
 import React from "react"
 
+import { ArticleList } from "../components/article-list"
 import { Bio } from "../components/bio"
 import { Layout } from "../components/layout"
 import { Pager } from "../components/pager"
@@ -32,54 +33,8 @@ const IndexArchive: React.FC<IProps> = ({ data, pageContext }) => {
   return (
     <Layout>
       <Seo pageTitle={pageTitle} />
+      <ArticleList articleList={posts} />
       <Bio />
-      <ol style={{ listStyle: "none" }}>
-        {posts.map((post: any) => {
-          const postNode = post.node
-
-          return (
-            <li key={postNode.slug}>
-              <article className="post-list-item">
-                <header>
-                  <h2>
-                    <Link to={`/${postNode.slug}` || ""}>
-                      <span>{postNode.title}</span>
-                    </Link>
-                  </h2>
-                  <small>{postNode.publishDate}</small>
-                  <small>{postNode.updatedAt}</small>
-                  <img
-                    src={postNode.heroImage?.file?.url}
-                    alt={postNode.heroImage?.description}
-                    width=""
-                    height=""
-                  />
-                </header>
-                <section>
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: postNode.description?.description || "",
-                    }}
-                  />
-                </section>
-                <footer>
-                  <ul style={{ listStyle: "none" }}>
-                    {postNode.tags?.map((tag: any, index: number) => {
-                      return (
-                        <li key={index}>
-                          <Link to={`/tags/${tag?.slug}` || ""}>
-                            {tag?.name}
-                          </Link>
-                        </li>
-                      )
-                    })}
-                  </ul>
-                </footer>
-              </article>
-            </li>
-          )
-        })}
-      </ol>
       <Pager pageContext={pageContext} />
     </Layout>
   )
@@ -99,8 +54,8 @@ export const pageQuery = graphql`
         node {
           title
           slug
-          publishDate(formatString: "YYYY/MM/DD")
-          updatedAt(formatString: "YYYY/MM/DD")
+          publishDate(formatString: "YYYY-MM-DD")
+          updatedAt(formatString: "YYYY-MM-DD")
           description {
             description
           }
@@ -108,6 +63,11 @@ export const pageQuery = graphql`
             description
             file {
               url
+            }
+          }
+          body {
+            childMarkdownRemark {
+              timeToRead
             }
           }
           tags {
