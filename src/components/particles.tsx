@@ -11,15 +11,15 @@ export const Particles: React.FC = () => {
     particles: {
       color: {
         value: [
-          "#FCA5A5",
-          "#FCD34D",
-          "#BEF264",
-          "#6EE7B7",
-          "#67E8F9",
-          "#93C5FD",
-          "#C4B5FD",
-          "#F0ABFC",
-          "#FDA4AF",
+          "#FCA5A5", // red-300
+          "#FCD34D", // amber-300
+          "#BEF264", // lime-300
+          "#6EE7B7", // emerald-300
+          "#67E8F9", // cyan-300
+          "#93C5FD", // blue-300
+          "#C4B5FD", // violet-300
+          "#F0ABFC", // fuchsia-300
+          "#FDA4AF", // rose-300
         ],
       },
       links: {
