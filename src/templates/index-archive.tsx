@@ -65,11 +65,6 @@ export const pageQuery = graphql`
               url
             }
           }
-          body {
-            childMarkdownRemark {
-              timeToRead
-            }
-          }
           tags {
             name
             slug
