@@ -21,7 +21,7 @@ export const Hero: React.FC = () => {
   }, [sentenceList])
 
   return (
-    <div className="px-4 py-24 mx-auto max-w-7xl sm:px-6 lg:px-8">
+    <div className="px-4 pt-24 pb-40 mx-auto max-w-7xl sm:px-6 lg:px-8">
       <div className="sm:flex sm:flex-col sm:align-center">
         <p className="mt-5 text-xl text-gray-500 sm:text-center">
           Hello, I am Kosuke.
