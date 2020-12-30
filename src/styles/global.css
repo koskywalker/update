@@ -2,7 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: "Adumu";
-  src: local("Adumu"), url(../fonts/Adumu.woff) format("woff");
+@layer base {
+  body {
+    @apply font-main;
+  }
+
+  @font-face {
+    font-family: "Adumu";
+    src: url(../fonts/Adumu.woff) format("woff");
+  }
 }

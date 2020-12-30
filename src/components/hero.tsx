@@ -23,7 +23,9 @@ export const Hero: React.FC = () => {
   return (
     <div className="px-4 pt-32 pb-40 mx-auto max-w-7xl sm:px-6 lg:px-8">
       <div className="sm:flex sm:flex-col sm:align-center">
-        <p className="text-xl text-center md:text-3xl">Hello, I am Kosuke.</p>
+        <p className="text-xl text-center font-sub md:text-3xl">
+          Hello, I am Kosuke.
+        </p>
         <p className="mt-3 text-3xl text-center md:text-5xl font-accent">
           <span id="typing"></span>
         </p>
