@@ -6,7 +6,22 @@ import { IconCalendar } from "./icons/icon-calendar"
 import { IconRefresh } from "./icons/icon-refresh"
 
 type IProps = {
-  article: any
+  article: {
+    slug: string
+    heroImage: {
+      file: {
+        url: string
+      }
+      description: string
+    }
+    publishDate: string
+    updatedAt: string
+    title: string
+    tags: {
+      name: string
+      slug: string
+    }[]
+  }
 }
 
 export const ArticleCard: React.FC<IProps> = ({ article }) => {

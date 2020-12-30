@@ -6394,7 +6394,7 @@ type IndexArchiveQueryVariables = Exact<{
 
 type IndexArchiveQuery = { readonly allContentfulBlogPost: { readonly edges: ReadonlyArray<{ readonly node: (
         Pick<ContentfulBlogPost, 'title' | 'slug' | 'publishDate' | 'updatedAt'>
-        & { readonly description: Maybe<Pick<contentfulBlogPostDescriptionTextNode, 'description'>>, readonly heroImage: Maybe<(
+        & { readonly heroImage: Maybe<(
           Pick<ContentfulAsset, 'description'>
           & { readonly file: Maybe<Pick<ContentfulAssetFile, 'url'>> }
         )>, readonly tags: Maybe<ReadonlyArray<Maybe<Pick<ContentfulTag, 'name' | 'slug'>>>> }

@@ -56,9 +56,6 @@ export const pageQuery = graphql`
           slug
           publishDate(formatString: "YYYY-MM-DD")
           updatedAt(formatString: "YYYY-MM-DD")
-          description {
-            description
-          }
           heroImage {
             description
             file {
