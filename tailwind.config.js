@@ -17,6 +17,9 @@ module.exports = {
         fuchsia: colors.fuchsia,
         rose: colors.rose,
       },
+      fontFamily: {
+        accent: ["Adumu"],
+      },
     },
     zIndex: {
       "-10": "-10",

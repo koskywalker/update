@@ -21,12 +21,10 @@ export const Hero: React.FC = () => {
   }, [sentenceList])
 
   return (
-    <div className="px-4 pt-24 pb-40 mx-auto max-w-7xl sm:px-6 lg:px-8">
+    <div className="px-4 pt-32 pb-40 mx-auto max-w-7xl sm:px-6 lg:px-8">
       <div className="sm:flex sm:flex-col sm:align-center">
-        <p className="mt-5 text-xl text-gray-500 sm:text-center">
-          Hello, I am Kosuke.
-        </p>
-        <p className="text-5xl font-extrabold text-gray-900 sm:text-center">
+        <p className="text-xl text-center md:text-3xl">Hello, I am Kosuke.</p>
+        <p className="mt-3 text-3xl text-center md:text-5xl font-accent">
           <span id="typing"></span>
         </p>
       </div>
