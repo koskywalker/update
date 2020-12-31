@@ -25,8 +25,6 @@ export const SideMenu: React.FC<IProps> = ({
   const rootPath = `${__PATH_PREFIX__}/`
   const currentPath = location.pathname
   const isRoot = currentPath === rootPath
-  // eslint-disable-next-line no-console
-  console.log(currentPath === "/contact")
   const logo = isRoot ? (
     <h1>
       <LogoLink className="w-auto h-8 sm:h-10" color="white" />
@@ -34,6 +32,9 @@ export const SideMenu: React.FC<IProps> = ({
   ) : (
     <LogoLink className="w-auto h-8 sm:h-10" color="white" />
   )
+  const currentPathFormatted = currentPath.endsWith("/")
+    ? currentPath.slice(0, -1)
+    : currentPath
 
   return (
     <>
@@ -94,61 +95,101 @@ export const SideMenu: React.FC<IProps> = ({
                         <div className="px-2 space-y-1">
                           <Link
                             to="/"
-                            className="flex items-center px-2 py-2 text-base font-medium text-white bg-gray-500 group rounded-md"
+                            className={`flex items-center px-2 py-2 text-base font-medium group rounded-md ${
+                              currentPathFormatted === ""
+                                ? "text-white bg-gray-500"
+                                : "text-gray-300 hover:bg-gray-500 hover:text-white"
+                            }`}
                           >
                             <IconHome
-                              className="w-6 h-6 mr-4 text-white"
+                              className={`w-6 h-6 mr-4 ${
+                                currentPathFormatted === ""
+                                  ? "text-white"
+                                  : "text-gray-300 group-hover:text-white"
+                              }`}
                               ariaHidden={true}
                             />
                             ホーム
                           </Link>
 
                           <Link
-                            to="/tags/programming/"
-                            className="flex items-center px-2 py-2 text-base font-medium text-gray-300 hover:bg-gray-500 hover:text-white group rounded-md"
+                            to="/tags/programming"
+                            className={`flex items-center px-2 py-2 text-base font-medium group rounded-md ${
+                              currentPathFormatted === "/tags/programming"
+                                ? "text-white bg-gray-500"
+                                : "text-gray-300 hover:bg-gray-500 hover:text-white"
+                            }`}
                           >
                             <IconCode
-                              className="w-6 h-6 mr-4 text-gray-300 group-hover:text-white"
+                              className={`w-6 h-6 mr-4 ${
+                                currentPathFormatted === "/tags/programming"
+                                  ? "text-white"
+                                  : "text-gray-300 group-hover:text-white"
+                              }`}
                               ariaHidden={true}
                             />
                             プログラミング
                           </Link>
 
                           <Link
-                            to="/tags/blog/"
-                            className="flex items-center px-2 py-2 text-base font-medium text-gray-300 hover:bg-gray-500 hover:text-white group rounded-md"
+                            to="/tags/blog"
+                            className={`flex items-center px-2 py-2 text-base font-medium group rounded-md ${
+                              currentPathFormatted === "/tags/blog"
+                                ? "text-white bg-gray-500"
+                                : "text-gray-300 hover:bg-gray-500 hover:text-white"
+                            }`}
                           >
                             <IconBookOpen
-                              className="w-6 h-6 mr-4 text-gray-300 group-hover:text-white"
+                              className={`w-6 h-6 mr-4 ${
+                                currentPathFormatted === "/tags/blog"
+                                  ? "text-white"
+                                  : "text-gray-300 group-hover:text-white"
+                              }`}
                               ariaHidden={true}
                             />
                             ブログ
                           </Link>
 
                           <Link
-                            to="/tags/tool/"
-                            className="flex items-center px-2 py-2 text-base font-medium text-gray-300 hover:bg-gray-500 hover:text-white group rounded-md"
+                            to="/tags/tool"
+                            className={`flex items-center px-2 py-2 text-base font-medium group rounded-md ${
+                              currentPathFormatted === "/tags/tool"
+                                ? "text-white bg-gray-500"
+                                : "text-gray-300 hover:bg-gray-500 hover:text-white"
+                            }`}
                           >
                             <IconScissors
-                              className="w-6 h-6 mr-4 text-gray-300 group-hover:text-white"
+                              className={`w-6 h-6 mr-4 ${
+                                currentPathFormatted === "/tags/tool"
+                                  ? "text-white"
+                                  : "text-gray-300 group-hover:text-white"
+                              }`}
                               ariaHidden={true}
                             />
                             ツール
                           </Link>
 
                           <Link
-                            to="/portfolio/"
-                            className="flex items-center px-2 py-2 text-base font-medium text-gray-300 hover:bg-gray-500 hover:text-white group rounded-md"
+                            to="/portfolio"
+                            className={`flex items-center px-2 py-2 text-base font-medium group rounded-md ${
+                              currentPathFormatted === "/portfolio"
+                                ? "text-white bg-gray-500"
+                                : "text-gray-300 hover:bg-gray-500 hover:text-white"
+                            }`}
                           >
                             <IconFilm
-                              className="w-6 h-6 mr-4 text-gray-300 group-hover:text-white"
+                              className={`w-6 h-6 mr-4 ${
+                                currentPathFormatted === "/portfolio"
+                                  ? "text-white"
+                                  : "text-gray-300 group-hover:text-white"
+                              }`}
                               ariaHidden={true}
                             />
                             ポートフォリオ
                           </Link>
 
                           <Link
-                            to="/contact/"
+                            to="/contact"
                             className="flex items-center px-2 py-2 text-base font-medium text-white bg-indigo-600 group rounded-md hover:bg-indigo-700"
                           >
                             <IconMail
@@ -201,61 +242,101 @@ export const SideMenu: React.FC<IProps> = ({
                 <div className="px-2 space-y-1">
                   <Link
                     to="/"
-                    className="flex items-center px-2 py-2 text-sm font-medium text-white bg-gray-500 group rounded-md"
+                    className={`flex items-center px-2 py-2 text-sm font-medium group rounded-md ${
+                      currentPathFormatted === ""
+                        ? "text-white bg-gray-500"
+                        : "text-gray-300 hover:bg-gray-500 hover:text-white"
+                    }`}
                   >
                     <IconHome
-                      className="w-6 h-6 mr-3 text-white"
+                      className={`w-6 h-6 mr-3 ${
+                        currentPathFormatted === ""
+                          ? "text-white"
+                          : "text-gray-300 hover:text-white"
+                      }`}
                       ariaHidden={true}
                     />
                     ホーム
                   </Link>
 
                   <Link
-                    to="/tags/programming/"
-                    className="flex items-center px-2 py-2 text-sm font-medium text-gray-300 hover:bg-gray-500 hover:text-white group rounded-md"
+                    to="/tags/programming"
+                    className={`flex items-center px-2 py-2 text-sm font-medium group rounded-md ${
+                      currentPathFormatted === "/tags/programming"
+                        ? "text-white bg-gray-500"
+                        : "text-gray-300 hover:bg-gray-500 hover:text-white"
+                    }`}
                   >
                     <IconCode
-                      className="w-6 h-6 mr-3 text-gray-300 hover:text-white"
+                      className={`w-6 h-6 mr-3 ${
+                        currentPathFormatted === "/tags/programming"
+                          ? "text-white"
+                          : "text-gray-300 hover:text-white"
+                      }`}
                       ariaHidden={true}
                     />
                     プログラミング
                   </Link>
 
                   <Link
-                    to="/tags/blog/"
-                    className="flex items-center px-2 py-2 text-sm font-medium text-gray-300 hover:bg-gray-500 hover:text-white group rounded-md"
+                    to="/tags/blog"
+                    className={`flex items-center px-2 py-2 text-sm font-medium group rounded-md ${
+                      currentPathFormatted === "/tags/blog"
+                        ? "text-white bg-gray-500"
+                        : "text-gray-300 hover:bg-gray-500 hover:text-white"
+                    }`}
                   >
                     <IconBookOpen
-                      className="w-6 h-6 mr-3 text-gray-300 hover:text-white"
+                      className={`w-6 h-6 mr-3 ${
+                        currentPathFormatted === "/tags/blog"
+                          ? "text-white"
+                          : "text-gray-300 hover:text-white"
+                      }`}
                       ariaHidden={true}
                     />
                     ブログ
                   </Link>
 
                   <Link
-                    to="/tags/tool/"
-                    className="flex items-center px-2 py-2 text-sm font-medium text-gray-300 hover:bg-gray-500 hover:text-white group rounded-md"
+                    to="/tags/tool"
+                    className={`flex items-center px-2 py-2 text-sm font-medium group rounded-md ${
+                      currentPathFormatted === "/tags/tool"
+                        ? "text-white bg-gray-500"
+                        : "text-gray-300 hover:bg-gray-500 hover:text-white"
+                    }`}
                   >
                     <IconScissors
-                      className="w-6 h-6 mr-3 text-gray-300 hover:text-white"
+                      className={`w-6 h-6 mr-3 ${
+                        currentPathFormatted === "/tags/tool"
+                          ? "text-white"
+                          : "text-gray-300 hover:text-white"
+                      }`}
                       ariaHidden={true}
                     />
                     ツール
                   </Link>
 
                   <Link
-                    to="/portfolio/"
-                    className="flex items-center px-2 py-2 text-sm font-medium text-gray-300 hover:bg-gray-500 hover:text-white group rounded-md"
+                    to="/portfolio"
+                    className={`flex items-center px-2 py-2 text-sm font-medium group rounded-md ${
+                      currentPathFormatted === "/portfolio"
+                        ? "text-white bg-gray-500"
+                        : "text-gray-300 hover:bg-gray-500 hover:text-white"
+                    }`}
                   >
                     <IconFilm
-                      className="w-6 h-6 mr-3 text-gray-300 hover:text-white"
+                      className={`w-6 h-6 mr-3 ${
+                        currentPathFormatted === "/portfolio"
+                          ? "text-white"
+                          : "text-gray-300 hover:text-white"
+                      }`}
                       ariaHidden={true}
                     />
                     ポートフォリオ
                   </Link>
 
                   <Link
-                    to="/contact/"
+                    to="/contact"
                     className="flex items-center px-2 py-2 text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 group rounded-md"
                   >
                     <IconMail

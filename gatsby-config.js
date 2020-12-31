@@ -31,7 +31,6 @@ module.exports = {
         //trackingId: "ADD YOUR TRACKING ID HERE",
       },
     },
-    "gatsby-plugin-remove-trailing-slashes",
     {
       resolve: "gatsby-plugin-typegen",
       options: {
