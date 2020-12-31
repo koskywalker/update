@@ -46,11 +46,9 @@ export const ArticleCard: React.FC<IProps> = ({ article }) => {
               {dayjs(article.updatedAt).format("YYYY年MM月DD日")}
             </time>
           </div>
-          <h2 className="px-6 pt-3 text-xl font-semibold text-gray-900">
-            {article.title}
-          </h2>
+          <h2 className="px-6 pt-3 text-xl font-semibold">{article.title}</h2>
         </Link>
-        <div className="flex flex-wrap flex-1 p-6 gap-3">
+        <div className="flex flex-wrap flex-1 p-6 gap-2">
           {article.tags.map((tag: any) => {
             return (
               <p

@@ -26,7 +26,7 @@ const BlogPost: React.FC<IProps> = ({ data }) => {
   const bodyHtml = post?.body?.childMarkdownRemark?.html ?? ""
 
   return (
-    <Layout>
+    <Layout isThreeColumn={true}>
       <Seo pageTitle={title} pageDescription={description} />
       <article
         className="blog-post"

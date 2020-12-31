@@ -2,7 +2,6 @@ import { graphql, useStaticQuery } from "gatsby"
 import React from "react"
 
 const defaultState = {
-  logoSrc: "",
   siteTitle: "",
   siteDescription: "",
   twitterId: "",
@@ -14,9 +13,6 @@ export const CommonProvider: React.FC = ({ children }) => {
   const data = useStaticQuery<GatsbyTypes.CommonContextQuery>(
     graphql`
       query CommonContext {
-        file(relativePath: { eq: "logo.svg" }) {
-          publicURL
-        }
         site {
           siteMetadata {
             title
@@ -30,7 +26,6 @@ export const CommonProvider: React.FC = ({ children }) => {
     `
   )
 
-  const logoSrc = data.file?.publicURL ?? ""
   const siteTitle = data.site?.siteMetadata?.title ?? ""
   const siteDescription = data.site?.siteMetadata?.description ?? ""
   const twitterId = data.site?.siteMetadata?.social?.twitter ?? ""
@@ -38,7 +33,6 @@ export const CommonProvider: React.FC = ({ children }) => {
   return (
     <CommonContext.Provider
       value={{
-        logoSrc,
         siteTitle,
         siteDescription,
         twitterId,

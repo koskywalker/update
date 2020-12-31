@@ -2,7 +2,7 @@ import { graphql } from "gatsby"
 import React from "react"
 
 import { ArticleList } from "../components/article-list"
-import { Bio } from "../components/bio"
+import { Hero } from "../components/hero"
 import { Layout } from "../components/layout"
 import { Pager } from "../components/pager"
 import { Seo } from "../components/seo"
@@ -17,24 +17,23 @@ type IProps = IContainerProps & {
 
 const IndexArchive: React.FC<IProps> = ({ data, pageContext }) => {
   const posts = data.allContentfulBlogPost.edges
-
   const pageTitle = "フロントエンドエンジニアこうすけのクリエイターブログ"
 
   if (posts.length === 0) {
     return (
-      <Layout>
+      <Layout isThreeColumn={false}>
         <Seo pageTitle={pageTitle} />
-        <Bio />
+        <Hero />
         <p>No blog posts found. Add markdown posts.</p>
       </Layout>
     )
   }
 
   return (
-    <Layout>
+    <Layout isThreeColumn={false}>
       <Seo pageTitle={pageTitle} />
+      <Hero />
       <ArticleList articleList={posts} />
-      <Bio />
       <Pager pageContext={pageContext} />
     </Layout>
   )

@@ -1,7 +1,7 @@
 import { graphql, Link } from "gatsby"
 import React from "react"
 
-import { Bio } from "../components/bio"
+import { Hero } from "../components/hero"
 import { Layout } from "../components/layout"
 import { Pager } from "../components/pager"
 import { Seo } from "../components/seo"
@@ -22,18 +22,18 @@ const TagsArchive: React.FC<IProps> = ({ data, pageContext }) => {
 
   if (posts.length === 0) {
     return (
-      <Layout>
+      <Layout isThreeColumn={false}>
         <Seo pageTitle={pageTitle} />
-        <Bio />
+        <Hero />
         <p>No blog posts found. Add markdown posts.</p>
       </Layout>
     )
   }
 
   return (
-    <Layout>
+    <Layout isThreeColumn={false}>
       <Seo pageTitle={pageTitle} />
-      <Bio />
+      <Hero />
       <ol style={{ listStyle: "none" }}>
         {posts.map((post: any) => {
           const postNode = post.node

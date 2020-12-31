@@ -2,6 +2,7 @@ import { graphql } from "gatsby"
 import Image from "gatsby-image"
 import React from "react"
 
+import { Hero } from "../components/hero"
 import { Layout } from "../components/layout"
 import { Seo } from "../components/seo"
 
@@ -47,8 +48,9 @@ const Portfolio: React.FC<IProps> = ({ data }) => {
   ]
 
   return (
-    <Layout>
+    <Layout isThreeColumn={false}>
       <Seo pageTitle={pageTitle} />
+      <Hero />
       <h1>{pageTitle}</h1>
       {items.map((item: any, index: number) => {
         return (
