@@ -26,7 +26,7 @@ export const SideMenu: React.FC<IProps> = ({
   const currentPath = location.pathname
   const isRoot = currentPath === rootPath
   // eslint-disable-next-line no-console
-  console.log(currentPath)
+  console.log(currentPath === "/contact")
   const logo = isRoot ? (
     <h1>
       <LogoLink className="w-auto h-8 sm:h-10" color="white" />
