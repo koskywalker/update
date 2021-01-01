@@ -14,13 +14,13 @@ import { LogoLink } from "./logo-link"
 type IProps = {
   location: Location
   isSideMenuOpen: boolean
-  toggleSideMenu: any
+  closeSideMenu: any
 }
 
 export const SideMenu: React.FC<IProps> = ({
   location,
   isSideMenuOpen,
-  toggleSideMenu,
+  closeSideMenu,
 }) => {
   const rootPath = `${__PATH_PREFIX__}/`
   const currentPath = location.pathname
@@ -40,7 +40,7 @@ export const SideMenu: React.FC<IProps> = ({
     <>
       <Transition show={isSideMenuOpen}>
         <div className="lg:hidden">
-          <div className="fixed inset-0 z-40 flex">
+          <div className="fixed inset-0 flex">
             <Transition.Child
               enter="transition-opacity duration-1000"
               enterFrom="opacity-0"
@@ -52,7 +52,7 @@ export const SideMenu: React.FC<IProps> = ({
               <div className="fixed inset-0">
                 <div
                   className="absolute inset-0 bg-black opacity-50"
-                  onClick={toggleSideMenu}
+                  onClick={closeSideMenu}
                   role="none"
                 ></div>
               </div>
@@ -75,7 +75,7 @@ export const SideMenu: React.FC<IProps> = ({
                       <button
                         type="button"
                         className="flex items-center justify-center w-10 h-10 ml-1 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-                        onClick={toggleSideMenu}
+                        onClick={closeSideMenu}
                       >
                         <span className="sr-only">Close sidebar</span>
                         <IconX

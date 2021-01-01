@@ -15,33 +15,37 @@ export const Layout: React.FC<IProps> = ({ children, isThreeColumn }) => {
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false)
 
   /**
-   * Esc キー押下でモバイル用サイドメニューを閉じる.
-   * @param event イベント.
+   * モバイル用サイドメニューを開く.
    */
-  const keyDownEsc = useCallback(
-    (event: KeyboardEvent) => {
-      if (event.code === "Escape" && isSideMenuOpen) {
-        toggleSideMenu(isSideMenuOpen)
-      }
-    },
-    [isSideMenuOpen]
-  )
-
-  /**
-   * モバイル用サイドメニューの開閉状態を切り替え, 背景のスクロール可否を切り替える.
-   * @param isSideMenuOpen モバイル用サイドメニューの開閉状態.
-   */
-  const toggleSideMenu = (isSideMenuOpen: boolean) => {
-    setIsSideMenuOpen(!isSideMenuOpen)
+  const openSideMenu = () => {
+    setIsSideMenuOpen(true)
     toggleEnableScroll()
   }
 
-  useEffect(() => {
-    window.addEventListener("keydown", keyDownEsc)
-    return () => {
-      window.removeEventListener("keydown", keyDownEsc)
+  /**
+   * モバイル用サイドメニューを閉じる.
+   */
+  const closeSideMenu = () => {
+    toggleEnableScroll()
+    setIsSideMenuOpen(false)
+  }
+
+  /**
+   * Esc キー押下でモバイル用サイドメニューを閉じる.
+   * @param event イベント.
+   */
+  const keydownEscAndCloseSideMenu = useCallback((event: KeyboardEvent) => {
+    if (event.code === "Escape") {
+      closeSideMenu()
     }
-  }, [keyDownEsc])
+  }, [])
+
+  useEffect(() => {
+    window.addEventListener("keydown", keydownEscAndCloseSideMenu)
+    return () => {
+      window.removeEventListener("keydown", keydownEscAndCloseSideMenu)
+    }
+  }, [keydownEscAndCloseSideMenu])
 
   return (
     <Location>
@@ -70,9 +74,7 @@ export const Layout: React.FC<IProps> = ({ children, isThreeColumn }) => {
                       <button
                         type="button"
                         className="inline-flex items-center justify-center w-12 h-12 -mr-3 text-black rounded-md"
-                        onClick={() => {
-                          return toggleSideMenu(isSideMenuOpen)
-                        }}
+                        onClick={openSideMenu}
                       >
                         <span className="sr-only">Open sidebar</span>
                         <IconMenu className="w-6 h-6" ariaHidden={true} />
@@ -80,9 +82,9 @@ export const Layout: React.FC<IProps> = ({ children, isThreeColumn }) => {
                     </div>
                   </div>
                 </header>
-                <div className="relative z-0 flex flex-1 overflow-hidden">
+                <div className="relative flex flex-1 overflow-hidden">
                   {/* main */}
-                  <main className="relative z-0 flex-1 overflow-y-auto focus:outline-none">
+                  <main className="relative flex-1 overflow-y-auto focus:outline-none">
                     <div className="absolute inset-0 px-4 py-6 sm:px-6 lg:px-8">
                       <div className="h-full">
                         <div>{children}</div>
@@ -103,9 +105,7 @@ export const Layout: React.FC<IProps> = ({ children, isThreeColumn }) => {
               <SideMenu
                 location={location}
                 isSideMenuOpen={isSideMenuOpen}
-                toggleSideMenu={() => {
-                  return toggleSideMenu(isSideMenuOpen)
-                }}
+                closeSideMenu={closeSideMenu}
               />
             </div>
           </>
