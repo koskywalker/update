@@ -108,7 +108,6 @@ export const Layout: React.FC<IProps> = ({ children, isThreeColumn }) => {
                 }}
               />
             </div>
-            <footer>© 2018 Kosuke Muraka</footer>
           </>
         )
       }}

@@ -4,7 +4,6 @@ import React from "react"
 import { ArticleList } from "../components/article-list"
 import { Hero } from "../components/hero"
 import { Layout } from "../components/layout"
-import { Pager } from "../components/pager"
 import { Seo } from "../components/seo"
 
 type IContainerProps = {
@@ -33,8 +32,7 @@ const IndexArchive: React.FC<IProps> = ({ data, pageContext }) => {
     <Layout isThreeColumn={false}>
       <Seo pageTitle={pageTitle} />
       <Hero />
-      <ArticleList articleList={posts} />
-      <Pager pageContext={pageContext} />
+      <ArticleList articleList={posts} pageContext={pageContext} />
     </Layout>
   )
 }
