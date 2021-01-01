@@ -1,51 +1,31 @@
-import { graphql, useStaticQuery } from "gatsby"
 import React from "react"
 import { Helmet } from "react-helmet"
 
+import { authorData, siteData } from "../constants/constants"
+
 type IProps = {
-  description?: string
-  lang?: string
   meta?: any[]
-  title: string
+  pageTitle: string
+  pageDescription?: string
 }
 
 export const Seo: React.FC<IProps> = ({
-  description = "",
-  lang = "ja",
   meta = [],
-  title,
+  pageTitle,
+  pageDescription = "",
 }) => {
-  const { site } = useStaticQuery<GatsbyTypes.SeoQuery>(
-    graphql`
-      query Seo {
-        site {
-          siteMetadata {
-            title
-            description
-            social {
-              twitter
-            }
-          }
-        }
-      }
-    `
-  )
-
-  const metaDescription = description || site?.siteMetadata?.description
-  const defaultTitle = site?.siteMetadata?.title
+  const title = `${pageTitle} - ${siteData.title}`
+  const description = pageDescription || siteData.description
 
   return (
     <Helmet
-      htmlAttributes={{
-        lang,
-      }}
+      htmlAttributes={{ lang: "ja" }}
       title={title}
-      titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : ""}
       meta={[
         ...[
           {
             name: "description",
-            content: metaDescription,
+            content: description,
           },
           {
             property: "og:title",
@@ -53,7 +33,7 @@ export const Seo: React.FC<IProps> = ({
           },
           {
             property: "og:description",
-            content: metaDescription,
+            content: description,
           },
           {
             property: "og:type",
@@ -65,7 +45,7 @@ export const Seo: React.FC<IProps> = ({
           },
           {
             name: "twitter:creator",
-            content: site?.siteMetadata?.social?.twitter || "",
+            content: authorData.social.twitter.user || "",
           },
           {
             name: "twitter:title",
@@ -73,7 +53,7 @@ export const Seo: React.FC<IProps> = ({
           },
           {
             name: "twitter:description",
-            content: metaDescription,
+            content: description,
           },
         ],
         ...meta,

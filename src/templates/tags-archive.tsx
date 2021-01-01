@@ -1,7 +1,7 @@
 import { graphql, Link } from "gatsby"
 import React from "react"
 
-import { Bio } from "../components/bio"
+import { Hero } from "../components/hero"
 import { Layout } from "../components/layout"
 import { Pager } from "../components/pager"
 import { Seo } from "../components/seo"
@@ -12,27 +12,28 @@ type IContainerProps = {
 
 type IProps = IContainerProps & {
   pageContext: any
-  location: Location
 }
 
-const TagsArchive: React.FC<IProps> = ({ data, pageContext, location }) => {
-  const siteTitle = "UPDATE"
+const TagsArchive: React.FC<IProps> = ({ data, pageContext }) => {
   const posts = data.allContentfulBlogPost.edges
+  const { tagName } = pageContext
+
+  const pageTitle = `${tagName}に関する記事一覧`
 
   if (posts.length === 0) {
     return (
-      <Layout location={location} title={siteTitle}>
-        <Seo title="All posts" />
-        <Bio />
+      <Layout isThreeColumn={false}>
+        <Seo pageTitle={pageTitle} />
+        <Hero />
         <p>No blog posts found. Add markdown posts.</p>
       </Layout>
     )
   }
 
   return (
-    <Layout location={location} title={siteTitle}>
-      <Seo title="All posts" />
-      <Bio />
+    <Layout isThreeColumn={false}>
+      <Seo pageTitle={pageTitle} />
+      <Hero />
       <ol style={{ listStyle: "none" }}>
         {posts.map((post: any) => {
           const postNode = post.node

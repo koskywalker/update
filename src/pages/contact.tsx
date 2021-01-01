@@ -1,25 +1,14 @@
-import { graphql } from "gatsby"
 import React from "react"
 
 import { Layout } from "../components/layout"
 import { Seo } from "../components/seo"
 
-type IContainerProps = {
-  data: GatsbyTypes.ContactQuery
-}
-
-type IProps = IContainerProps & {
-  location: Location
-}
-
-const Contact: React.FC<IProps> = ({ data, location }) => {
-  const siteTitle = data.site?.siteMetadata?.title || "UPDATE"
-
-  const pageTitle = `お問い合わせ - ${siteTitle}`
+const Contact: React.FC = () => {
+  const pageTitle = "お問い合わせ"
 
   return (
-    <Layout location={location} title={siteTitle}>
-      <Seo title={pageTitle} />
+    <Layout isThreeColumn={false}>
+      <Seo pageTitle={pageTitle} />
       <h1>{pageTitle}</h1>
       <form
         name="contact"
@@ -63,13 +52,3 @@ const Contact: React.FC<IProps> = ({ data, location }) => {
 
 // eslint-disable-next-line import/no-default-export
 export default Contact
-
-export const pageQuery = graphql`
-  query Contact {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-  }
-`

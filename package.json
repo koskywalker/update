@@ -26,6 +26,8 @@
     ]
   },
   "dependencies": {
+    "@headlessui/react": "^0.2.0",
+    "dayjs": "^1.9.8",
     "dotenv": "8.2.0",
     "gatsby": "2.29.1",
     "gatsby-awesome-pagination": "0.3.6",
@@ -38,6 +40,7 @@
     "gatsby-plugin-sharp": "2.11.1",
     "gatsby-plugin-sitemap": "2.9.0",
     "gatsby-plugin-typegen": "2.2.2",
+    "gatsby-remark-external-links": "^0.0.4",
     "gatsby-remark-images": "3.8.0",
     "gatsby-remark-images-contentful": "2.7.0",
     "gatsby-remark-prismjs": "3.10.0",
@@ -48,7 +51,9 @@
     "prismjs": "1.22.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",
-    "react-helmet": "6.1.0"
+    "react-helmet": "6.1.0",
+    "react-tsparticles": "^1.18.11",
+    "typed.js": "^2.0.11"
   },
   "devDependencies": {
     "@types/node": "14.14.14",

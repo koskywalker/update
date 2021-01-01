@@ -20,10 +20,11 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       allContentfulTag {
         edges {
           node {
-            slug
             blog_post {
               id
             }
+            name
+            slug
           }
         }
       }
@@ -40,7 +41,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   const indexArchiveTemplate = path.resolve("./src/templates/index-archive.tsx")
   const tagsArchiveTemplate = path.resolve("./src/templates/tags-archive.tsx")
-  const postsPerPage = 10
+  const postsPerPage = 12
 
   // 記事一覧ページを生成.
   ;(() => {
@@ -62,17 +63,19 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   // タグ一覧ページを生成.
   tags.forEach((tag) => {
-    const slug = tag.node.slug
+    const tagName = tag.node.name
+    const tagSlug = tag.node.slug
     const lastPageNumber = Math.ceil(tag.node.blog_post.length / postsPerPage)
 
     paginate({
       createPage,
-      items: posts,
+      items: tag.node.blog_post,
       itemsPerPage: postsPerPage,
       component: tagsArchiveTemplate,
-      pathPrefix: `/tags/${slug}`,
+      pathPrefix: `/tags/${tagSlug}`,
       context: {
-        tagSlug: slug,
+        tagName,
+        tagSlug,
         lastPageNumber,
       },
     })

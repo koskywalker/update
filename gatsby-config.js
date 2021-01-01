@@ -1,21 +1,8 @@
-require("dotenv").config({
-  path: ".env",
-})
+require("dotenv").config({ path: ".env" })
 
 module.exports = {
   siteMetadata: {
-    title: "UPDATE",
-    author: {
-      name: "こうすけ (Kosuke Muraka)",
-      summary:
-        "フリーランスのフロントエンドエンジニア. バックエンドも少々. Web 開発, Web 制作, ブログ運営などをメインに活動しています",
-    },
-    description:
-      "UPDATE は, フロントエンドエンジニアとして活動するこうすけのクリエイターブログです. 主にプログラミング, デザイン, SEO, 普段の活動などについて発信しています.",
-    siteUrl: "https://upd.world",
-    social: {
-      twitter: "kosuke_upd",
-    },
+    siteUrl: process.env.BASE_URL,
   },
   plugins: [
     {
@@ -45,6 +32,13 @@ module.exports = {
             resolve: "gatsby-remark-images",
             options: {
               maxWidth: 630,
+            },
+          },
+          {
+            resolve: "gatsby-remark-external-links",
+            options: {
+              target: "_blank",
+              rel: "nofollow",
             },
           },
           "gatsby-remark-prismjs",
