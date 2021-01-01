@@ -41,7 +41,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   const indexArchiveTemplate = path.resolve("./src/templates/index-archive.tsx")
   const tagsArchiveTemplate = path.resolve("./src/templates/tags-archive.tsx")
-  const postsPerPage = 9
+  const postsPerPage = 12
 
   // 記事一覧ページを生成.
   ;(() => {
@@ -69,7 +69,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
     paginate({
       createPage,
-      items: posts,
+      items: tag.node.blog_post,
       itemsPerPage: postsPerPage,
       component: tagsArchiveTemplate,
       pathPrefix: `/tags/${tagSlug}`,
