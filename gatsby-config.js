@@ -3,6 +3,9 @@ require("dotenv").config({
 })
 
 module.exports = {
+  siteMetadata: {
+    siteUrl: process.env.BASE_URL,
+  },
   plugins: [
     {
       resolve: "gatsby-source-contentful",
