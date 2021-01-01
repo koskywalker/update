@@ -7,7 +7,6 @@ import { IconCode } from "./icons/icon-code"
 import { IconFilm } from "./icons/icon-film"
 import { IconHome } from "./icons/icon-home"
 import { IconMail } from "./icons/icon-mail"
-import { IconScissors } from "./icons/icon-scissors"
 
 type IProps = {
   location: Location
@@ -37,12 +36,6 @@ export const SidebarMenu: React.FC<IProps> = ({ location }) => {
       name: "ブログ",
       path: "/tags/blog/",
       icon: <IconBookOpen className={iconClassName} ariaHidden={true} />,
-    },
-    {
-      id: "tool",
-      name: "ツール",
-      path: "/tags/tool/",
-      icon: <IconScissors className={iconClassName} ariaHidden={true} />,
     },
     {
       id: pathObject.portfolio.id,

@@ -1,4 +1,5 @@
 const colors = require("tailwindcss/colors")
+const { screens } = require("tailwindcss/defaultTheme")
 
 module.exports = {
   purge: ["./src/**/*.{js,jsx,ts,tsx}"],
@@ -45,6 +46,10 @@ module.exports = {
         ],
         accent: ["Adumu"],
       },
+    },
+    screens: {
+      xs: "375px",
+      ...screens,
     },
     zIndex: {
       "-10": "-10",

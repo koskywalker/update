@@ -2,25 +2,16 @@ import { graphql, useStaticQuery } from "gatsby"
 import Image from "gatsby-image"
 import React from "react"
 
+import { authorData } from "../constants/constants"
+
 export const Bio: React.FC = () => {
   const data = useStaticQuery<GatsbyTypes.BioQuery>(
     graphql`
       query Bio {
-        avatar: file(absolutePath: { regex: "/profile-pic.jpg/" }) {
+        avatar: file(absolutePath: { regex: "/profile.png/" }) {
           childImageSharp {
             fixed(width: 50, height: 50, quality: 95) {
               ...GatsbyImageSharpFixed
-            }
-          }
-        }
-        site {
-          siteMetadata {
-            author {
-              name
-              summary
-            }
-            social {
-              twitter
             }
           }
         }
@@ -28,9 +19,6 @@ export const Bio: React.FC = () => {
     `
   )
 
-  // Set these values by editing "siteMetadata" in gatsby-config.js
-  const author = data.site?.siteMetadata?.author
-  const social = data.site?.siteMetadata?.social
   const avatar = data?.avatar?.childImageSharp?.fixed
 
   return (
@@ -38,21 +26,20 @@ export const Bio: React.FC = () => {
       {avatar && (
         <Image
           fixed={avatar}
-          alt={author?.name || ""}
+          alt={authorData.name || ""}
           className="bio-avatar"
           imgStyle={{
             borderRadius: "50%",
           }}
         />
       )}
-      {author?.name && (
-        <p>
-          Written by <strong>{author.name}</strong> {author?.summary || null}{" "}
-          <a href={`https://twitter.com/${social?.twitter || ""}`}>
-            You should follow them on Twitter
-          </a>
-        </p>
-      )}
+      <p>
+        Written by <strong>{authorData.name}</strong>{" "}
+        {authorData.description[0] || null}{" "}
+        <a href={authorData.social.twitter.url}>
+          You should follow them on Twitter
+        </a>
+      </p>
     </div>
   )
 }
