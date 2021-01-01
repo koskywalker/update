@@ -28,7 +28,7 @@ export const ArticleCard: React.FC<IProps> = ({ article }) => {
   return (
     <div className="flex flex-col overflow-hidden bg-white rounded-lg shadow-lg">
       <div>
-        <Link to={`/${article.slug}`} className="block">
+        <Link to={`/${article.slug}/`} className="block">
           <div className="flex-shrink-0">
             <img
               className="object-cover w-full h-48"
@@ -55,7 +55,7 @@ export const ArticleCard: React.FC<IProps> = ({ article }) => {
                 key={`${article.slug}--${tag.slug}`}
                 className="text-sm font-medium text-indigo-600"
               >
-                <Link to={`/tags/${tag.slug}`} className="inline-block">
+                <Link to={`/tags/${tag.slug}/`} className="inline-block">
                   <span className="inline-flex items-center px-3 text-sm font-medium text-indigo-800 bg-indigo-100 rounded-full py-0.5">
                     {tag.name}
                   </span>

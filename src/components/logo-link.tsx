@@ -1,6 +1,7 @@
 import { Link } from "gatsby"
 import React from "react"
 
+import { pathObject } from "../constants/constants"
 import { Logo } from "./logo"
 
 type IProps = {
@@ -10,7 +11,7 @@ type IProps = {
 
 export const LogoLink: React.FC<IProps> = ({ className, color }) => {
   return (
-    <Link to="/" className="block">
+    <Link to={pathObject.home.path} className="block">
       <Logo className={className} color={color} />
     </Link>
   )

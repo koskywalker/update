@@ -5,47 +5,47 @@ import { toggleEnableScroll } from "../utils/utils"
 import { IconMenu } from "./icons/icon-menu"
 import { LogoLink } from "./logo-link"
 import { Particles } from "./particles"
-import { SideMenu } from "./side-menu"
+import { Sidebar } from "./sidebar"
 
 type IProps = {
   isThreeColumn: boolean
 }
 
 export const Layout: React.FC<IProps> = ({ children, isThreeColumn }) => {
-  const [isSideMenuOpen, setIsSideMenuOpen] = useState(false)
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
   /**
-   * モバイル用サイドメニューを開く.
+   * モバイル用サイドバーを開く.
    */
-  const openSideMenu = () => {
-    setIsSideMenuOpen(true)
+  const openSidebar = () => {
+    setIsSidebarOpen(true)
     toggleEnableScroll()
   }
 
   /**
-   * モバイル用サイドメニューを閉じる.
+   * モバイル用サイドバーを閉じる.
    */
-  const closeSideMenu = () => {
+  const closeSidebar = () => {
     toggleEnableScroll()
-    setIsSideMenuOpen(false)
+    setIsSidebarOpen(false)
   }
 
   /**
-   * Esc キー押下でモバイル用サイドメニューを閉じる.
+   * Esc キー押下でモバイル用サイドバーを閉じる.
    * @param event イベント.
    */
-  const keydownEscAndCloseSideMenu = useCallback((event: KeyboardEvent) => {
+  const keydownEscAndCloseSidebar = useCallback((event: KeyboardEvent) => {
     if (event.code === "Escape") {
-      closeSideMenu()
+      closeSidebar()
     }
   }, [])
 
   useEffect(() => {
-    window.addEventListener("keydown", keydownEscAndCloseSideMenu)
+    window.addEventListener("keydown", keydownEscAndCloseSidebar)
     return () => {
-      window.removeEventListener("keydown", keydownEscAndCloseSideMenu)
+      window.removeEventListener("keydown", keydownEscAndCloseSidebar)
     }
-  }, [keydownEscAndCloseSideMenu])
+  }, [keydownEscAndCloseSidebar])
 
   return (
     <Location>
@@ -74,7 +74,7 @@ export const Layout: React.FC<IProps> = ({ children, isThreeColumn }) => {
                       <button
                         type="button"
                         className="inline-flex items-center justify-center w-12 h-12 -mr-3 text-black rounded-md"
-                        onClick={openSideMenu}
+                        onClick={openSidebar}
                       >
                         <span className="sr-only">Open sidebar</span>
                         <IconMenu className="w-6 h-6" ariaHidden={true} />
@@ -102,10 +102,10 @@ export const Layout: React.FC<IProps> = ({ children, isThreeColumn }) => {
                 </div>
               </div>
               {/* side-menu-primary */}
-              <SideMenu
+              <Sidebar
                 location={location}
-                isSideMenuOpen={isSideMenuOpen}
-                closeSideMenu={closeSideMenu}
+                isSidebarOpen={isSidebarOpen}
+                closeSidebar={closeSidebar}
               />
             </div>
           </>
