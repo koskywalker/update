@@ -12,7 +12,7 @@ export const SidebarProfile: React.FC = () => {
       query SidebarProfile {
         avatar: file(absolutePath: { regex: "/profile.png/" }) {
           childImageSharp {
-            fixed(width: 150, height: 150) {
+            fixed(width: 150) {
               ...GatsbyImageSharpFixed
             }
           }
@@ -23,7 +23,7 @@ export const SidebarProfile: React.FC = () => {
 
   const image = data?.avatar?.childImageSharp?.fixed
 
-  const socialIconClassName = "w-8 h-8"
+  const socialIconClassName = "w-6 h-6 sm:w-8 sm:h-8"
   const socialList = [
     {
       name: authorData.social.github.name,
