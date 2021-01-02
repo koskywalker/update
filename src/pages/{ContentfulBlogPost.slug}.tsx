@@ -28,11 +28,12 @@ const BlogPost: React.FC<IProps> = ({ data }) => {
   return (
     <Layout isThreeColumn={true}>
       <Seo pageTitle={title} pageDescription={description} />
-      <article
-        className="blog-post"
-        itemScope
-        itemType="http://schema.org/Article"
-      >
+      <article itemScope itemType="http://schema.org/Article">
+        <div className="overflow-hidden bg-white rounded-lg shadow divide-y divide-gray-200">
+          <div className="px-4 py-5 sm:px-6">title</div>
+          <div className="px-4 py-5 sm:p-6">body</div>
+          <div className="px-4 py-4 sm:px-6">footer</div>
+        </div>
         <header>
           <h1 itemProp="headline">{title}</h1>
           <p>{publishDate}</p>

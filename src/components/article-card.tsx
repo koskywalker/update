@@ -48,12 +48,12 @@ export const ArticleCard: React.FC<IProps> = ({ article }) => {
           </div>
           <h2 className="px-6 pt-3 text-xl font-semibold">{article.title}</h2>
         </Link>
-        <div className="flex flex-wrap flex-1 p-6 gap-2">
+        <div className="flex flex-wrap flex-1 px-6 pt-4 pb-6 -m-1">
           {article.tags.map((tag: any) => {
             return (
               <p
                 key={`${article.slug}--${tag.slug}`}
-                className="text-sm font-medium text-indigo-600"
+                className="p-1 text-sm font-medium text-indigo-600"
               >
                 <Link to={`/tags/${tag.slug}/`} className="inline-block">
                   <span className="inline-flex items-center px-3 text-sm font-medium text-indigo-800 bg-indigo-100 rounded-full py-0.5">
