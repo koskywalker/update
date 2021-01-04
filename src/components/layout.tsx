@@ -1,7 +1,7 @@
 import { Location } from "@reach/router"
 import React, { useCallback, useEffect, useState } from "react"
 
-import { toggleEnableScroll } from "../utils/utils"
+import { toggleEnableScroll, wait } from "../utils/utils"
 import { IconMenu } from "./icons/icon-menu"
 import { LogoLink } from "./logo-link"
 import { Particles } from "./particles"
@@ -21,9 +21,10 @@ export const Layout: React.FC = ({ children }) => {
   /**
    * モバイル用サイドバーを閉じる.
    */
-  const closeSidebar = () => {
-    toggleEnableScroll()
+  const closeSidebar = async () => {
     setIsSidebarOpen(false)
+    await wait(1000)
+    toggleEnableScroll()
   }
 
   /**
