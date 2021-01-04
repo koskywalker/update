@@ -133,7 +133,7 @@ const BlogPost: React.FC<IProps> = ({ data }) => {
           </div>
         </div>
         <aside className="relative flex-shrink-0 hidden border-l border-gray-200 xl:flex xl:flex-col w-96">
-          <div className="absolute inset-0 px-4 py-6 sm:px-6 lg:px-8">
+          <div className="absolute inset-0 ml-8">
             <div className="h-full border-4 border-gray-200 border-dashed rounded-lg"></div>
           </div>
         </aside>
