@@ -7,11 +7,7 @@ import { LogoLink } from "./logo-link"
 import { Particles } from "./particles"
 import { Sidebar } from "./sidebar"
 
-type IProps = {
-  isThreeColumn: boolean
-}
-
-export const Layout: React.FC<IProps> = ({ children, isThreeColumn }) => {
+export const Layout: React.FC = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
   /**
@@ -91,14 +87,6 @@ export const Layout: React.FC<IProps> = ({ children, isThreeColumn }) => {
                       </div>
                     </div>
                   </main>
-                  {isThreeColumn && (
-                    // side-menu-secondary
-                    <aside className="relative flex-shrink-0 hidden border-l border-gray-200 xl:flex xl:flex-col w-96">
-                      <div className="absolute inset-0 px-4 py-6 sm:px-6 lg:px-8">
-                        <div className="h-full border-4 border-gray-200 border-dashed rounded-lg"></div>
-                      </div>
-                    </aside>
-                  )}
                 </div>
               </div>
               {/* side-menu-primary */}

@@ -22,7 +22,7 @@ const TagsArchive: React.FC<IProps> = ({ data, pageContext }) => {
 
   if (posts.length === 0) {
     return (
-      <Layout isThreeColumn={false}>
+      <Layout>
         <Seo pageTitle={pageTitle} />
         <Hero />
         <p>No blog posts found. Add markdown posts.</p>
@@ -31,7 +31,7 @@ const TagsArchive: React.FC<IProps> = ({ data, pageContext }) => {
   }
 
   return (
-    <Layout isThreeColumn={false}>
+    <Layout>
       <Seo pageTitle={pageTitle} />
       <Hero />
       <ol style={{ listStyle: "none" }}>

@@ -48,7 +48,7 @@ const Portfolio: React.FC<IProps> = ({ data }) => {
   ]
 
   return (
-    <Layout isThreeColumn={false}>
+    <Layout>
       <Seo pageTitle={pageTitle} />
       <Hero />
       <h1>{pageTitle}</h1>

@@ -7,7 +7,7 @@ const Contact: React.FC = () => {
   const pageTitle = "お問い合わせ"
 
   return (
-    <Layout isThreeColumn={false}>
+    <Layout>
       <Seo pageTitle={pageTitle} />
       <h1>{pageTitle}</h1>
       <form

@@ -47,7 +47,7 @@ const BlogPost: React.FC<IProps> = ({ data }) => {
   ]
 
   return (
-    <Layout isThreeColumn={true}>
+    <Layout>
       <Seo pageTitle={title} pageDescription={description} />
       <nav className="flex" aria-label="Breadcrumb">
         <ol className="flex w-full px-6 bg-white shadow rounded-md space-x-4">
@@ -76,7 +76,11 @@ const BlogPost: React.FC<IProps> = ({ data }) => {
           </li>
         </ol>
       </nav>
-      <article className="mt-6" itemScope itemType="http://schema.org/Article">
+      <article
+        className="flex mt-6"
+        itemScope
+        itemType="http://schema.org/Article"
+      >
         <div className="overflow-hidden bg-white rounded-lg shadow divide-y divide-gray-300">
           <div className="px-4 py-5 sm:px-6">
             <h1
@@ -128,6 +132,11 @@ const BlogPost: React.FC<IProps> = ({ data }) => {
             <Bio />
           </div>
         </div>
+        <aside className="relative flex-shrink-0 hidden border-l border-gray-200 xl:flex xl:flex-col w-96">
+          <div className="absolute inset-0 px-4 py-6 sm:px-6 lg:px-8">
+            <div className="h-full border-4 border-gray-200 border-dashed rounded-lg"></div>
+          </div>
+        </aside>
       </article>
     </Layout>
   )
