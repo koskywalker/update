@@ -6426,7 +6426,7 @@ type PostBySlugQuery = { readonly contentfulBlogPost: Maybe<(
     & { readonly tags: Maybe<ReadonlyArray<Maybe<Pick<ContentfulTag, 'slug' | 'name'>>>>, readonly heroImage: Maybe<(
       Pick<ContentfulAsset, 'description'>
       & { readonly file: Maybe<Pick<ContentfulAssetFile, 'url'>> }
-    )>, readonly description: Maybe<Pick<contentfulBlogPostDescriptionTextNode, 'description'>>, readonly body: Maybe<{ readonly childMarkdownRemark: Maybe<Pick<MarkdownRemark, 'timeToRead' | 'html'>> }>, readonly author: Maybe<Pick<ContentfulPerson, 'name'>> }
+    )>, readonly description: Maybe<Pick<contentfulBlogPostDescriptionTextNode, 'description'>>, readonly body: Maybe<{ readonly childMarkdownRemark: Maybe<Pick<MarkdownRemark, 'timeToRead' | 'html'>> }> }
   )> };
 
 type BioQueryVariables = Exact<{ [key: string]: never; }>;
