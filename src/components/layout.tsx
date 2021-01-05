@@ -82,10 +82,8 @@ export const Layout: React.FC = ({ children }) => {
                 <div className="relative flex flex-1 overflow-hidden">
                   {/* main */}
                   <main className="relative flex-1 overflow-y-auto focus:outline-none">
-                    <div className="absolute inset-0 px-4 py-6 mx-auto md:max-w-7xl sm:px-6 lg:px-8">
-                      <div className="h-full">
-                        <div>{children}</div>
-                      </div>
+                    <div className="absolute inset-0 px-4 py-8 mx-auto md:max-w-7xl sm:px-6 lg:px-8">
+                      <div className="h-full">{children}</div>
                     </div>
                   </main>
                 </div>

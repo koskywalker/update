@@ -77,12 +77,12 @@ const BlogPost: React.FC<IProps> = ({ data }) => {
         </ol>
       </nav>
       <article
-        className="flex mt-6"
+        className="flex pb-8 my-8"
         itemScope
         itemType="http://schema.org/Article"
       >
-        <div className="overflow-hidden bg-white rounded-lg shadow divide-y divide-gray-300">
-          <div className="px-4 py-5 sm:px-6">
+        <div className="overflow-hidden bg-white rounded-lg shadow">
+          <div className="px-4 pt-8 sm:px-6">
             <h1
               className="text-2xl font-bold leading-7 sm:text-3xl"
               itemProp="headline"
@@ -99,9 +99,6 @@ const BlogPost: React.FC<IProps> = ({ data }) => {
                   )
                 })}
               </div>
-            </div>
-            <div className="mt-4">
-              <img src={image.src} alt={image.alt} />
             </div>
             {tags.length && (
               <div className="pt-4 -m-1">
@@ -120,15 +117,18 @@ const BlogPost: React.FC<IProps> = ({ data }) => {
                 })}
               </div>
             )}
+            <div className="mt-6">
+              <img src={image.src} alt={image.alt} />
+            </div>
           </div>
           <div
-            className="px-4 py-5 sm:p-6"
+            className="max-w-full px-4 pt-8 sm:px-6 prose prose-blue"
             dangerouslySetInnerHTML={{
               __html: bodyHtml,
             }}
             itemProp="articleBody"
           ></div>
-          <div className="px-4 py-4 sm:px-6">
+          <div className="px-4 py-8 sm:px-6">
             <Bio />
           </div>
         </div>
