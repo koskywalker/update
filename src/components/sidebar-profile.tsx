@@ -64,7 +64,7 @@ export const SidebarProfile: React.FC = () => {
         <div className="xs:mt-2 sm:mt-6 space-y-4">
           <div className="font-medium text-center sm:text-lg leading-6 space-y-1">
             <h3>{authorData.name}</h3>
-            <p className="text-cyan-300">{authorData.label}</p>
+            <p className="text-cyan-400">{authorData.label}</p>
           </div>
           <div className="hidden md:block space-y-2">
             {authorData.description.map((sentence, index) => {

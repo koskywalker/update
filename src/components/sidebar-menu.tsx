@@ -23,25 +23,45 @@ export const SidebarMenu: React.FC<IProps> = ({ location }) => {
       id: pathObject.home.id,
       name: pathObject.home.name,
       path: pathObject.home.path,
-      icon: <IconHome className={iconClassName} ariaHidden={true} />,
+      icon: (
+        <IconHome
+          className={`${iconClassName} text-yellow-400`}
+          ariaHidden={true}
+        />
+      ),
     },
     {
       id: "programming",
       name: "プログラミング",
       path: "/tags/programming/",
-      icon: <IconCode className={iconClassName} ariaHidden={true} />,
+      icon: (
+        <IconCode
+          className={`${iconClassName} text-cyan-400`}
+          ariaHidden={true}
+        />
+      ),
     },
     {
       id: "blog",
       name: "ブログ",
       path: "/tags/blog/",
-      icon: <IconBookOpen className={iconClassName} ariaHidden={true} />,
+      icon: (
+        <IconBookOpen
+          className={`${iconClassName} text-rose-400`}
+          ariaHidden={true}
+        />
+      ),
     },
     {
       id: pathObject.portfolio.id,
       name: pathObject.portfolio.name,
       path: pathObject.portfolio.path,
-      icon: <IconFilm className={iconClassName} ariaHidden={true} />,
+      icon: (
+        <IconFilm
+          className={`${iconClassName} text-emerald-400`}
+          ariaHidden={true}
+        />
+      ),
     },
   ]
 
