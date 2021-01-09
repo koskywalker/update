@@ -12,3 +12,58 @@
     src: url(../fonts/Adumu.woff) format("woff");
   }
 }
+
+.prose h2 {
+  @apply py-4 border-b-4 border-cyan-500;
+}
+
+.prose h3 {
+  @apply py-4 border-b-2 mt-8 mb-6;
+}
+
+.prose :not(pre) > code[class*="language-"] {
+  @apply bg-gray-200 text-black font-normal px-1 py-0.5;
+}
+
+.prose code::before,
+.prose code::after {
+  @apply hidden;
+}
+
+.toc {
+  @apply p-4 border border-gray-200 shadow-sm;
+}
+
+.toc-side {
+  @apply p-0 border-none shadow-none;
+}
+
+.toc::before {
+  content: "目次";
+
+  @apply text-xl text-black font-bold;
+}
+
+.toc ul {
+  @apply space-y-2 mt-2 mb-0;
+}
+
+.toc ul ul {
+  @apply mt-2 mb-0;
+}
+
+.toc ul > li {
+  @apply m-0 pl-6;
+}
+
+.toc p {
+  @apply m-0;
+}
+
+.toc ul > li::before {
+  @apply bg-black;
+}
+
+.toc ul ul > li::before {
+  @apply bg-transparent border border-black;
+}

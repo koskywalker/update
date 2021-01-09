@@ -27,6 +27,7 @@ const BlogPost: React.FC<IProps> = ({ data }) => {
     alt: post?.heroImage?.description ?? "",
   }
   const bodyHtml = post?.body?.childMarkdownRemark?.html ?? ""
+  const toc = post?.body?.childMarkdownRemark?.tableOfContents ?? ""
 
   const articleMetaClassName = "text-gray-500"
   const articleMetaList = [
@@ -53,7 +54,7 @@ const BlogPost: React.FC<IProps> = ({ data }) => {
         <ol className="flex w-full px-6 bg-white shadow rounded-md space-x-4">
           <li className="flex">
             <div className="flex items-center">
-              <Link to="#">
+              <Link to="/">
                 <IconHome className="w-5 h-5" ariaHidden={true} />
                 <span className="sr-only">Home</span>
               </Link>
@@ -132,9 +133,18 @@ const BlogPost: React.FC<IProps> = ({ data }) => {
             <Bio />
           </div>
         </div>
-        <aside className="relative flex-shrink-0 hidden border-l border-gray-200 xl:flex xl:flex-col w-96">
+        <aside className="relative flex-shrink-0 hidden xl:flex xl:flex-col w-96">
           <div className="absolute inset-0 ml-8">
-            <div className="h-full border-4 border-gray-200 border-dashed rounded-lg"></div>
+            <div className="h-full">
+              <div className="sticky max-w-full px-6 py-8 bg-white rounded-lg shadow top-8 prose prose-blue">
+                <div
+                  className="toc toc-side"
+                  dangerouslySetInnerHTML={{
+                    __html: toc,
+                  }}
+                ></div>
+              </div>
+            </div>
           </div>
         </aside>
       </article>
@@ -168,6 +178,7 @@ export const pageQuery = graphql`
       body {
         childMarkdownRemark {
           timeToRead
+          tableOfContents(pathToSlugField: "frontmatter.title")
           html
         }
       }

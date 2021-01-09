@@ -9,7 +9,8 @@ module.exports = {
       resolve: "gatsby-source-contentful",
       options: {
         spaceId: process.env.CONTENTFUL_SPACE_ID,
-        accessToken: process.env.CONTENTFUL_CONTENT_DELIVERY_API_ACCESS_TOKEN,
+        accessToken: process.env.CONTENTFUL_CONTENT_PREVIEW_API_ACCESS_TOKEN,
+        host: process.env.CONTENTFUL_HOST_PREVIEW,
       },
     },
     {
@@ -40,6 +41,20 @@ module.exports = {
               target: "_blank",
               rel: "nofollow",
             },
+          },
+          {
+            resolve: "gatsby-remark-table-of-contents",
+            options: {
+              exclude: "",
+              tight: false,
+              ordered: false,
+              fromHeading: 2,
+              toHeading: 3,
+              className: "toc",
+            },
+          },
+          {
+            resolve: "gatsby-remark-autolink-headers",
           },
           "gatsby-remark-prismjs",
         ],

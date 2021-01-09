@@ -179,6 +179,7 @@ enum ContentfulAssetFieldsEnum {
   file___details___image___height = 'file.details.image.height',
   file___fileName = 'file.fileName',
   file___contentType = 'file.contentType',
+  file___upload = 'file.upload',
   title = 'title',
   description = 'description',
   node_locale = 'node_locale',
@@ -316,6 +317,7 @@ type ContentfulAssetFile = {
   readonly details: Maybe<ContentfulAssetFileDetails>;
   readonly fileName: Maybe<Scalars['String']>;
   readonly contentType: Maybe<Scalars['String']>;
+  readonly upload: Maybe<Scalars['String']>;
 };
 
 type ContentfulAssetFileDetails = {
@@ -343,6 +345,7 @@ type ContentfulAssetFileFilterInput = {
   readonly details: Maybe<ContentfulAssetFileDetailsFilterInput>;
   readonly fileName: Maybe<StringQueryOperatorInput>;
   readonly contentType: Maybe<StringQueryOperatorInput>;
+  readonly upload: Maybe<StringQueryOperatorInput>;
 };
 
 type ContentfulAssetFilterInput = {
@@ -912,6 +915,7 @@ enum ContentfulBlogPostFieldsEnum {
   heroImage___file___details___size = 'heroImage.file.details.size',
   heroImage___file___fileName = 'heroImage.file.fileName',
   heroImage___file___contentType = 'heroImage.file.contentType',
+  heroImage___file___upload = 'heroImage.file.upload',
   heroImage___title = 'heroImage.title',
   heroImage___description = 'heroImage.description',
   heroImage___node_locale = 'heroImage.node_locale',
@@ -997,6 +1001,11 @@ enum ContentfulBlogPostFieldsEnum {
   author___contentful_id = 'author.contentful_id',
   author___id = 'author.id',
   author___node_locale = 'author.node_locale',
+  author___spaceId = 'author.spaceId',
+  author___createdAt = 'author.createdAt',
+  author___updatedAt = 'author.updatedAt',
+  author___sys___type = 'author.sys.type',
+  author___sys___revision = 'author.sys.revision',
   author___name = 'author.name',
   author___title = 'author.title',
   author___blog_post = 'author.blog_post',
@@ -1018,12 +1027,12 @@ enum ContentfulBlogPostFieldsEnum {
   author___blog_post___author___contentful_id = 'author.blog_post.author.contentful_id',
   author___blog_post___author___id = 'author.blog_post.author.id',
   author___blog_post___author___node_locale = 'author.blog_post.author.node_locale',
-  author___blog_post___author___name = 'author.blog_post.author.name',
-  author___blog_post___author___title = 'author.blog_post.author.title',
-  author___blog_post___author___blog_post = 'author.blog_post.author.blog_post',
   author___blog_post___author___spaceId = 'author.blog_post.author.spaceId',
   author___blog_post___author___createdAt = 'author.blog_post.author.createdAt',
   author___blog_post___author___updatedAt = 'author.blog_post.author.updatedAt',
+  author___blog_post___author___name = 'author.blog_post.author.name',
+  author___blog_post___author___title = 'author.blog_post.author.title',
+  author___blog_post___author___blog_post = 'author.blog_post.author.blog_post',
   author___blog_post___author___children = 'author.blog_post.author.children',
   author___blog_post___tags = 'author.blog_post.tags',
   author___blog_post___tags___contentful_id = 'author.blog_post.tags.contentful_id',
@@ -1067,11 +1076,6 @@ enum ContentfulBlogPostFieldsEnum {
   author___blog_post___childContentfulBlogPostBodyTextNode___id = 'author.blog_post.childContentfulBlogPostBodyTextNode.id',
   author___blog_post___childContentfulBlogPostBodyTextNode___children = 'author.blog_post.childContentfulBlogPostBodyTextNode.children',
   author___blog_post___childContentfulBlogPostBodyTextNode___body = 'author.blog_post.childContentfulBlogPostBodyTextNode.body',
-  author___spaceId = 'author.spaceId',
-  author___createdAt = 'author.createdAt',
-  author___updatedAt = 'author.updatedAt',
-  author___sys___type = 'author.sys.type',
-  author___sys___revision = 'author.sys.revision',
   author___parent___id = 'author.parent.id',
   author___parent___parent___id = 'author.parent.parent.id',
   author___parent___parent___children = 'author.parent.parent.children',
@@ -1134,12 +1138,12 @@ enum ContentfulBlogPostFieldsEnum {
   tags___blog_post___author___contentful_id = 'tags.blog_post.author.contentful_id',
   tags___blog_post___author___id = 'tags.blog_post.author.id',
   tags___blog_post___author___node_locale = 'tags.blog_post.author.node_locale',
-  tags___blog_post___author___name = 'tags.blog_post.author.name',
-  tags___blog_post___author___title = 'tags.blog_post.author.title',
-  tags___blog_post___author___blog_post = 'tags.blog_post.author.blog_post',
   tags___blog_post___author___spaceId = 'tags.blog_post.author.spaceId',
   tags___blog_post___author___createdAt = 'tags.blog_post.author.createdAt',
   tags___blog_post___author___updatedAt = 'tags.blog_post.author.updatedAt',
+  tags___blog_post___author___name = 'tags.blog_post.author.name',
+  tags___blog_post___author___title = 'tags.blog_post.author.title',
+  tags___blog_post___author___blog_post = 'tags.blog_post.author.blog_post',
   tags___blog_post___author___children = 'tags.blog_post.author.children',
   tags___blog_post___tags = 'tags.blog_post.tags',
   tags___blog_post___tags___contentful_id = 'tags.blog_post.tags.contentful_id',
@@ -1367,10 +1371,10 @@ enum ContentfulBlogPostFieldsEnum {
   createdAt = 'createdAt',
   updatedAt = 'updatedAt',
   sys___type = 'sys.type',
-  sys___revision = 'sys.revision',
   sys___contentType___sys___type = 'sys.contentType.sys.type',
   sys___contentType___sys___linkType = 'sys.contentType.sys.linkType',
   sys___contentType___sys___id = 'sys.contentType.sys.id',
+  sys___revision = 'sys.revision',
   gatsbyPath = 'gatsbyPath',
   parent___id = 'parent.id',
   parent___parent___id = 'parent.parent.id',
@@ -1641,8 +1645,8 @@ type ContentfulBlogPostSortInput = {
 
 type ContentfulBlogPostSys = {
   readonly type: Maybe<Scalars['String']>;
-  readonly revision: Maybe<Scalars['Int']>;
   readonly contentType: Maybe<ContentfulBlogPostSysContentType>;
+  readonly revision: Maybe<Scalars['Int']>;
 };
 
 type ContentfulBlogPostSysContentType = {
@@ -1667,8 +1671,8 @@ type ContentfulBlogPostSysContentTypeSysFilterInput = {
 
 type ContentfulBlogPostSysFilterInput = {
   readonly type: Maybe<StringQueryOperatorInput>;
-  readonly revision: Maybe<IntQueryOperatorInput>;
   readonly contentType: Maybe<ContentfulBlogPostSysContentTypeFilterInput>;
+  readonly revision: Maybe<IntQueryOperatorInput>;
 };
 
 type ContentfulContentType = Node & {
@@ -1965,13 +1969,13 @@ type ContentfulPerson = ContentfulReference & ContentfulEntry & Node & {
   readonly contentful_id: Scalars['String'];
   readonly id: Scalars['ID'];
   readonly node_locale: Scalars['String'];
-  readonly name: Maybe<Scalars['String']>;
-  readonly title: Maybe<Scalars['String']>;
-  readonly blog_post: Maybe<ReadonlyArray<Maybe<ContentfulBlogPost>>>;
   readonly spaceId: Maybe<Scalars['String']>;
   readonly createdAt: Maybe<Scalars['Date']>;
   readonly updatedAt: Maybe<Scalars['Date']>;
   readonly sys: Maybe<ContentfulPersonSys>;
+  readonly name: Maybe<Scalars['String']>;
+  readonly title: Maybe<Scalars['String']>;
+  readonly blog_post: Maybe<ReadonlyArray<Maybe<ContentfulBlogPost>>>;
   readonly parent: Maybe<Node>;
   readonly children: ReadonlyArray<Node>;
   readonly internal: Internal;
@@ -2024,6 +2028,14 @@ enum ContentfulPersonFieldsEnum {
   contentful_id = 'contentful_id',
   id = 'id',
   node_locale = 'node_locale',
+  spaceId = 'spaceId',
+  createdAt = 'createdAt',
+  updatedAt = 'updatedAt',
+  sys___type = 'sys.type',
+  sys___contentType___sys___type = 'sys.contentType.sys.type',
+  sys___contentType___sys___linkType = 'sys.contentType.sys.linkType',
+  sys___contentType___sys___id = 'sys.contentType.sys.id',
+  sys___revision = 'sys.revision',
   name = 'name',
   title = 'title',
   blog_post = 'blog_post',
@@ -2041,6 +2053,7 @@ enum ContentfulPersonFieldsEnum {
   blog_post___heroImage___file___url = 'blog_post.heroImage.file.url',
   blog_post___heroImage___file___fileName = 'blog_post.heroImage.file.fileName',
   blog_post___heroImage___file___contentType = 'blog_post.heroImage.file.contentType',
+  blog_post___heroImage___file___upload = 'blog_post.heroImage.file.upload',
   blog_post___heroImage___title = 'blog_post.heroImage.title',
   blog_post___heroImage___description = 'blog_post.heroImage.description',
   blog_post___heroImage___node_locale = 'blog_post.heroImage.node_locale',
@@ -2102,6 +2115,11 @@ enum ContentfulPersonFieldsEnum {
   blog_post___author___contentful_id = 'blog_post.author.contentful_id',
   blog_post___author___id = 'blog_post.author.id',
   blog_post___author___node_locale = 'blog_post.author.node_locale',
+  blog_post___author___spaceId = 'blog_post.author.spaceId',
+  blog_post___author___createdAt = 'blog_post.author.createdAt',
+  blog_post___author___updatedAt = 'blog_post.author.updatedAt',
+  blog_post___author___sys___type = 'blog_post.author.sys.type',
+  blog_post___author___sys___revision = 'blog_post.author.sys.revision',
   blog_post___author___name = 'blog_post.author.name',
   blog_post___author___title = 'blog_post.author.title',
   blog_post___author___blog_post = 'blog_post.author.blog_post',
@@ -2117,11 +2135,6 @@ enum ContentfulPersonFieldsEnum {
   blog_post___author___blog_post___updatedAt = 'blog_post.author.blog_post.updatedAt',
   blog_post___author___blog_post___gatsbyPath = 'blog_post.author.blog_post.gatsbyPath',
   blog_post___author___blog_post___children = 'blog_post.author.blog_post.children',
-  blog_post___author___spaceId = 'blog_post.author.spaceId',
-  blog_post___author___createdAt = 'blog_post.author.createdAt',
-  blog_post___author___updatedAt = 'blog_post.author.updatedAt',
-  blog_post___author___sys___type = 'blog_post.author.sys.type',
-  blog_post___author___sys___revision = 'blog_post.author.sys.revision',
   blog_post___author___parent___id = 'blog_post.author.parent.id',
   blog_post___author___parent___children = 'blog_post.author.parent.children',
   blog_post___author___children = 'blog_post.author.children',
@@ -2319,14 +2332,6 @@ enum ContentfulPersonFieldsEnum {
   blog_post___childContentfulBlogPostBodyTextNode___childMarkdownRemark___timeToRead = 'blog_post.childContentfulBlogPostBodyTextNode.childMarkdownRemark.timeToRead',
   blog_post___childContentfulBlogPostBodyTextNode___childMarkdownRemark___tableOfContents = 'blog_post.childContentfulBlogPostBodyTextNode.childMarkdownRemark.tableOfContents',
   blog_post___childContentfulBlogPostBodyTextNode___childMarkdownRemark___children = 'blog_post.childContentfulBlogPostBodyTextNode.childMarkdownRemark.children',
-  spaceId = 'spaceId',
-  createdAt = 'createdAt',
-  updatedAt = 'updatedAt',
-  sys___type = 'sys.type',
-  sys___revision = 'sys.revision',
-  sys___contentType___sys___type = 'sys.contentType.sys.type',
-  sys___contentType___sys___linkType = 'sys.contentType.sys.linkType',
-  sys___contentType___sys___id = 'sys.contentType.sys.id',
   parent___id = 'parent.id',
   parent___parent___id = 'parent.parent.id',
   parent___parent___parent___id = 'parent.parent.parent.id',
@@ -2418,13 +2423,13 @@ type ContentfulPersonFilterInput = {
   readonly contentful_id: Maybe<StringQueryOperatorInput>;
   readonly id: Maybe<StringQueryOperatorInput>;
   readonly node_locale: Maybe<StringQueryOperatorInput>;
-  readonly name: Maybe<StringQueryOperatorInput>;
-  readonly title: Maybe<StringQueryOperatorInput>;
-  readonly blog_post: Maybe<ContentfulBlogPostFilterListInput>;
   readonly spaceId: Maybe<StringQueryOperatorInput>;
   readonly createdAt: Maybe<DateQueryOperatorInput>;
   readonly updatedAt: Maybe<DateQueryOperatorInput>;
   readonly sys: Maybe<ContentfulPersonSysFilterInput>;
+  readonly name: Maybe<StringQueryOperatorInput>;
+  readonly title: Maybe<StringQueryOperatorInput>;
+  readonly blog_post: Maybe<ContentfulBlogPostFilterListInput>;
   readonly parent: Maybe<NodeFilterInput>;
   readonly children: Maybe<NodeFilterListInput>;
   readonly internal: Maybe<InternalFilterInput>;
@@ -2446,8 +2451,8 @@ type ContentfulPersonSortInput = {
 
 type ContentfulPersonSys = {
   readonly type: Maybe<Scalars['String']>;
-  readonly revision: Maybe<Scalars['Int']>;
   readonly contentType: Maybe<ContentfulPersonSysContentType>;
+  readonly revision: Maybe<Scalars['Int']>;
 };
 
 type ContentfulPersonSysContentType = {
@@ -2472,8 +2477,8 @@ type ContentfulPersonSysContentTypeSysFilterInput = {
 
 type ContentfulPersonSysFilterInput = {
   readonly type: Maybe<StringQueryOperatorInput>;
-  readonly revision: Maybe<IntQueryOperatorInput>;
   readonly contentType: Maybe<ContentfulPersonSysContentTypeFilterInput>;
+  readonly revision: Maybe<IntQueryOperatorInput>;
 };
 
 type ContentfulReference = {
@@ -2625,6 +2630,7 @@ enum ContentfulTagFieldsEnum {
   blog_post___heroImage___file___url = 'blog_post.heroImage.file.url',
   blog_post___heroImage___file___fileName = 'blog_post.heroImage.file.fileName',
   blog_post___heroImage___file___contentType = 'blog_post.heroImage.file.contentType',
+  blog_post___heroImage___file___upload = 'blog_post.heroImage.file.upload',
   blog_post___heroImage___title = 'blog_post.heroImage.title',
   blog_post___heroImage___description = 'blog_post.heroImage.description',
   blog_post___heroImage___node_locale = 'blog_post.heroImage.node_locale',
@@ -2686,6 +2692,11 @@ enum ContentfulTagFieldsEnum {
   blog_post___author___contentful_id = 'blog_post.author.contentful_id',
   blog_post___author___id = 'blog_post.author.id',
   blog_post___author___node_locale = 'blog_post.author.node_locale',
+  blog_post___author___spaceId = 'blog_post.author.spaceId',
+  blog_post___author___createdAt = 'blog_post.author.createdAt',
+  blog_post___author___updatedAt = 'blog_post.author.updatedAt',
+  blog_post___author___sys___type = 'blog_post.author.sys.type',
+  blog_post___author___sys___revision = 'blog_post.author.sys.revision',
   blog_post___author___name = 'blog_post.author.name',
   blog_post___author___title = 'blog_post.author.title',
   blog_post___author___blog_post = 'blog_post.author.blog_post',
@@ -2701,11 +2712,6 @@ enum ContentfulTagFieldsEnum {
   blog_post___author___blog_post___updatedAt = 'blog_post.author.blog_post.updatedAt',
   blog_post___author___blog_post___gatsbyPath = 'blog_post.author.blog_post.gatsbyPath',
   blog_post___author___blog_post___children = 'blog_post.author.blog_post.children',
-  blog_post___author___spaceId = 'blog_post.author.spaceId',
-  blog_post___author___createdAt = 'blog_post.author.createdAt',
-  blog_post___author___updatedAt = 'blog_post.author.updatedAt',
-  blog_post___author___sys___type = 'blog_post.author.sys.type',
-  blog_post___author___sys___revision = 'blog_post.author.sys.revision',
   blog_post___author___parent___id = 'blog_post.author.parent.id',
   blog_post___author___parent___children = 'blog_post.author.parent.children',
   blog_post___author___children = 'blog_post.author.children',
@@ -4887,15 +4893,15 @@ type Query_sitePageArgs = {
   internalComponentName: Maybe<StringQueryOperatorInput>;
   componentChunkName: Maybe<StringQueryOperatorInput>;
   matchPath: Maybe<StringQueryOperatorInput>;
-  id: Maybe<StringQueryOperatorInput>;
-  parent: Maybe<NodeFilterInput>;
-  children: Maybe<NodeFilterListInput>;
-  internal: Maybe<InternalFilterInput>;
   isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>;
   context: Maybe<SitePageContextFilterInput>;
   pluginCreator: Maybe<SitePluginFilterInput>;
   pluginCreatorId: Maybe<StringQueryOperatorInput>;
   componentPath: Maybe<StringQueryOperatorInput>;
+  id: Maybe<StringQueryOperatorInput>;
+  parent: Maybe<NodeFilterInput>;
+  children: Maybe<NodeFilterListInput>;
+  internal: Maybe<InternalFilterInput>;
 };
 
 
@@ -5023,13 +5029,13 @@ type Query_contentfulPersonArgs = {
   contentful_id: Maybe<StringQueryOperatorInput>;
   id: Maybe<StringQueryOperatorInput>;
   node_locale: Maybe<StringQueryOperatorInput>;
-  name: Maybe<StringQueryOperatorInput>;
-  title: Maybe<StringQueryOperatorInput>;
-  blog_post: Maybe<ContentfulBlogPostFilterListInput>;
   spaceId: Maybe<StringQueryOperatorInput>;
   createdAt: Maybe<DateQueryOperatorInput>;
   updatedAt: Maybe<DateQueryOperatorInput>;
   sys: Maybe<ContentfulPersonSysFilterInput>;
+  name: Maybe<StringQueryOperatorInput>;
+  title: Maybe<StringQueryOperatorInput>;
+  blog_post: Maybe<ContentfulBlogPostFilterListInput>;
   parent: Maybe<NodeFilterInput>;
   children: Maybe<NodeFilterListInput>;
   internal: Maybe<InternalFilterInput>;
@@ -5496,15 +5502,15 @@ type SitePage = Node & {
   readonly internalComponentName: Scalars['String'];
   readonly componentChunkName: Scalars['String'];
   readonly matchPath: Maybe<Scalars['String']>;
-  readonly id: Scalars['ID'];
-  readonly parent: Maybe<Node>;
-  readonly children: ReadonlyArray<Node>;
-  readonly internal: Internal;
   readonly isCreatedByStatefulCreatePages: Maybe<Scalars['Boolean']>;
   readonly context: Maybe<SitePageContext>;
   readonly pluginCreator: Maybe<SitePlugin>;
   readonly pluginCreatorId: Maybe<Scalars['String']>;
   readonly componentPath: Maybe<Scalars['String']>;
+  readonly id: Scalars['ID'];
+  readonly parent: Maybe<Node>;
+  readonly children: ReadonlyArray<Node>;
+  readonly internal: Internal;
 };
 
 type SitePageConnection = {
@@ -5580,6 +5586,150 @@ enum SitePageFieldsEnum {
   internalComponentName = 'internalComponentName',
   componentChunkName = 'componentChunkName',
   matchPath = 'matchPath',
+  isCreatedByStatefulCreatePages = 'isCreatedByStatefulCreatePages',
+  context___lastPageNumber = 'context.lastPageNumber',
+  context___pageNumber = 'context.pageNumber',
+  context___humanPageNumber = 'context.humanPageNumber',
+  context___skip = 'context.skip',
+  context___limit = 'context.limit',
+  context___numberOfPages = 'context.numberOfPages',
+  context___previousPagePath = 'context.previousPagePath',
+  context___nextPagePath = 'context.nextPagePath',
+  context___tagName = 'context.tagName',
+  context___tagSlug = 'context.tagSlug',
+  context___id = 'context.id',
+  context___slug = 'context.slug',
+  context____xparams___slug = 'context._xparams.slug',
+  pluginCreator___id = 'pluginCreator.id',
+  pluginCreator___parent___id = 'pluginCreator.parent.id',
+  pluginCreator___parent___parent___id = 'pluginCreator.parent.parent.id',
+  pluginCreator___parent___parent___children = 'pluginCreator.parent.parent.children',
+  pluginCreator___parent___children = 'pluginCreator.parent.children',
+  pluginCreator___parent___children___id = 'pluginCreator.parent.children.id',
+  pluginCreator___parent___children___children = 'pluginCreator.parent.children.children',
+  pluginCreator___parent___internal___content = 'pluginCreator.parent.internal.content',
+  pluginCreator___parent___internal___contentDigest = 'pluginCreator.parent.internal.contentDigest',
+  pluginCreator___parent___internal___description = 'pluginCreator.parent.internal.description',
+  pluginCreator___parent___internal___fieldOwners = 'pluginCreator.parent.internal.fieldOwners',
+  pluginCreator___parent___internal___ignoreType = 'pluginCreator.parent.internal.ignoreType',
+  pluginCreator___parent___internal___mediaType = 'pluginCreator.parent.internal.mediaType',
+  pluginCreator___parent___internal___owner = 'pluginCreator.parent.internal.owner',
+  pluginCreator___parent___internal___type = 'pluginCreator.parent.internal.type',
+  pluginCreator___children = 'pluginCreator.children',
+  pluginCreator___children___id = 'pluginCreator.children.id',
+  pluginCreator___children___parent___id = 'pluginCreator.children.parent.id',
+  pluginCreator___children___parent___children = 'pluginCreator.children.parent.children',
+  pluginCreator___children___children = 'pluginCreator.children.children',
+  pluginCreator___children___children___id = 'pluginCreator.children.children.id',
+  pluginCreator___children___children___children = 'pluginCreator.children.children.children',
+  pluginCreator___children___internal___content = 'pluginCreator.children.internal.content',
+  pluginCreator___children___internal___contentDigest = 'pluginCreator.children.internal.contentDigest',
+  pluginCreator___children___internal___description = 'pluginCreator.children.internal.description',
+  pluginCreator___children___internal___fieldOwners = 'pluginCreator.children.internal.fieldOwners',
+  pluginCreator___children___internal___ignoreType = 'pluginCreator.children.internal.ignoreType',
+  pluginCreator___children___internal___mediaType = 'pluginCreator.children.internal.mediaType',
+  pluginCreator___children___internal___owner = 'pluginCreator.children.internal.owner',
+  pluginCreator___children___internal___type = 'pluginCreator.children.internal.type',
+  pluginCreator___internal___content = 'pluginCreator.internal.content',
+  pluginCreator___internal___contentDigest = 'pluginCreator.internal.contentDigest',
+  pluginCreator___internal___description = 'pluginCreator.internal.description',
+  pluginCreator___internal___fieldOwners = 'pluginCreator.internal.fieldOwners',
+  pluginCreator___internal___ignoreType = 'pluginCreator.internal.ignoreType',
+  pluginCreator___internal___mediaType = 'pluginCreator.internal.mediaType',
+  pluginCreator___internal___owner = 'pluginCreator.internal.owner',
+  pluginCreator___internal___type = 'pluginCreator.internal.type',
+  pluginCreator___resolve = 'pluginCreator.resolve',
+  pluginCreator___name = 'pluginCreator.name',
+  pluginCreator___version = 'pluginCreator.version',
+  pluginCreator___pluginOptions___plugins = 'pluginCreator.pluginOptions.plugins',
+  pluginCreator___pluginOptions___plugins___resolve = 'pluginCreator.pluginOptions.plugins.resolve',
+  pluginCreator___pluginOptions___plugins___id = 'pluginCreator.pluginOptions.plugins.id',
+  pluginCreator___pluginOptions___plugins___name = 'pluginCreator.pluginOptions.plugins.name',
+  pluginCreator___pluginOptions___plugins___version = 'pluginCreator.pluginOptions.plugins.version',
+  pluginCreator___pluginOptions___plugins___nodeAPIs = 'pluginCreator.pluginOptions.plugins.nodeAPIs',
+  pluginCreator___pluginOptions___plugins___browserAPIs = 'pluginCreator.pluginOptions.plugins.browserAPIs',
+  pluginCreator___pluginOptions___plugins___ssrAPIs = 'pluginCreator.pluginOptions.plugins.ssrAPIs',
+  pluginCreator___pluginOptions___plugins___pluginFilepath = 'pluginCreator.pluginOptions.plugins.pluginFilepath',
+  pluginCreator___pluginOptions___spaceId = 'pluginCreator.pluginOptions.spaceId',
+  pluginCreator___pluginOptions___accessToken = 'pluginCreator.pluginOptions.accessToken',
+  pluginCreator___pluginOptions___host = 'pluginCreator.pluginOptions.host',
+  pluginCreator___pluginOptions___environment = 'pluginCreator.pluginOptions.environment',
+  pluginCreator___pluginOptions___downloadLocal = 'pluginCreator.pluginOptions.downloadLocal',
+  pluginCreator___pluginOptions___forceFullSync = 'pluginCreator.pluginOptions.forceFullSync',
+  pluginCreator___pluginOptions___pageLimit = 'pluginCreator.pluginOptions.pageLimit',
+  pluginCreator___pluginOptions___assetDownloadWorkers = 'pluginCreator.pluginOptions.assetDownloadWorkers',
+  pluginCreator___pluginOptions___useNameForId = 'pluginCreator.pluginOptions.useNameForId',
+  pluginCreator___pluginOptions___head = 'pluginCreator.pluginOptions.head',
+  pluginCreator___pluginOptions___anonymize = 'pluginCreator.pluginOptions.anonymize',
+  pluginCreator___pluginOptions___respectDNT = 'pluginCreator.pluginOptions.respectDNT',
+  pluginCreator___pluginOptions___exclude = 'pluginCreator.pluginOptions.exclude',
+  pluginCreator___pluginOptions___pageTransitionDelay = 'pluginCreator.pluginOptions.pageTransitionDelay',
+  pluginCreator___pluginOptions___outputPath = 'pluginCreator.pluginOptions.outputPath',
+  pluginCreator___pluginOptions___maxWidth = 'pluginCreator.pluginOptions.maxWidth',
+  pluginCreator___pluginOptions___linkImagesToOriginal = 'pluginCreator.pluginOptions.linkImagesToOriginal',
+  pluginCreator___pluginOptions___showCaptions = 'pluginCreator.pluginOptions.showCaptions',
+  pluginCreator___pluginOptions___markdownCaptions = 'pluginCreator.pluginOptions.markdownCaptions',
+  pluginCreator___pluginOptions___sizeByPixelDensity = 'pluginCreator.pluginOptions.sizeByPixelDensity',
+  pluginCreator___pluginOptions___backgroundColor = 'pluginCreator.pluginOptions.backgroundColor',
+  pluginCreator___pluginOptions___quality = 'pluginCreator.pluginOptions.quality',
+  pluginCreator___pluginOptions___withWebp = 'pluginCreator.pluginOptions.withWebp',
+  pluginCreator___pluginOptions___tracedSVG = 'pluginCreator.pluginOptions.tracedSVG',
+  pluginCreator___pluginOptions___loading = 'pluginCreator.pluginOptions.loading',
+  pluginCreator___pluginOptions___disableBgImageOnAlpha = 'pluginCreator.pluginOptions.disableBgImageOnAlpha',
+  pluginCreator___pluginOptions___disableBgImage = 'pluginCreator.pluginOptions.disableBgImage',
+  pluginCreator___pluginOptions___target = 'pluginCreator.pluginOptions.target',
+  pluginCreator___pluginOptions___rel = 'pluginCreator.pluginOptions.rel',
+  pluginCreator___pluginOptions___tight = 'pluginCreator.pluginOptions.tight',
+  pluginCreator___pluginOptions___ordered = 'pluginCreator.pluginOptions.ordered',
+  pluginCreator___pluginOptions___fromHeading = 'pluginCreator.pluginOptions.fromHeading',
+  pluginCreator___pluginOptions___toHeading = 'pluginCreator.pluginOptions.toHeading',
+  pluginCreator___pluginOptions___className = 'pluginCreator.pluginOptions.className',
+  pluginCreator___pluginOptions___offsetY = 'pluginCreator.pluginOptions.offsetY',
+  pluginCreator___pluginOptions___output = 'pluginCreator.pluginOptions.output',
+  pluginCreator___pluginOptions___createLinkInHead = 'pluginCreator.pluginOptions.createLinkInHead',
+  pluginCreator___pluginOptions___name = 'pluginCreator.pluginOptions.name',
+  pluginCreator___pluginOptions___short_name = 'pluginCreator.pluginOptions.short_name',
+  pluginCreator___pluginOptions___start_url = 'pluginCreator.pluginOptions.start_url',
+  pluginCreator___pluginOptions___background_color = 'pluginCreator.pluginOptions.background_color',
+  pluginCreator___pluginOptions___theme_color = 'pluginCreator.pluginOptions.theme_color',
+  pluginCreator___pluginOptions___display = 'pluginCreator.pluginOptions.display',
+  pluginCreator___pluginOptions___icon = 'pluginCreator.pluginOptions.icon',
+  pluginCreator___pluginOptions___legacy = 'pluginCreator.pluginOptions.legacy',
+  pluginCreator___pluginOptions___theme_color_in_head = 'pluginCreator.pluginOptions.theme_color_in_head',
+  pluginCreator___pluginOptions___cache_busting_mode = 'pluginCreator.pluginOptions.cache_busting_mode',
+  pluginCreator___pluginOptions___crossOrigin = 'pluginCreator.pluginOptions.crossOrigin',
+  pluginCreator___pluginOptions___include_favicon = 'pluginCreator.pluginOptions.include_favicon',
+  pluginCreator___pluginOptions___cacheDigest = 'pluginCreator.pluginOptions.cacheDigest',
+  pluginCreator___pluginOptions___base64Width = 'pluginCreator.pluginOptions.base64Width',
+  pluginCreator___pluginOptions___stripMetadata = 'pluginCreator.pluginOptions.stripMetadata',
+  pluginCreator___pluginOptions___defaultQuality = 'pluginCreator.pluginOptions.defaultQuality',
+  pluginCreator___pluginOptions___failOnError = 'pluginCreator.pluginOptions.failOnError',
+  pluginCreator___pluginOptions___path = 'pluginCreator.pluginOptions.path',
+  pluginCreator___pluginOptions___pathCheck = 'pluginCreator.pluginOptions.pathCheck',
+  pluginCreator___pluginOptions___allExtensions = 'pluginCreator.pluginOptions.allExtensions',
+  pluginCreator___pluginOptions___isTSX = 'pluginCreator.pluginOptions.isTSX',
+  pluginCreator___pluginOptions___jsxPragma = 'pluginCreator.pluginOptions.jsxPragma',
+  pluginCreator___nodeAPIs = 'pluginCreator.nodeAPIs',
+  pluginCreator___browserAPIs = 'pluginCreator.browserAPIs',
+  pluginCreator___ssrAPIs = 'pluginCreator.ssrAPIs',
+  pluginCreator___pluginFilepath = 'pluginCreator.pluginFilepath',
+  pluginCreator___packageJson___name = 'pluginCreator.packageJson.name',
+  pluginCreator___packageJson___description = 'pluginCreator.packageJson.description',
+  pluginCreator___packageJson___version = 'pluginCreator.packageJson.version',
+  pluginCreator___packageJson___main = 'pluginCreator.packageJson.main',
+  pluginCreator___packageJson___license = 'pluginCreator.packageJson.license',
+  pluginCreator___packageJson___dependencies = 'pluginCreator.packageJson.dependencies',
+  pluginCreator___packageJson___dependencies___name = 'pluginCreator.packageJson.dependencies.name',
+  pluginCreator___packageJson___dependencies___version = 'pluginCreator.packageJson.dependencies.version',
+  pluginCreator___packageJson___devDependencies = 'pluginCreator.packageJson.devDependencies',
+  pluginCreator___packageJson___devDependencies___name = 'pluginCreator.packageJson.devDependencies.name',
+  pluginCreator___packageJson___devDependencies___version = 'pluginCreator.packageJson.devDependencies.version',
+  pluginCreator___packageJson___peerDependencies = 'pluginCreator.packageJson.peerDependencies',
+  pluginCreator___packageJson___peerDependencies___name = 'pluginCreator.packageJson.peerDependencies.name',
+  pluginCreator___packageJson___peerDependencies___version = 'pluginCreator.packageJson.peerDependencies.version',
+  pluginCreator___packageJson___keywords = 'pluginCreator.packageJson.keywords',
+  pluginCreatorId = 'pluginCreatorId',
+  componentPath = 'componentPath',
   id = 'id',
   parent___id = 'parent.id',
   parent___parent___id = 'parent.parent.id',
@@ -5665,143 +5815,7 @@ enum SitePageFieldsEnum {
   internal___ignoreType = 'internal.ignoreType',
   internal___mediaType = 'internal.mediaType',
   internal___owner = 'internal.owner',
-  internal___type = 'internal.type',
-  isCreatedByStatefulCreatePages = 'isCreatedByStatefulCreatePages',
-  context___lastPageNumber = 'context.lastPageNumber',
-  context___pageNumber = 'context.pageNumber',
-  context___humanPageNumber = 'context.humanPageNumber',
-  context___skip = 'context.skip',
-  context___limit = 'context.limit',
-  context___numberOfPages = 'context.numberOfPages',
-  context___previousPagePath = 'context.previousPagePath',
-  context___nextPagePath = 'context.nextPagePath',
-  context___tagName = 'context.tagName',
-  context___tagSlug = 'context.tagSlug',
-  context___id = 'context.id',
-  context___slug = 'context.slug',
-  context____xparams___slug = 'context._xparams.slug',
-  pluginCreator___id = 'pluginCreator.id',
-  pluginCreator___parent___id = 'pluginCreator.parent.id',
-  pluginCreator___parent___parent___id = 'pluginCreator.parent.parent.id',
-  pluginCreator___parent___parent___children = 'pluginCreator.parent.parent.children',
-  pluginCreator___parent___children = 'pluginCreator.parent.children',
-  pluginCreator___parent___children___id = 'pluginCreator.parent.children.id',
-  pluginCreator___parent___children___children = 'pluginCreator.parent.children.children',
-  pluginCreator___parent___internal___content = 'pluginCreator.parent.internal.content',
-  pluginCreator___parent___internal___contentDigest = 'pluginCreator.parent.internal.contentDigest',
-  pluginCreator___parent___internal___description = 'pluginCreator.parent.internal.description',
-  pluginCreator___parent___internal___fieldOwners = 'pluginCreator.parent.internal.fieldOwners',
-  pluginCreator___parent___internal___ignoreType = 'pluginCreator.parent.internal.ignoreType',
-  pluginCreator___parent___internal___mediaType = 'pluginCreator.parent.internal.mediaType',
-  pluginCreator___parent___internal___owner = 'pluginCreator.parent.internal.owner',
-  pluginCreator___parent___internal___type = 'pluginCreator.parent.internal.type',
-  pluginCreator___children = 'pluginCreator.children',
-  pluginCreator___children___id = 'pluginCreator.children.id',
-  pluginCreator___children___parent___id = 'pluginCreator.children.parent.id',
-  pluginCreator___children___parent___children = 'pluginCreator.children.parent.children',
-  pluginCreator___children___children = 'pluginCreator.children.children',
-  pluginCreator___children___children___id = 'pluginCreator.children.children.id',
-  pluginCreator___children___children___children = 'pluginCreator.children.children.children',
-  pluginCreator___children___internal___content = 'pluginCreator.children.internal.content',
-  pluginCreator___children___internal___contentDigest = 'pluginCreator.children.internal.contentDigest',
-  pluginCreator___children___internal___description = 'pluginCreator.children.internal.description',
-  pluginCreator___children___internal___fieldOwners = 'pluginCreator.children.internal.fieldOwners',
-  pluginCreator___children___internal___ignoreType = 'pluginCreator.children.internal.ignoreType',
-  pluginCreator___children___internal___mediaType = 'pluginCreator.children.internal.mediaType',
-  pluginCreator___children___internal___owner = 'pluginCreator.children.internal.owner',
-  pluginCreator___children___internal___type = 'pluginCreator.children.internal.type',
-  pluginCreator___internal___content = 'pluginCreator.internal.content',
-  pluginCreator___internal___contentDigest = 'pluginCreator.internal.contentDigest',
-  pluginCreator___internal___description = 'pluginCreator.internal.description',
-  pluginCreator___internal___fieldOwners = 'pluginCreator.internal.fieldOwners',
-  pluginCreator___internal___ignoreType = 'pluginCreator.internal.ignoreType',
-  pluginCreator___internal___mediaType = 'pluginCreator.internal.mediaType',
-  pluginCreator___internal___owner = 'pluginCreator.internal.owner',
-  pluginCreator___internal___type = 'pluginCreator.internal.type',
-  pluginCreator___resolve = 'pluginCreator.resolve',
-  pluginCreator___name = 'pluginCreator.name',
-  pluginCreator___version = 'pluginCreator.version',
-  pluginCreator___pluginOptions___plugins = 'pluginCreator.pluginOptions.plugins',
-  pluginCreator___pluginOptions___plugins___resolve = 'pluginCreator.pluginOptions.plugins.resolve',
-  pluginCreator___pluginOptions___plugins___id = 'pluginCreator.pluginOptions.plugins.id',
-  pluginCreator___pluginOptions___plugins___name = 'pluginCreator.pluginOptions.plugins.name',
-  pluginCreator___pluginOptions___plugins___version = 'pluginCreator.pluginOptions.plugins.version',
-  pluginCreator___pluginOptions___plugins___nodeAPIs = 'pluginCreator.pluginOptions.plugins.nodeAPIs',
-  pluginCreator___pluginOptions___plugins___browserAPIs = 'pluginCreator.pluginOptions.plugins.browserAPIs',
-  pluginCreator___pluginOptions___plugins___pluginFilepath = 'pluginCreator.pluginOptions.plugins.pluginFilepath',
-  pluginCreator___pluginOptions___spaceId = 'pluginCreator.pluginOptions.spaceId',
-  pluginCreator___pluginOptions___accessToken = 'pluginCreator.pluginOptions.accessToken',
-  pluginCreator___pluginOptions___host = 'pluginCreator.pluginOptions.host',
-  pluginCreator___pluginOptions___environment = 'pluginCreator.pluginOptions.environment',
-  pluginCreator___pluginOptions___downloadLocal = 'pluginCreator.pluginOptions.downloadLocal',
-  pluginCreator___pluginOptions___forceFullSync = 'pluginCreator.pluginOptions.forceFullSync',
-  pluginCreator___pluginOptions___pageLimit = 'pluginCreator.pluginOptions.pageLimit',
-  pluginCreator___pluginOptions___assetDownloadWorkers = 'pluginCreator.pluginOptions.assetDownloadWorkers',
-  pluginCreator___pluginOptions___useNameForId = 'pluginCreator.pluginOptions.useNameForId',
-  pluginCreator___pluginOptions___head = 'pluginCreator.pluginOptions.head',
-  pluginCreator___pluginOptions___anonymize = 'pluginCreator.pluginOptions.anonymize',
-  pluginCreator___pluginOptions___respectDNT = 'pluginCreator.pluginOptions.respectDNT',
-  pluginCreator___pluginOptions___pageTransitionDelay = 'pluginCreator.pluginOptions.pageTransitionDelay',
-  pluginCreator___pluginOptions___outputPath = 'pluginCreator.pluginOptions.outputPath',
-  pluginCreator___pluginOptions___maxWidth = 'pluginCreator.pluginOptions.maxWidth',
-  pluginCreator___pluginOptions___linkImagesToOriginal = 'pluginCreator.pluginOptions.linkImagesToOriginal',
-  pluginCreator___pluginOptions___showCaptions = 'pluginCreator.pluginOptions.showCaptions',
-  pluginCreator___pluginOptions___markdownCaptions = 'pluginCreator.pluginOptions.markdownCaptions',
-  pluginCreator___pluginOptions___sizeByPixelDensity = 'pluginCreator.pluginOptions.sizeByPixelDensity',
-  pluginCreator___pluginOptions___backgroundColor = 'pluginCreator.pluginOptions.backgroundColor',
-  pluginCreator___pluginOptions___quality = 'pluginCreator.pluginOptions.quality',
-  pluginCreator___pluginOptions___withWebp = 'pluginCreator.pluginOptions.withWebp',
-  pluginCreator___pluginOptions___tracedSVG = 'pluginCreator.pluginOptions.tracedSVG',
-  pluginCreator___pluginOptions___loading = 'pluginCreator.pluginOptions.loading',
-  pluginCreator___pluginOptions___disableBgImageOnAlpha = 'pluginCreator.pluginOptions.disableBgImageOnAlpha',
-  pluginCreator___pluginOptions___disableBgImage = 'pluginCreator.pluginOptions.disableBgImage',
-  pluginCreator___pluginOptions___target = 'pluginCreator.pluginOptions.target',
-  pluginCreator___pluginOptions___rel = 'pluginCreator.pluginOptions.rel',
-  pluginCreator___pluginOptions___output = 'pluginCreator.pluginOptions.output',
-  pluginCreator___pluginOptions___createLinkInHead = 'pluginCreator.pluginOptions.createLinkInHead',
-  pluginCreator___pluginOptions___name = 'pluginCreator.pluginOptions.name',
-  pluginCreator___pluginOptions___short_name = 'pluginCreator.pluginOptions.short_name',
-  pluginCreator___pluginOptions___start_url = 'pluginCreator.pluginOptions.start_url',
-  pluginCreator___pluginOptions___background_color = 'pluginCreator.pluginOptions.background_color',
-  pluginCreator___pluginOptions___theme_color = 'pluginCreator.pluginOptions.theme_color',
-  pluginCreator___pluginOptions___display = 'pluginCreator.pluginOptions.display',
-  pluginCreator___pluginOptions___icon = 'pluginCreator.pluginOptions.icon',
-  pluginCreator___pluginOptions___legacy = 'pluginCreator.pluginOptions.legacy',
-  pluginCreator___pluginOptions___theme_color_in_head = 'pluginCreator.pluginOptions.theme_color_in_head',
-  pluginCreator___pluginOptions___cache_busting_mode = 'pluginCreator.pluginOptions.cache_busting_mode',
-  pluginCreator___pluginOptions___crossOrigin = 'pluginCreator.pluginOptions.crossOrigin',
-  pluginCreator___pluginOptions___include_favicon = 'pluginCreator.pluginOptions.include_favicon',
-  pluginCreator___pluginOptions___cacheDigest = 'pluginCreator.pluginOptions.cacheDigest',
-  pluginCreator___pluginOptions___base64Width = 'pluginCreator.pluginOptions.base64Width',
-  pluginCreator___pluginOptions___stripMetadata = 'pluginCreator.pluginOptions.stripMetadata',
-  pluginCreator___pluginOptions___defaultQuality = 'pluginCreator.pluginOptions.defaultQuality',
-  pluginCreator___pluginOptions___failOnError = 'pluginCreator.pluginOptions.failOnError',
-  pluginCreator___pluginOptions___path = 'pluginCreator.pluginOptions.path',
-  pluginCreator___pluginOptions___pathCheck = 'pluginCreator.pluginOptions.pathCheck',
-  pluginCreator___pluginOptions___allExtensions = 'pluginCreator.pluginOptions.allExtensions',
-  pluginCreator___pluginOptions___isTSX = 'pluginCreator.pluginOptions.isTSX',
-  pluginCreator___pluginOptions___jsxPragma = 'pluginCreator.pluginOptions.jsxPragma',
-  pluginCreator___nodeAPIs = 'pluginCreator.nodeAPIs',
-  pluginCreator___browserAPIs = 'pluginCreator.browserAPIs',
-  pluginCreator___ssrAPIs = 'pluginCreator.ssrAPIs',
-  pluginCreator___pluginFilepath = 'pluginCreator.pluginFilepath',
-  pluginCreator___packageJson___name = 'pluginCreator.packageJson.name',
-  pluginCreator___packageJson___description = 'pluginCreator.packageJson.description',
-  pluginCreator___packageJson___version = 'pluginCreator.packageJson.version',
-  pluginCreator___packageJson___main = 'pluginCreator.packageJson.main',
-  pluginCreator___packageJson___license = 'pluginCreator.packageJson.license',
-  pluginCreator___packageJson___dependencies = 'pluginCreator.packageJson.dependencies',
-  pluginCreator___packageJson___dependencies___name = 'pluginCreator.packageJson.dependencies.name',
-  pluginCreator___packageJson___dependencies___version = 'pluginCreator.packageJson.dependencies.version',
-  pluginCreator___packageJson___devDependencies = 'pluginCreator.packageJson.devDependencies',
-  pluginCreator___packageJson___devDependencies___name = 'pluginCreator.packageJson.devDependencies.name',
-  pluginCreator___packageJson___devDependencies___version = 'pluginCreator.packageJson.devDependencies.version',
-  pluginCreator___packageJson___peerDependencies = 'pluginCreator.packageJson.peerDependencies',
-  pluginCreator___packageJson___peerDependencies___name = 'pluginCreator.packageJson.peerDependencies.name',
-  pluginCreator___packageJson___peerDependencies___version = 'pluginCreator.packageJson.peerDependencies.version',
-  pluginCreator___packageJson___keywords = 'pluginCreator.packageJson.keywords',
-  pluginCreatorId = 'pluginCreatorId',
-  componentPath = 'componentPath'
+  internal___type = 'internal.type'
 }
 
 type SitePageFilterInput = {
@@ -5810,15 +5824,15 @@ type SitePageFilterInput = {
   readonly internalComponentName: Maybe<StringQueryOperatorInput>;
   readonly componentChunkName: Maybe<StringQueryOperatorInput>;
   readonly matchPath: Maybe<StringQueryOperatorInput>;
-  readonly id: Maybe<StringQueryOperatorInput>;
-  readonly parent: Maybe<NodeFilterInput>;
-  readonly children: Maybe<NodeFilterListInput>;
-  readonly internal: Maybe<InternalFilterInput>;
   readonly isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>;
   readonly context: Maybe<SitePageContextFilterInput>;
   readonly pluginCreator: Maybe<SitePluginFilterInput>;
   readonly pluginCreatorId: Maybe<StringQueryOperatorInput>;
   readonly componentPath: Maybe<StringQueryOperatorInput>;
+  readonly id: Maybe<StringQueryOperatorInput>;
+  readonly parent: Maybe<NodeFilterInput>;
+  readonly children: Maybe<NodeFilterListInput>;
+  readonly internal: Maybe<InternalFilterInput>;
 };
 
 type SitePageGroupConnection = {
@@ -5987,8 +6001,16 @@ enum SitePluginFieldsEnum {
   pluginOptions___plugins___pluginOptions___disableBgImage = 'pluginOptions.plugins.pluginOptions.disableBgImage',
   pluginOptions___plugins___pluginOptions___target = 'pluginOptions.plugins.pluginOptions.target',
   pluginOptions___plugins___pluginOptions___rel = 'pluginOptions.plugins.pluginOptions.rel',
+  pluginOptions___plugins___pluginOptions___exclude = 'pluginOptions.plugins.pluginOptions.exclude',
+  pluginOptions___plugins___pluginOptions___tight = 'pluginOptions.plugins.pluginOptions.tight',
+  pluginOptions___plugins___pluginOptions___ordered = 'pluginOptions.plugins.pluginOptions.ordered',
+  pluginOptions___plugins___pluginOptions___fromHeading = 'pluginOptions.plugins.pluginOptions.fromHeading',
+  pluginOptions___plugins___pluginOptions___toHeading = 'pluginOptions.plugins.pluginOptions.toHeading',
+  pluginOptions___plugins___pluginOptions___className = 'pluginOptions.plugins.pluginOptions.className',
+  pluginOptions___plugins___pluginOptions___offsetY = 'pluginOptions.plugins.pluginOptions.offsetY',
   pluginOptions___plugins___nodeAPIs = 'pluginOptions.plugins.nodeAPIs',
   pluginOptions___plugins___browserAPIs = 'pluginOptions.plugins.browserAPIs',
+  pluginOptions___plugins___ssrAPIs = 'pluginOptions.plugins.ssrAPIs',
   pluginOptions___plugins___pluginFilepath = 'pluginOptions.plugins.pluginFilepath',
   pluginOptions___spaceId = 'pluginOptions.spaceId',
   pluginOptions___accessToken = 'pluginOptions.accessToken',
@@ -6002,6 +6024,7 @@ enum SitePluginFieldsEnum {
   pluginOptions___head = 'pluginOptions.head',
   pluginOptions___anonymize = 'pluginOptions.anonymize',
   pluginOptions___respectDNT = 'pluginOptions.respectDNT',
+  pluginOptions___exclude = 'pluginOptions.exclude',
   pluginOptions___pageTransitionDelay = 'pluginOptions.pageTransitionDelay',
   pluginOptions___outputPath = 'pluginOptions.outputPath',
   pluginOptions___maxWidth = 'pluginOptions.maxWidth',
@@ -6018,6 +6041,12 @@ enum SitePluginFieldsEnum {
   pluginOptions___disableBgImage = 'pluginOptions.disableBgImage',
   pluginOptions___target = 'pluginOptions.target',
   pluginOptions___rel = 'pluginOptions.rel',
+  pluginOptions___tight = 'pluginOptions.tight',
+  pluginOptions___ordered = 'pluginOptions.ordered',
+  pluginOptions___fromHeading = 'pluginOptions.fromHeading',
+  pluginOptions___toHeading = 'pluginOptions.toHeading',
+  pluginOptions___className = 'pluginOptions.className',
+  pluginOptions___offsetY = 'pluginOptions.offsetY',
   pluginOptions___output = 'pluginOptions.output',
   pluginOptions___createLinkInHead = 'pluginOptions.createLinkInHead',
   pluginOptions___name = 'pluginOptions.name',
@@ -6168,6 +6197,7 @@ type SitePluginPluginOptions = {
   readonly head: Maybe<Scalars['Boolean']>;
   readonly anonymize: Maybe<Scalars['Boolean']>;
   readonly respectDNT: Maybe<Scalars['Boolean']>;
+  readonly exclude: Maybe<Scalars['String']>;
   readonly pageTransitionDelay: Maybe<Scalars['Int']>;
   readonly outputPath: Maybe<Scalars['String']>;
   readonly maxWidth: Maybe<Scalars['Int']>;
@@ -6184,6 +6214,12 @@ type SitePluginPluginOptions = {
   readonly disableBgImage: Maybe<Scalars['Boolean']>;
   readonly target: Maybe<Scalars['String']>;
   readonly rel: Maybe<Scalars['String']>;
+  readonly tight: Maybe<Scalars['Boolean']>;
+  readonly ordered: Maybe<Scalars['Boolean']>;
+  readonly fromHeading: Maybe<Scalars['Int']>;
+  readonly toHeading: Maybe<Scalars['Int']>;
+  readonly className: Maybe<Scalars['String']>;
+  readonly offsetY: Maybe<Scalars['Int']>;
   readonly output: Maybe<Scalars['String']>;
   readonly createLinkInHead: Maybe<Scalars['Boolean']>;
   readonly name: Maybe<Scalars['String']>;
@@ -6224,6 +6260,7 @@ type SitePluginPluginOptionsFilterInput = {
   readonly head: Maybe<BooleanQueryOperatorInput>;
   readonly anonymize: Maybe<BooleanQueryOperatorInput>;
   readonly respectDNT: Maybe<BooleanQueryOperatorInput>;
+  readonly exclude: Maybe<StringQueryOperatorInput>;
   readonly pageTransitionDelay: Maybe<IntQueryOperatorInput>;
   readonly outputPath: Maybe<StringQueryOperatorInput>;
   readonly maxWidth: Maybe<IntQueryOperatorInput>;
@@ -6240,6 +6277,12 @@ type SitePluginPluginOptionsFilterInput = {
   readonly disableBgImage: Maybe<BooleanQueryOperatorInput>;
   readonly target: Maybe<StringQueryOperatorInput>;
   readonly rel: Maybe<StringQueryOperatorInput>;
+  readonly tight: Maybe<BooleanQueryOperatorInput>;
+  readonly ordered: Maybe<BooleanQueryOperatorInput>;
+  readonly fromHeading: Maybe<IntQueryOperatorInput>;
+  readonly toHeading: Maybe<IntQueryOperatorInput>;
+  readonly className: Maybe<StringQueryOperatorInput>;
+  readonly offsetY: Maybe<IntQueryOperatorInput>;
   readonly output: Maybe<StringQueryOperatorInput>;
   readonly createLinkInHead: Maybe<BooleanQueryOperatorInput>;
   readonly name: Maybe<StringQueryOperatorInput>;
@@ -6274,6 +6317,7 @@ type SitePluginPluginOptionsPlugins = {
   readonly pluginOptions: Maybe<SitePluginPluginOptionsPluginsPluginOptions>;
   readonly nodeAPIs: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
   readonly browserAPIs: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
+  readonly ssrAPIs: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
   readonly pluginFilepath: Maybe<Scalars['String']>;
 };
 
@@ -6285,6 +6329,7 @@ type SitePluginPluginOptionsPluginsFilterInput = {
   readonly pluginOptions: Maybe<SitePluginPluginOptionsPluginsPluginOptionsFilterInput>;
   readonly nodeAPIs: Maybe<StringQueryOperatorInput>;
   readonly browserAPIs: Maybe<StringQueryOperatorInput>;
+  readonly ssrAPIs: Maybe<StringQueryOperatorInput>;
   readonly pluginFilepath: Maybe<StringQueryOperatorInput>;
 };
 
@@ -6307,6 +6352,13 @@ type SitePluginPluginOptionsPluginsPluginOptions = {
   readonly disableBgImage: Maybe<Scalars['Boolean']>;
   readonly target: Maybe<Scalars['String']>;
   readonly rel: Maybe<Scalars['String']>;
+  readonly exclude: Maybe<Scalars['String']>;
+  readonly tight: Maybe<Scalars['Boolean']>;
+  readonly ordered: Maybe<Scalars['Boolean']>;
+  readonly fromHeading: Maybe<Scalars['Int']>;
+  readonly toHeading: Maybe<Scalars['Int']>;
+  readonly className: Maybe<Scalars['String']>;
+  readonly offsetY: Maybe<Scalars['Int']>;
 };
 
 type SitePluginPluginOptionsPluginsPluginOptionsFilterInput = {
@@ -6324,6 +6376,13 @@ type SitePluginPluginOptionsPluginsPluginOptionsFilterInput = {
   readonly disableBgImage: Maybe<BooleanQueryOperatorInput>;
   readonly target: Maybe<StringQueryOperatorInput>;
   readonly rel: Maybe<StringQueryOperatorInput>;
+  readonly exclude: Maybe<StringQueryOperatorInput>;
+  readonly tight: Maybe<BooleanQueryOperatorInput>;
+  readonly ordered: Maybe<BooleanQueryOperatorInput>;
+  readonly fromHeading: Maybe<IntQueryOperatorInput>;
+  readonly toHeading: Maybe<IntQueryOperatorInput>;
+  readonly className: Maybe<StringQueryOperatorInput>;
+  readonly offsetY: Maybe<IntQueryOperatorInput>;
 };
 
 type SitePluginSortInput = {
@@ -6426,7 +6485,7 @@ type PostBySlugQuery = { readonly contentfulBlogPost: Maybe<(
     & { readonly tags: Maybe<ReadonlyArray<Maybe<Pick<ContentfulTag, 'slug' | 'name'>>>>, readonly heroImage: Maybe<(
       Pick<ContentfulAsset, 'description'>
       & { readonly file: Maybe<Pick<ContentfulAssetFile, 'url'>> }
-    )>, readonly description: Maybe<Pick<contentfulBlogPostDescriptionTextNode, 'description'>>, readonly body: Maybe<{ readonly childMarkdownRemark: Maybe<Pick<MarkdownRemark, 'timeToRead' | 'html'>> }> }
+    )>, readonly description: Maybe<Pick<contentfulBlogPostDescriptionTextNode, 'description'>>, readonly body: Maybe<{ readonly childMarkdownRemark: Maybe<Pick<MarkdownRemark, 'timeToRead' | 'tableOfContents' | 'html'>> }> }
   )> };
 
 type BioQueryVariables = Exact<{ [key: string]: never; }>;
