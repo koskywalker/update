@@ -52,7 +52,7 @@ const BlogPost: React.FC<IProps> = ({ data }) => {
     <Layout>
       <Seo pageTitle={title} pageDescription={description} />
       <nav className="flex" aria-label="Breadcrumb">
-        <ol className="flex w-full px-6 bg-white shadow-lg space-x-4">
+        <ol className="flex w-full px-6 bg-white shadow-xl space-x-4">
           <li className="flex">
             <div className="flex items-center">
               <Link to="/">
@@ -83,7 +83,7 @@ const BlogPost: React.FC<IProps> = ({ data }) => {
         itemScope
         itemType="http://schema.org/Article"
       >
-        <div className="overflow-hidden bg-white shadow-lg">
+        <div className="overflow-hidden bg-white shadow-xl">
           <div className="px-4 pt-8 sm:px-6">
             <h1
               className="text-2xl font-bold leading-7 sm:text-3xl"
@@ -134,7 +134,7 @@ const BlogPost: React.FC<IProps> = ({ data }) => {
         <aside className="relative flex-shrink-0 hidden xl:flex xl:flex-col w-96">
           <div className="absolute inset-0 ml-8">
             <div className="h-full">
-              <div className="sticky max-w-full px-6 py-8 bg-white shadow-lg top-8 prose">
+              <div className="sticky max-w-full px-6 py-8 bg-white shadow-xl top-8 prose">
                 <div
                   className="toc toc-side"
                   dangerouslySetInnerHTML={{
