@@ -25,6 +25,11 @@ text-gray-300
 text-gray-500
 border-gray-300
 
+■ Link Color
+※ Link Color は tailwind.config.js に指定している.
+
+text-cyan-600
+
 ■ Main Color
 
 ○ 黒背景の場合
