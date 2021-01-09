@@ -25,7 +25,18 @@ export const SidebarMenu: React.FC<IProps> = ({ location }) => {
       path: pathObject.home.path,
       icon: (
         <IconHome
-          className={`${iconClassName} text-yellow-400`}
+          className={`${iconClassName} text-amber-400`}
+          ariaHidden={true}
+        />
+      ),
+    },
+    {
+      id: "blog",
+      name: "ブログ",
+      path: "/tags/blog/",
+      icon: (
+        <IconBookOpen
+          className={`${iconClassName} text-emerald-400`}
           ariaHidden={true}
         />
       ),
@@ -42,23 +53,23 @@ export const SidebarMenu: React.FC<IProps> = ({ location }) => {
       ),
     },
     {
-      id: "blog",
-      name: "ブログ",
-      path: "/tags/blog/",
-      icon: (
-        <IconBookOpen
-          className={`${iconClassName} text-rose-400`}
-          ariaHidden={true}
-        />
-      ),
-    },
-    {
       id: pathObject.portfolio.id,
       name: pathObject.portfolio.name,
       path: pathObject.portfolio.path,
       icon: (
         <IconFilm
-          className={`${iconClassName} text-emerald-400`}
+          className={`${iconClassName} text-violet-400`}
+          ariaHidden={true}
+        />
+      ),
+    },
+    {
+      id: pathObject.contact.id,
+      name: pathObject.contact.name,
+      path: pathObject.contact.path,
+      icon: (
+        <IconMail
+          className={`${iconClassName} text-rose-400`}
           ariaHidden={true}
         />
       ),
@@ -84,13 +95,6 @@ export const SidebarMenu: React.FC<IProps> = ({ location }) => {
             </Link>
           )
         })}
-        <Link
-          to={pathObject.contact.path}
-          className="flex items-center px-4 py-2 text-base font-medium text-white bg-cyan-600 group hover:bg-cyan-700"
-        >
-          <IconMail className="w-6 h-6 mr-4 text-white" ariaHidden={true} />
-          {pathObject.contact.name}
-        </Link>
       </div>
     </nav>
   )
