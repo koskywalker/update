@@ -1,6 +1,7 @@
 import { graphql, Link } from "gatsby"
 import React from "react"
 
+import { Badge } from "../components/badge"
 import { Bio } from "../components/bio"
 import { IconHome } from "../components/icons/icon-home"
 import { Layout } from "../components/layout"
@@ -105,15 +106,12 @@ const BlogPost: React.FC<IProps> = ({ data }) => {
               <div className="pt-4 -m-1">
                 {tags.map((tag, index) => {
                   return (
-                    <Link
+                    <Badge
                       key={index}
-                      to={`/tags/${tag?.slug}/` || ""}
-                      className="inline-block p-1"
-                    >
-                      <span className="inline-flex items-center px-3 text-sm font-medium text-white bg-cyan-500 py-0.5">
-                        {tag?.name}
-                      </span>
-                    </Link>
+                      bgColor="bg-cyan-500"
+                      path={`/tags/${tag?.slug}/`}
+                      text={tag?.name || ""}
+                    />
                   )
                 })}
               </div>
@@ -123,7 +121,7 @@ const BlogPost: React.FC<IProps> = ({ data }) => {
             </div>
           </div>
           <div
-            className="max-w-full px-4 pt-8 sm:px-6 prose prose-blue"
+            className="max-w-full px-4 pt-8 sm:px-6 prose"
             dangerouslySetInnerHTML={{
               __html: bodyHtml,
             }}
@@ -136,7 +134,7 @@ const BlogPost: React.FC<IProps> = ({ data }) => {
         <aside className="relative flex-shrink-0 hidden xl:flex xl:flex-col w-96">
           <div className="absolute inset-0 ml-8">
             <div className="h-full">
-              <div className="sticky max-w-full px-6 py-8 bg-white shadow-lg top-8 prose prose-blue">
+              <div className="sticky max-w-full px-6 py-8 bg-white shadow-lg top-8 prose">
                 <div
                   className="toc toc-side"
                   dangerouslySetInnerHTML={{

@@ -13,7 +13,40 @@
   }
 }
 
+/* color メモ
+
+■ Gray
+
+○ 黒背景の場合
+bg-gray-500
+text-gray-300
+
+○ 白背景の場合
+text-gray-500
+border-gray-300
+
+■ Main Color
+
+○ 黒背景の場合
+bg-cyan-600
+hover:bg-cyan-700
+text-cyan-300
+
+○ 白背景の場合
+bg-cyan-500
+text-cyan-500
+
+*/
+
 /* 記事本文のスタイル */
+
+.prose a {
+  @apply no-underline;
+}
+
+.prose a:hover {
+  @apply underline;
+}
 
 .prose h2 {
   @apply py-4 border-b-4 border-cyan-500;
@@ -39,7 +72,7 @@
 /* 目次のスタイル */
 
 .toc {
-  @apply p-4 border border-gray-200 shadow-sm;
+  @apply p-4 border border-gray-300;
 }
 
 .toc-side {

@@ -70,7 +70,7 @@ module.exports = {
         short_name: "UPDATE",
         start_url: "/",
         background_color: "#ffffff",
-        theme_color: "#663399",
+        theme_color: "#06b6d4",
         display: "minimal-ui",
         icon: "./src/images/icon-update.png",
       },

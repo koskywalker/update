@@ -65,12 +65,12 @@ export const Layout: React.FC = ({ children }) => {
               <div className="flex flex-col flex-1 order-2 min-w-0 overflow-hidden">
                 {/* header */}
                 <header className="lg:hidden">
-                  <div className="flex items-center justify-between mx-4 border-b border-gray-200 py-1.5">
+                  <div className="flex items-center justify-between mx-4 border-b border-gray-300 py-1.5">
                     {logo}
                     <div>
                       <button
                         type="button"
-                        className="inline-flex items-center justify-center w-12 h-12 -mr-3 text-black rounded-md"
+                        className="inline-flex items-center justify-center w-12 h-12 -mr-3 text-black"
                         onClick={openSidebar}
                       >
                         <span className="sr-only">Open sidebar</span>

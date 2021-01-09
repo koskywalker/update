@@ -46,6 +46,17 @@ module.exports = {
         ],
         accent: ["Adumu"],
       },
+      typography: (theme) => {
+        return {
+          DEFAULT: {
+            css: {
+              a: {
+                color: theme("colors.cyan.600"),
+              },
+            },
+          },
+        }
+      },
     },
     screens: {
       xs: "375px",

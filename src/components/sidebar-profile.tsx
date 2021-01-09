@@ -50,7 +50,7 @@ export const SidebarProfile: React.FC = () => {
   ]
 
   return (
-    <div className="py-4 mx-4 text-white border-t border-gray-500 xs:py-6 sm:py-8">
+    <div className="py-4 mx-4 text-white border-t border-gray-300 xs:py-6 sm:py-8">
       <div>
         {image && (
           <div className="justify-center hidden xs:flex">
@@ -64,7 +64,7 @@ export const SidebarProfile: React.FC = () => {
         <div className="xs:mt-2 sm:mt-6 space-y-4">
           <div className="font-medium text-center sm:text-lg leading-6 space-y-1">
             <h3>{authorData.name}</h3>
-            <p className="text-gray-400">{authorData.label}</p>
+            <p className="text-cyan-300">{authorData.label}</p>
           </div>
           <div className="hidden md:block space-y-2">
             {authorData.description.map((sentence, index) => {

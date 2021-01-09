@@ -2,6 +2,7 @@ import dayjs from "dayjs"
 import { Link } from "gatsby"
 import React from "react"
 
+import { Badge } from "./badge"
 import { IconCalendar } from "./icons/icon-calendar"
 import { IconRefresh } from "./icons/icon-refresh"
 
@@ -26,7 +27,7 @@ type IProps = {
 
 export const ArticleCard: React.FC<IProps> = ({ article }) => {
   return (
-    <div className="flex flex-col overflow-hidden bg-white rounded-lg shadow-lg">
+    <div className="flex flex-col overflow-hidden bg-white shadow-lg">
       <div>
         <Link to={`/${article.slug}/`} className="block">
           <div className="flex-shrink-0">
@@ -51,16 +52,12 @@ export const ArticleCard: React.FC<IProps> = ({ article }) => {
         <div className="flex flex-wrap flex-1 px-6 pt-4 pb-6 -m-1">
           {article.tags.map((tag: any) => {
             return (
-              <p
+              <Badge
                 key={`${article.slug}--${tag.slug}`}
-                className="p-1 text-sm font-medium text-indigo-600"
-              >
-                <Link to={`/tags/${tag.slug}/`} className="inline-block">
-                  <span className="inline-flex items-center px-3 text-sm font-medium text-indigo-800 bg-indigo-100 rounded-full py-0.5">
-                    {tag.name}
-                  </span>
-                </Link>
-              </p>
+                bgColor="bg-cyan-500"
+                path={`/tags/${tag.slug}/`}
+                text={tag.name}
+              />
             )
           })}
         </div>
