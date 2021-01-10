@@ -1,10 +1,9 @@
-import { graphql, Link } from "gatsby"
+import { graphql } from "gatsby"
 import React from "react"
 
 import { Badge } from "../components/badge"
 import { Bio } from "../components/bio"
-import { IconChevronRight } from "../components/icons/icon-chevron-right"
-import { IconHome } from "../components/icons/icon-home"
+import { Breadcrumb } from "../components/breadcrumb"
 import { Layout } from "../components/layout"
 import { PublishDate } from "../components/publish-date"
 import { Seo } from "../components/seo"
@@ -52,24 +51,7 @@ const BlogPost: React.FC<IProps> = ({ data }) => {
   return (
     <Layout>
       <Seo pageTitle={title} pageDescription={description} />
-      <nav className="flex" aria-label="Breadcrumb">
-        <ol className="flex w-full p-4 bg-white shadow-custom space-x-2 md:space-x-4">
-          <li className="flex">
-            <div className="flex items-center">
-              <Link to="/">
-                <IconHome className="w-5 h-5" ariaHidden={true} />
-                <span className="sr-only">Home</span>
-              </Link>
-            </div>
-          </li>
-          <li className="flex">
-            <div className="flex items-center">
-              <IconChevronRight className="w-4 h-4" ariaHidden={true} />
-              <p className="flex-1 ml-2 text-sm font-medium md:ml-4">{title}</p>
-            </div>
-          </li>
-        </ol>
-      </nav>
+      <Breadcrumb currentPageTitle={title} />
       <article
         className="flex pb-8 my-8"
         itemScope
