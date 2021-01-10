@@ -168,7 +168,7 @@ export const pageQuery = graphql`
       body {
         childMarkdownRemark {
           timeToRead
-          tableOfContents(pathToSlugField: "frontmatter.title")
+          tableOfContents(absolute: false, pathToSlugField: "frontmatter.title")
           html
         }
       }
