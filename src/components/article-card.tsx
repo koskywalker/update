@@ -27,7 +27,7 @@ type IProps = {
 
 export const ArticleCard: React.FC<IProps> = ({ article }) => {
   return (
-    <div className="flex flex-col overflow-hidden bg-white shadow-xl">
+    <div className="flex flex-col overflow-hidden bg-white shadow-custom">
       <div>
         <Link to={`/${article.slug}/`} className="block">
           <div className="flex-shrink-0">

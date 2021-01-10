@@ -3,6 +3,7 @@ import React from "react"
 
 import { Badge } from "../components/badge"
 import { Bio } from "../components/bio"
+import { IconChevronRight } from "../components/icons/icon-chevron-right"
 import { IconHome } from "../components/icons/icon-home"
 import { Layout } from "../components/layout"
 import { PublishDate } from "../components/publish-date"
@@ -52,7 +53,7 @@ const BlogPost: React.FC<IProps> = ({ data }) => {
     <Layout>
       <Seo pageTitle={title} pageDescription={description} />
       <nav className="flex" aria-label="Breadcrumb">
-        <ol className="flex w-full px-6 bg-white shadow-xl space-x-4">
+        <ol className="flex w-full p-4 bg-white shadow-custom space-x-2 md:space-x-4">
           <li className="flex">
             <div className="flex items-center">
               <Link to="/">
@@ -63,17 +64,8 @@ const BlogPost: React.FC<IProps> = ({ data }) => {
           </li>
           <li className="flex">
             <div className="flex items-center">
-              <svg
-                className="flex-shrink-0 w-6 h-full text-gray-300"
-                viewBox="0 0 24 44"
-                preserveAspectRatio="none"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-              >
-                <path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z" />
-              </svg>
-              <p className="ml-4 text-sm font-medium">{title}</p>
+              <IconChevronRight className="w-4 h-4" ariaHidden={true} />
+              <p className="flex-1 ml-2 text-sm font-medium md:ml-4">{title}</p>
             </div>
           </li>
         </ol>
@@ -83,7 +75,7 @@ const BlogPost: React.FC<IProps> = ({ data }) => {
         itemScope
         itemType="http://schema.org/Article"
       >
-        <div className="overflow-hidden bg-white shadow-xl">
+        <div className="overflow-hidden bg-white shadow-custom">
           <div className="px-4 pt-8 sm:px-6">
             <h1
               className="text-2xl font-bold leading-7 sm:text-3xl"
@@ -134,7 +126,7 @@ const BlogPost: React.FC<IProps> = ({ data }) => {
         <aside className="relative flex-shrink-0 hidden xl:flex xl:flex-col w-96">
           <div className="absolute inset-0 ml-8">
             <div className="h-full">
-              <div className="sticky max-w-full px-6 py-8 bg-white shadow-xl top-8 prose">
+              <div className="sticky max-w-full px-6 py-8 bg-white shadow-custom top-8 prose">
                 <div
                   className="toc toc-side"
                   dangerouslySetInnerHTML={{
