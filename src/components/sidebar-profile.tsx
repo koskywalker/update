@@ -23,29 +23,17 @@ export const SidebarProfile: React.FC = () => {
 
   const image = data?.avatar?.childImageSharp?.fixed
 
-  const socialIconClassName = "w-6 h-6 sm:w-8 sm:h-8"
+  const socialIconClassName = "w-6 h-6 sm:w-8 sm:h-8 text-white"
   const socialList = [
     {
       name: authorData.social.github.name,
       url: authorData.social.github.url,
-      icon: (
-        <IconGithub
-          className={socialIconClassName}
-          ariaHidden={true}
-          color="white"
-        />
-      ),
+      icon: <IconGithub className={socialIconClassName} ariaHidden={true} />,
     },
     {
       name: authorData.social.twitter.name,
       url: authorData.social.twitter.url,
-      icon: (
-        <IconTwitter
-          className={socialIconClassName}
-          ariaHidden={true}
-          color="white"
-        />
-      ),
+      icon: <IconTwitter className={socialIconClassName} ariaHidden={true} />,
     },
   ]
 

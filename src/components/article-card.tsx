@@ -37,7 +37,7 @@ export const ArticleCard: React.FC<IProps> = ({ article }) => {
               alt={article.heroImage?.description}
             />
           </div>
-          <div className="flex items-center px-6 pt-6 text-sm text-gray-500 space-x-1">
+          <div className="flex items-center px-6 pt-6 text-sm text-gray-400 space-x-1">
             <IconCalendar className="flex-shrink-0 w-4 h-4" ariaHidden={true} />
             <time dateTime={article.publishDate}>
               {dayjs(article.publishDate).format("YYYY年MM月DD日")}
