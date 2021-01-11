@@ -88,6 +88,7 @@ const Contact: React.FC = () => {
                     autoComplete="name"
                     placeholder="山田太郎"
                     maxlength={512}
+                    required={true}
                     register={register({
                       required: "名前を入力してください.",
                       maxLength: {
@@ -125,6 +126,7 @@ const Contact: React.FC = () => {
                     autoComplete="email"
                     placeholder="you@example.com"
                     maxlength={512}
+                    required={true}
                     register={register({
                       required: "メールアドレスを入力してください.",
                       pattern: {
@@ -145,6 +147,7 @@ const Contact: React.FC = () => {
                     label="メッセージ"
                     name="message"
                     maxlength={10000}
+                    required={true}
                     register={register({
                       required: "メッセージを入力してください",
                       maxLength: {

@@ -8,6 +8,7 @@ type IProps = {
   name?: string
   rows?: number
   maxlength: number
+  required?: boolean
   register?: any
   error?: any
 }
@@ -17,13 +18,14 @@ export const TextareaWithLabel: React.FC<IProps> = ({
   name,
   rows = 8,
   maxlength,
+  required = false,
   register,
   error = null,
 }) => {
   return (
     <div>
       <label htmlFor={name} className="block text-sm font-medium">
-        {label}
+        {label} {required && <span className="text-red-600">※</span>}
       </label>
       <div className="relative">
         <Textarea

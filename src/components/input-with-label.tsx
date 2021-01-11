@@ -10,6 +10,7 @@ type IProps = {
   autoComplete?: string
   placeholder?: string
   maxlength: number
+  required?: boolean
   error: any
   register?: any
 }
@@ -21,13 +22,14 @@ export const InputWithLabel: React.FC<IProps> = ({
   autoComplete,
   placeholder,
   maxlength,
+  required = false,
   register,
   error = null,
 }) => {
   return (
     <div>
       <label htmlFor={name} className="block text-sm font-medium">
-        {label}
+        {label} {required && <span className="text-red-600">※</span>}
       </label>
       <div className="relative mt-1">
         <Input
