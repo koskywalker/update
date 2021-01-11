@@ -1,25 +1,21 @@
 import React from "react"
 
 import { IconExclamationCircle } from "./icons/icon-exclamation-circle"
-import { Input } from "./input"
+import { Textarea } from "./textarea"
 
 type IProps = {
   label: string
-  type: string
   name?: string
-  autoComplete?: string
-  placeholder?: string
+  rows?: number
   maxlength: number
-  error: any
   register?: any
+  error?: any
 }
 
-export const InputWithLabel: React.FC<IProps> = ({
+export const TextareaWithLabel: React.FC<IProps> = ({
   label,
-  type,
   name,
-  autoComplete,
-  placeholder,
+  rows = 8,
   maxlength,
   register,
   error = null,
@@ -29,16 +25,14 @@ export const InputWithLabel: React.FC<IProps> = ({
       <label htmlFor={name} className="block text-sm font-medium">
         {label}
       </label>
-      <div className="relative mt-1">
-        <Input
-          type={type}
+      <div className="relative">
+        <Textarea
           name={name}
-          autoComplete={autoComplete}
-          placeholder={placeholder}
+          rows={rows}
           maxlength={maxlength}
           register={register}
           error={error}
-        />
+        ></Textarea>
         <div
           className={`absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none ${
             error ? "" : "hidden"
