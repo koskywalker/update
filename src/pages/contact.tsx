@@ -23,20 +23,10 @@ const Contact: React.FC = () => {
     criteriaMode: "all",
   })
 
-  const onSubmit = (data: any) => {
-    fetch("/", {
-      method: "POST",
-      body: data,
-    })
-      .then((data) => {
-        // eslint-disable-next-line no-console
-        console.log(data)
-      })
-      .catch((error) => {
-        return console.error(error)
-      })
+  const onSubmit = (data: any, e: any) => {
     // eslint-disable-next-line no-console
     console.log(data)
+    e.target.submit()
   }
 
   return (
@@ -91,9 +81,7 @@ const Contact: React.FC = () => {
                   autoComplete="organization"
                   placeholder="株式会社XXXX"
                   maxlength={512}
-                  register={register({
-                    required: "会社名を入力してください.",
-                  })}
+                  register={register()}
                   error={errors.company}
                 />
                 <ErrorMessageList name="company" errors={errors} />
