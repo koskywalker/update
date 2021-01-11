@@ -59,115 +59,117 @@ const Contact: React.FC = () => {
     <Layout>
       <Seo pageTitle={pageTitle} />
       <Breadcrumb currentPageTitle={pageTitle} />
-      <div className="px-4 py-16 my-8 overflow-hidden bg-white shadow-custom sm:px-6 lg:px-8 lg:py-24">
-        <div className="relative max-w-xl mx-auto">
-          <div className="text-center">
-            <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-              {pageTitle}
-            </h2>
-          </div>
-          <div className="mt-12">
-            <form
-              name="contact"
-              method="POST"
-              action="/portfolio"
-              netlify-honeypot="bot-field"
-              data-netlify="true"
-              className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8"
-              onSubmit={() => {
-                return handleSubmit(onSubmit)()
-              }}
-            >
-              <input type="hidden" name="bot-field" />
-              <input type="hidden" name="form-name" value="contact" />
-              <div className="sm:col-span-2">
-                <InputWithLabel
-                  label="名前"
-                  type="text"
-                  name="name"
-                  autoComplete="name"
-                  placeholder="山田太郎"
-                  maxlength={512}
-                  register={register({
-                    required: "名前を入力してください.",
-                    maxLength: {
-                      value: 512,
-                      message: "512文字以内で入力してださい.",
-                    },
-                  })}
-                  error={errors.name}
-                />
-                <ErrorMessageList name="name" errors={errors} />
-              </div>
-              <div className="sm:col-span-2">
-                <InputWithLabel
-                  label="会社名 / 組織名"
-                  type="text"
-                  name="company"
-                  autoComplete="organization"
-                  placeholder="株式会社XXXX"
-                  maxlength={512}
-                  register={register({
-                    maxLength: {
-                      value: 512,
-                      message: "512文字以内で入力してださい.",
-                    },
-                  })}
-                  error={errors.company}
-                />
-                <ErrorMessageList name="company" errors={errors} />
-              </div>
-              <div className="sm:col-span-2">
-                <InputWithLabel
-                  label="メールアドレス"
-                  type="email"
-                  name="email"
-                  autoComplete="email"
-                  placeholder="you@example.com"
-                  maxlength={512}
-                  register={register({
-                    required: "メールアドレスを入力してください.",
-                    pattern: {
-                      value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                      message: "メールアドレスの形式が誤っています.",
-                    },
-                    maxLength: {
-                      value: 512,
-                      message: "512文字以内で入力してださい.",
-                    },
-                  })}
-                  error={errors.email}
-                />
-                <ErrorMessageList name="email" errors={errors} />
-              </div>
-              <div className="sm:col-span-2">
-                <TextareaWithLabel
-                  label="メッセージ"
-                  name="message"
-                  maxlength={10000}
-                  register={register({
-                    required: "メッセージを入力してください",
-                    maxLength: {
-                      value: 10000,
-                      message: "10000文字以内で入力してださい.",
-                    },
-                  })}
-                  error={errors.message}
-                />
-                <ErrorMessageList name="message" errors={errors} />
-              </div>
-              <div className="sm:col-span-2">
-                <button
-                  type="submit"
-                  disabled={!(isDirty && isValid) || isSubmitting}
-                  className={`inline-flex items-center justify-center w-full px-6 py-3 text-base font-medium text-white border border-transparent disabled:opacity-50 disabled:hover:bg-cyan-600 disabled:cursor-not-allowed bg-cyan-600 shadow-sm hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 ${
-                    isSubmitting ? "cursor-wait" : ""
-                  }`}
-                >
-                  送信
-                </button>
-              </div>
-            </form>
+      <div className="py-8">
+        <div className="px-4 py-8 overflow-hidden bg-white shadow-custom sm:px-6 lg:px-8 lg:py-16">
+          <div className="relative max-w-xl mx-auto">
+            <div className="text-center">
+              <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                {pageTitle}
+              </h2>
+            </div>
+            <div className="mt-8 lg:mt-12">
+              <form
+                name="contact"
+                method="POST"
+                action="/portfolio"
+                netlify-honeypot="bot-field"
+                data-netlify="true"
+                className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8"
+                onSubmit={() => {
+                  return handleSubmit(onSubmit)()
+                }}
+              >
+                <input type="hidden" name="bot-field" />
+                <input type="hidden" name="form-name" value="contact" />
+                <div className="sm:col-span-2">
+                  <InputWithLabel
+                    label="名前"
+                    type="text"
+                    name="name"
+                    autoComplete="name"
+                    placeholder="山田太郎"
+                    maxlength={512}
+                    register={register({
+                      required: "名前を入力してください.",
+                      maxLength: {
+                        value: 512,
+                        message: "512文字以内で入力してださい.",
+                      },
+                    })}
+                    error={errors.name}
+                  />
+                  <ErrorMessageList name="name" errors={errors} />
+                </div>
+                <div className="sm:col-span-2">
+                  <InputWithLabel
+                    label="会社名 / 組織名"
+                    type="text"
+                    name="company"
+                    autoComplete="organization"
+                    placeholder="株式会社XXXX"
+                    maxlength={512}
+                    register={register({
+                      maxLength: {
+                        value: 512,
+                        message: "512文字以内で入力してださい.",
+                      },
+                    })}
+                    error={errors.company}
+                  />
+                  <ErrorMessageList name="company" errors={errors} />
+                </div>
+                <div className="sm:col-span-2">
+                  <InputWithLabel
+                    label="メールアドレス"
+                    type="email"
+                    name="email"
+                    autoComplete="email"
+                    placeholder="you@example.com"
+                    maxlength={512}
+                    register={register({
+                      required: "メールアドレスを入力してください.",
+                      pattern: {
+                        value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                        message: "メールアドレスの形式が誤っています.",
+                      },
+                      maxLength: {
+                        value: 512,
+                        message: "512文字以内で入力してださい.",
+                      },
+                    })}
+                    error={errors.email}
+                  />
+                  <ErrorMessageList name="email" errors={errors} />
+                </div>
+                <div className="sm:col-span-2">
+                  <TextareaWithLabel
+                    label="メッセージ"
+                    name="message"
+                    maxlength={10000}
+                    register={register({
+                      required: "メッセージを入力してください",
+                      maxLength: {
+                        value: 10000,
+                        message: "10000文字以内で入力してださい.",
+                      },
+                    })}
+                    error={errors.message}
+                  />
+                  <ErrorMessageList name="message" errors={errors} />
+                </div>
+                <div className="sm:col-span-2">
+                  <button
+                    type="submit"
+                    disabled={!(isDirty && isValid) || isSubmitting}
+                    className={`inline-flex items-center justify-center w-full px-6 py-3 text-base font-medium text-white border border-transparent disabled:opacity-50 disabled:hover:bg-cyan-600 disabled:cursor-not-allowed bg-cyan-600 shadow-sm hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 ${
+                      isSubmitting ? "cursor-wait" : ""
+                    }`}
+                  >
+                    送信
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
