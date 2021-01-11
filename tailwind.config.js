@@ -69,6 +69,10 @@ module.exports = {
       "-10": "-10",
     },
   },
-  variants: {},
+  variants: {
+    opacity: ["disabled"],
+    backgroundColor: ["disabled"],
+    cursor: ["disabled"],
+  },
   plugins: [require("@tailwindcss/typography")],
 }

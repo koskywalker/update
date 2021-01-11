@@ -15,22 +15,32 @@ type FormInputs = {
   message: string
 }
 
+const defaultValues = {
+  name: "",
+  company: "",
+  email: "",
+  message: "",
+}
+
 const Contact: React.FC = () => {
   const pageTitle = "お問い合わせ"
 
-  const { register, handleSubmit, errors, reset } = useForm<FormInputs>({
+  const {
+    register,
+    errors,
+    handleSubmit,
+    reset,
+    formState,
+  } = useForm<FormInputs>({
     mode: "onTouched",
     criteriaMode: "all",
-    defaultValues: {
-      name: "",
-      company: "",
-      email: "",
-      message: "",
-    },
+    defaultValues,
   })
 
-  const onSubmit = async (data: any, e: any) => {
-    await e.preventDefault()
+  const { isDirty, isSubmitting, isValid } = formState
+
+  const onSubmit = (data: any, e: any) => {
+    e.preventDefault()
     // eslint-disable-next-line no-console
     console.log(e)
     fetch("/", {
@@ -140,7 +150,10 @@ const Contact: React.FC = () => {
               <div className="sm:col-span-2">
                 <button
                   type="submit"
-                  className="inline-flex items-center justify-center w-full px-6 py-3 text-base font-medium text-white border border-transparent bg-cyan-600 shadow-sm hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
+                  disabled={!(isDirty && isValid) || isSubmitting}
+                  className={`inline-flex items-center justify-center w-full px-6 py-3 text-base font-medium text-white border border-transparent disabled:opacity-50 disabled:hover:bg-cyan-600 disabled:cursor-not-allowed bg-cyan-600 shadow-sm hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 ${
+                    isSubmitting ? "cursor-wait" : ""
+                  }`}
                 >
                   送信
                 </button>
