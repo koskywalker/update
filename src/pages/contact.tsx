@@ -23,7 +23,18 @@ const Contact: React.FC = () => {
     criteriaMode: "all",
   })
 
-  const onSubmit = (data: FormInputs) => {
+  const onSubmit = (data: any) => {
+    fetch("/", {
+      method: "POST",
+      body: data,
+    })
+      .then((data) => {
+        // eslint-disable-next-line no-console
+        console.log(data)
+      })
+      .catch((error) => {
+        return console.error(error)
+      })
     // eslint-disable-next-line no-console
     console.log(data)
   }
@@ -42,8 +53,6 @@ const Contact: React.FC = () => {
           <div className="mt-12">
             <form
               name="contact"
-              action="#"
-              method="POST"
               netlify-honeypot="bot-field"
               data-netlify="true"
               className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8"
