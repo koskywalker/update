@@ -29,19 +29,22 @@ const Contact: React.FC = () => {
     },
   })
 
-  const encode = (data: any) => {
-    return Object.keys(data)
-      .map((key) => {
-        return encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
-      })
-      .join("&")
-  }
+  // const encode = (data: any) => {
+  //   return Object.keys(data)
+  //     .map((key) => {
+  //       return encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
+  //     })
+  //     .join("&")
+  // }
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: any, e: any) => {
+    e.preventDefault()
+    // eslint-disable-next-line no-console
+    console.log(data)
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({ "form-name": "contact", ...data }),
+      body: new URLSearchParams(data).toString(),
     })
       .then((response: any) => {
         reset()
@@ -72,7 +75,9 @@ const Contact: React.FC = () => {
               netlify-honeypot="bot-field"
               data-netlify="true"
               className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8"
-              onSubmit={handleSubmit(onSubmit)}
+              onSubmit={() => {
+                return handleSubmit(onSubmit)()
+              }}
             >
               <input type="hidden" name="bot-field" />
               <input type="hidden" name="form-name" value="contact" />
