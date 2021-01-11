@@ -42,20 +42,16 @@ const Contact: React.FC = () => {
   const onSubmit = (data: any, e: any) => {
     e.preventDefault()
     // eslint-disable-next-line no-console
-    console.log(e)
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams(data).toString(),
     })
-      .then((response: any) => {
+      .then(() => {
         reset()
-        // eslint-disable-next-line no-console
-        console.log(response)
       })
       .catch((error: any) => {
-        // eslint-disable-next-line no-console
-        console.log(error)
+        console.error(error)
       })
   }
 
@@ -94,10 +90,6 @@ const Contact: React.FC = () => {
                   maxlength={512}
                   register={register({
                     required: "名前を入力してください.",
-                    minLength: {
-                      value: 3,
-                      message: "3文字以上で入力してください.",
-                    },
                     maxLength: {
                       value: 512,
                       message: "512文字以内で入力してださい.",
@@ -115,7 +107,12 @@ const Contact: React.FC = () => {
                   autoComplete="organization"
                   placeholder="株式会社XXXX"
                   maxlength={512}
-                  register={register()}
+                  register={register({
+                    maxLength: {
+                      value: 512,
+                      message: "512文字以内で入力してださい.",
+                    },
+                  })}
                   error={errors.company}
                 />
                 <ErrorMessageList name="company" errors={errors} />
@@ -130,6 +127,14 @@ const Contact: React.FC = () => {
                   maxlength={512}
                   register={register({
                     required: "メールアドレスを入力してください.",
+                    pattern: {
+                      value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                      message: "メールアドレスの形式が誤っています.",
+                    },
+                    maxLength: {
+                      value: 512,
+                      message: "512文字以内で入力してださい.",
+                    },
                   })}
                   error={errors.email}
                 />
@@ -139,9 +144,13 @@ const Contact: React.FC = () => {
                 <TextareaWithLabel
                   label="メッセージ"
                   name="message"
-                  maxlength={8192}
+                  maxlength={10000}
                   register={register({
                     required: "メッセージを入力してください",
+                    maxLength: {
+                      value: 10000,
+                      message: "10000文字以内で入力してださい.",
+                    },
                   })}
                   error={errors.message}
                 />
