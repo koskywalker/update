@@ -1,3 +1,4 @@
+import { navigate } from "public/render-page"
 import React from "react"
 import { useForm } from "react-hook-form"
 
@@ -18,15 +19,36 @@ type FormInputs = {
 const Contact: React.FC = () => {
   const pageTitle = "お問い合わせ"
 
-  const { register, handleSubmit, errors } = useForm<FormInputs>({
+  const { register, handleSubmit, errors, reset } = useForm<FormInputs>({
     mode: "onTouched",
     criteriaMode: "all",
   })
 
-  const onSubmit = (data: any, e: any) => {
-    // eslint-disable-next-line no-console
-    console.log(data)
-    e.target.submit()
+  const encode = (data: any) => {
+    return Object.keys(data)
+      .map((key) => {
+        return encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
+      })
+      .join("&")
+  }
+
+  const onSubmit = (data: any, event: any) => {
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode({ "form-name": "contact-form", ...data }),
+    })
+      .then((response: any) => {
+        navigate("/")
+        reset()
+        // eslint-disable-next-line no-console
+        console.log(response)
+      })
+      .catch((error: any) => {
+        // eslint-disable-next-line no-console
+        console.log(error)
+      })
+    event.preventDefault()
   }
 
   return (
@@ -43,6 +65,7 @@ const Contact: React.FC = () => {
           <div className="mt-12">
             <form
               name="contact"
+              method="POST"
               netlify-honeypot="bot-field"
               data-netlify="true"
               className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8"
