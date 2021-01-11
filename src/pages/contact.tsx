@@ -21,6 +21,12 @@ const Contact: React.FC = () => {
   const { register, handleSubmit, errors, reset } = useForm<FormInputs>({
     mode: "onTouched",
     criteriaMode: "all",
+    defaultValues: {
+      name: "",
+      company: "",
+      email: "",
+      message: "",
+    },
   })
 
   const encode = (data: any) => {
@@ -31,13 +37,11 @@ const Contact: React.FC = () => {
       .join("&")
   }
 
-  const onSubmit = (e: any, data: any) => {
-    e.preventDeefault()
-    const form = e.target
+  const onSubmit = (data: any) => {
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({ "form-name": form.getAttribute("name"), ...data }),
+      body: encode({ "form-name": "contact", ...data }),
     })
       .then((response: any) => {
         reset()
@@ -68,9 +72,7 @@ const Contact: React.FC = () => {
               netlify-honeypot="bot-field"
               data-netlify="true"
               className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8"
-              onSubmit={() => {
-                return handleSubmit(onSubmit)()
-              }}
+              onSubmit={handleSubmit(onSubmit)}
             >
               <input type="hidden" name="bot-field" />
               <input type="hidden" name="form-name" value="contact" />
