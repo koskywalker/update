@@ -31,9 +31,9 @@ const Contact: React.FC = () => {
       .join("&")
   }
 
-  const onSubmit = (data: any, event: any) => {
-    event.preventDeefault()
-    const form = event.target
+  const onSubmit = (data: any, e: any) => {
+    e.preventDeefault()
+    const form = e.target
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -68,7 +68,9 @@ const Contact: React.FC = () => {
               netlify-honeypot="bot-field"
               data-netlify="true"
               className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8"
-              onSubmit={handleSubmit(onSubmit)}
+              onSubmit={() => {
+                return handleSubmit(onSubmit)()
+              }}
             >
               <input type="hidden" name="bot-field" />
               <input type="hidden" name="form-name" value="contact" />
