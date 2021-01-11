@@ -31,7 +31,7 @@ const Contact: React.FC = () => {
       .join("&")
   }
 
-  const onSubmit = (data: any, e: any) => {
+  const onSubmit = (e: any, data: any) => {
     e.preventDeefault()
     const form = e.target
     fetch("/", {
