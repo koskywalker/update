@@ -29,7 +29,10 @@ const Contact: React.FC = () => {
     },
   })
 
-  const onSubmit = (data: any) => {
+  const onSubmit = async (data: any, e: any) => {
+    await e.preventDefault()
+    // eslint-disable-next-line no-console
+    console.log(e)
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -65,7 +68,9 @@ const Contact: React.FC = () => {
               netlify-honeypot="bot-field"
               data-netlify="true"
               className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8"
-              onSubmit={handleSubmit(onSubmit)}
+              onSubmit={() => {
+                return handleSubmit(onSubmit)()
+              }}
             >
               <input type="hidden" name="bot-field" />
               <input type="hidden" name="form-name" value="contact" />
