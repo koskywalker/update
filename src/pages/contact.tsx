@@ -1,4 +1,3 @@
-import { navigate } from "public/render-page"
 import React from "react"
 import { useForm } from "react-hook-form"
 
@@ -33,13 +32,14 @@ const Contact: React.FC = () => {
   }
 
   const onSubmit = (data: any, event: any) => {
+    event.preventDeefault()
+    const form = event.target
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({ "form-name": "contact-form", ...data }),
+      body: encode({ "form-name": form.getAttribute("name"), ...data }),
     })
       .then((response: any) => {
-        navigate("/")
         reset()
         // eslint-disable-next-line no-console
         console.log(response)
@@ -48,7 +48,6 @@ const Contact: React.FC = () => {
         // eslint-disable-next-line no-console
         console.log(error)
       })
-    event.preventDefault()
   }
 
   return (
