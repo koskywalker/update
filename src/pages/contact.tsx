@@ -71,7 +71,6 @@ const Contact: React.FC = () => {
               <form
                 name="contact"
                 method="POST"
-                action="/portfolio"
                 netlify-honeypot="bot-field"
                 data-netlify="true"
                 className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8"
@@ -162,7 +161,7 @@ const Contact: React.FC = () => {
                     type="submit"
                     disabled={!(isDirty && isValid) || isSubmitting}
                     className={`inline-flex items-center justify-center w-full px-6 py-3 text-base font-medium text-white border border-transparent disabled:opacity-50 disabled:hover:bg-cyan-600 disabled:cursor-not-allowed bg-cyan-600 shadow-sm hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 ${
-                      isSubmitting ? "cursor-wait" : ""
+                      isSubmitting ? "disabled:cursor-wait" : ""
                     }`}
                   >
                     送信
