@@ -97,7 +97,7 @@ const Portfolio: React.FC<IProps> = ({ data }) => {
                             href={item.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center px-4 py-2 text-white bg-cyan-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
+                            className="inline-flex items-center px-4 py-2 text-white bg-cyan-500 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
                           >
                             {item.title} を見に行く
                           </a>

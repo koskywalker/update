@@ -164,7 +164,7 @@ const Contact: React.FC = () => {
                   <button
                     type="submit"
                     disabled={!(isDirty && isValid) || isSubmitting}
-                    className={`inline-flex items-center justify-center w-full px-6 py-3 text-base font-medium text-white border border-transparent disabled:opacity-50 disabled:hover:bg-cyan-600 disabled:cursor-not-allowed bg-cyan-600 shadow-sm hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 ${
+                    className={`inline-flex items-center justify-center w-full px-6 py-3 text-base font-medium text-white border border-transparent disabled:opacity-50 disabled:hover:bg-cyan-600 disabled:cursor-not-allowed bg-cyan-500 shadow-sm hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 ${
                       isSubmitting ? "disabled:cursor-wait" : ""
                     }`}
                   >
