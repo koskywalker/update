@@ -15,9 +15,9 @@ const Thanks: React.FC = () => {
         <div className="px-4 py-8 overflow-hidden bg-white shadow-custom sm:px-6 lg:px-8 lg:py-16">
           <div className="relative max-w-xl mx-auto">
             <div className="text-center">
-              <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+              <h1 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
                 {pageTitle}
-              </h2>
+              </h1>
             </div>
             <div className="mt-8 lg:mt-12">
               <p>頂いたメッセージを確認します.</p>

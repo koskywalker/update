@@ -2,7 +2,7 @@ import { graphql } from "gatsby"
 import Image from "gatsby-image"
 import React from "react"
 
-import { Hero } from "../components/hero"
+import { Breadcrumb } from "../components/breadcrumb"
 import { Layout } from "../components/layout"
 import { Seo } from "../components/seo"
 
@@ -11,13 +11,14 @@ type IProps = {
 }
 
 const Portfolio: React.FC<IProps> = ({ data }) => {
-  const portfolioImageUpdate = data.imageUpdate?.childImageSharp?.fixed
-  const portfolioImageCopilin = data.imageCopilin?.childImageSharp?.fixed
+  const portfolioImageUpdate = data.imageUpdate?.childImageSharp?.fluid
+  const portfolioImageCopilin = data.imageCopilin?.childImageSharp?.fluid
 
   const pageTitle = "ポートフォリオ"
   const items = [
     {
       title: "UPDATE",
+      url: "https://upd.world/",
       subTitle:
         "Nuxt.js x Contentful x Netlify で作成した Jamstack 構成のブログ",
       image: portfolioImageUpdate,
@@ -33,6 +34,8 @@ const Portfolio: React.FC<IProps> = ({ data }) => {
     },
     {
       title: "コピリン",
+      url:
+        "https://chrome.google.com/webstore/detail/%E3%82%B3%E3%83%94%E3%83%AA%E3%83%B3/jmjkimbpmdcnlohbclgfdmckjnjlfhnd?hl=ja",
       subTitle: "Vue.js x Filebase で作成した SPA (Chrome 拡張機能)",
       image: portfolioImageCopilin,
       meta: {
@@ -50,26 +53,64 @@ const Portfolio: React.FC<IProps> = ({ data }) => {
   return (
     <Layout>
       <Seo pageTitle={pageTitle} />
-      <Hero />
-      <h1>{pageTitle}</h1>
-      {items.map((item: any, index: number) => {
-        return (
-          <div key={index}>
-            <h2>{item.title}</h2>
-            <p>{item.subTitle}</p>
-            <Image fixed={item.image} alt={item.title} />
-            <ul>
-              <li>製作期間: {item.meta.period}</li>
-              <li>主な使用技術: {item.meta.technologies}</li>
-            </ul>
-            <div>
-              {item.description.map((sentence: string, subIndex: number) => {
-                return <p key={`${index}-${subIndex}`}>{sentence}</p>
+      <Breadcrumb currentPageTitle={pageTitle} />
+      <div className="py-8">
+        <div className="px-4 py-8 overflow-hidden bg-white shadow-custom sm:px-6 lg:px-8 lg:py-16">
+          <div className="relative">
+            <div className="text-center">
+              <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl">
+                {pageTitle}
+              </h1>
+            </div>
+            <div className="mt-8 lg:mt-12 grid grid-cols-1 gap-16">
+              {items.map((item: any, index: number) => {
+                return (
+                  <div key={index} className="grid grid-cols-1">
+                    <h2 className="text-2xl font-bold">{item.title}</h2>
+                    <p className="mt-4">{item.subTitle}</p>
+                    <div className="grid grid-cols-1 xl:grid-cols-2 xl:gap-x-4">
+                      <Image
+                        fluid={item.image}
+                        alt={item.title}
+                        imgStyle={{
+                          border: "1px solid #ccc",
+                          objectFit: "contain",
+                        }}
+                        className="mt-8"
+                      />
+                      <div className="mt-8">
+                        <ul className="ml-4 list-disc grid grid-cols-1 gap-y-2">
+                          <li>製作期間: {item.meta.period}</li>
+                          <li>主な使用技術: {item.meta.technologies}</li>
+                        </ul>
+                        <div className="mt-8 grid grid-cols-1 gap-y-2 xl:mt-8">
+                          {item.description.map(
+                            (sentence: string, subIndex: number) => {
+                              return (
+                                <p key={`${index}-${subIndex}`}>{sentence}</p>
+                              )
+                            }
+                          )}
+                        </div>
+                        <div className="mt-8">
+                          <a
+                            href={item.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center px-4 py-2 text-white bg-cyan-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
+                          >
+                            {item.title} を見に行く
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )
               })}
             </div>
           </div>
-        )
-      })}
+        </div>
+      </div>
     </Layout>
   )
 }
@@ -81,15 +122,15 @@ export const pageQuery = graphql`
   query Portfolio {
     imageUpdate: file(absolutePath: { regex: "/portfolio-update.png/" }) {
       childImageSharp {
-        fixed(width: 500, height: 282, quality: 95) {
-          ...GatsbyImageSharpFixed
+        fluid {
+          ...GatsbyImageSharpFluid
         }
       }
     }
     imageCopilin: file(absolutePath: { regex: "/portfolio-copilin.png/" }) {
       childImageSharp {
-        fixed(width: 500, height: 312, quality: 95) {
-          ...GatsbyImageSharpFixed
+        fluid {
+          ...GatsbyImageSharpFluid
         }
       }
     }
