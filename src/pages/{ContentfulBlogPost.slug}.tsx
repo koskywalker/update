@@ -7,14 +7,16 @@ import { ButtonLink } from "../components/button-link"
 import { Layout } from "../components/layout"
 import { PublishDate } from "../components/publish-date"
 import { Seo } from "../components/seo"
+import { ShareButtons } from "../components/share-buttons"
 import { TimeToRead } from "../components/time-to-read"
 import { UpdateDate } from "../components/update-date"
 
 type IProps = {
   data: GatsbyTypes.PostBySlugQuery
+  location: Location
 }
 
-const BlogPost: React.FC<IProps> = ({ data }) => {
+const BlogPost: React.FC<IProps> = ({ data, location }) => {
   const post = data.contentfulBlogPost
 
   const title = post?.title ?? ""
@@ -103,7 +105,10 @@ const BlogPost: React.FC<IProps> = ({ data }) => {
             }}
             itemProp="articleBody"
           ></div>
-          <div className="px-4 py-8 sm:px-6">
+          <div className="px-4 pt-16 sm:px-6">
+            <ShareButtons location={location} title={title} />
+          </div>
+          <div className="px-4 py-16 sm:px-6">
             <Bio />
           </div>
         </div>

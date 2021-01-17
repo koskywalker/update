@@ -17,6 +17,11 @@ module.exports = {
         violet: colors.violet,
         fuchsia: colors.fuchsia,
         rose: colors.rose,
+        twitter: "#1da1f2",
+        facebook: "#1877f2",
+        hatena: "#00a4de",
+        pocket: "#d81b60",
+        line: "#00c300",
       },
       fontFamily: {
         main: [
