@@ -1,7 +1,7 @@
-import { Link } from "gatsby"
 import React from "react"
 
 import { pathObject } from "../constants/constants"
+import { A } from "./a"
 import { IconBookOpen } from "./icons/icon-book-open"
 import { IconCode } from "./icons/icon-code"
 import { IconFilm } from "./icons/icon-film"
@@ -81,9 +81,9 @@ export const SidebarMenu: React.FC<IProps> = ({ location }) => {
       <div className="space-y-1">
         {menuList.map((menu) => {
           return (
-            <Link
+            <A
               key={menu.id}
-              to={menu.path}
+              path={menu.path}
               className={`flex items-center px-4 py-2 text-base font-medium group ${
                 currentPathFormatted === menu.path
                   ? "text-white bg-gray-500"
@@ -92,7 +92,7 @@ export const SidebarMenu: React.FC<IProps> = ({ location }) => {
             >
               {menu.icon}
               {menu.name}
-            </Link>
+            </A>
           )
         })}
       </div>

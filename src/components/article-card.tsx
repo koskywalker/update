@@ -1,8 +1,8 @@
 import dayjs from "dayjs"
-import { Link } from "gatsby"
 import React from "react"
 
-import { Badge } from "./badge"
+import { A } from "./a"
+import { ButtonLink } from "./button-link"
 import { IconCalendar } from "./icons/icon-calendar"
 import { IconRefresh } from "./icons/icon-refresh"
 
@@ -29,7 +29,7 @@ export const ArticleCard: React.FC<IProps> = ({ article }) => {
   return (
     <div className="flex flex-col overflow-hidden bg-white shadow-custom">
       <div>
-        <Link to={`/${article.slug}/`} className="block">
+        <A path={`/${article.slug}/`} className="block">
           <div className="flex-shrink-0">
             <img
               className="object-cover w-full h-48"
@@ -48,16 +48,18 @@ export const ArticleCard: React.FC<IProps> = ({ article }) => {
             </time>
           </div>
           <h2 className="px-6 pt-3 text-xl font-semibold">{article.title}</h2>
-        </Link>
-        <div className="flex flex-wrap flex-1 px-6 pt-4 pb-6 -m-1">
+        </A>
+        <div className="flex flex-wrap px-6 pt-4 pb-6 -m-1">
           {article.tags.map((tag: any) => {
             return (
-              <Badge
+              <ButtonLink
                 key={`${article.slug}--${tag.slug}`}
-                bgColor="bg-cyan-500"
                 path={`/tags/${tag.slug}/`}
-                text={tag.name}
-              />
+                size="sm"
+                className="m-1"
+              >
+                {tag.name}
+              </ButtonLink>
             )
           })}
         </div>

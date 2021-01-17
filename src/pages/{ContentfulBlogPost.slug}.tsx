@@ -1,9 +1,9 @@
 import { graphql } from "gatsby"
 import React from "react"
 
-import { Badge } from "../components/badge"
 import { Bio } from "../components/bio"
 import { Breadcrumb } from "../components/breadcrumb"
+import { ButtonLink } from "../components/button-link"
 import { Layout } from "../components/layout"
 import { PublishDate } from "../components/publish-date"
 import { Seo } from "../components/seo"
@@ -80,12 +80,14 @@ const BlogPost: React.FC<IProps> = ({ data }) => {
               <div className="pt-4 -m-1">
                 {tags.map((tag, index) => {
                   return (
-                    <Badge
+                    <ButtonLink
                       key={index}
-                      bgColor="bg-cyan-500"
                       path={`/tags/${tag?.slug}/`}
-                      text={tag?.name || ""}
-                    />
+                      size="sm"
+                      className="m-1"
+                    >
+                      {tag?.name || ""}
+                    </ButtonLink>
                   )
                 })}
               </div>

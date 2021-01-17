@@ -3,6 +3,7 @@ import Image from "gatsby-image"
 import React from "react"
 
 import { Breadcrumb } from "../components/breadcrumb"
+import { ButtonLink } from "../components/button-link"
 import { Layout } from "../components/layout"
 import { Seo } from "../components/seo"
 
@@ -93,14 +94,14 @@ const Portfolio: React.FC<IProps> = ({ data }) => {
                           )}
                         </div>
                         <div className="mt-8">
-                          <a
-                            href={item.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                          <ButtonLink
+                            path={item.url}
+                            size="md"
+                            isExternalLink={true}
                             className="inline-flex items-center px-4 py-2 text-white bg-cyan-500 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
                           >
                             {item.title} を見に行く
-                          </a>
+                          </ButtonLink>
                         </div>
                       </div>
                     </div>

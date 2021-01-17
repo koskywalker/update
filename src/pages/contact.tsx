@@ -2,6 +2,7 @@ import React from "react"
 import { useForm } from "react-hook-form"
 
 import { Breadcrumb } from "../components/breadcrumb"
+import { Button } from "../components/button"
 import { ErrorMessageList } from "../components/error-message-list"
 import { InputWithLabel } from "../components/input-with-label"
 import { Layout } from "../components/layout"
@@ -161,15 +162,13 @@ const Contact: React.FC = () => {
                   <ErrorMessageList name="message" errors={errors} />
                 </div>
                 <div className="sm:col-span-2">
-                  <button
+                  <Button
                     type="submit"
+                    text="送信"
+                    size="lg"
                     disabled={!(isDirty && isValid) || isSubmitting}
-                    className={`inline-flex items-center justify-center w-full px-6 py-3 text-base font-medium text-white border border-transparent disabled:opacity-50 disabled:hover:bg-cyan-600 disabled:cursor-not-allowed bg-cyan-500 shadow-sm hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 ${
-                      isSubmitting ? "disabled:cursor-wait" : ""
-                    }`}
-                  >
-                    送信
-                  </button>
+                    isLoading={isSubmitting}
+                  />
                 </div>
               </form>
             </div>

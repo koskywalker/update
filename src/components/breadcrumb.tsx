@@ -1,6 +1,6 @@
-import { Link } from "gatsby"
 import React from "react"
 
+import { A } from "./a"
 import { IconChevronRight } from "./icons/icon-chevron-right"
 import { IconHome } from "./icons/icon-home"
 
@@ -14,10 +14,10 @@ export const Breadcrumb: React.FC<IProps> = ({ currentPageTitle }) => {
       <ol className="flex w-full p-4 bg-white shadow-custom space-x-2 md:space-x-4">
         <li className="flex">
           <div className="flex items-center">
-            <Link to="/">
+            <A path="/">
               <IconHome className="w-5 h-5" ariaHidden={true} />
               <span className="sr-only">Home</span>
-            </Link>
+            </A>
           </div>
         </li>
         <li className="flex">

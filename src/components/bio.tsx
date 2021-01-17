@@ -3,6 +3,7 @@ import Image from "gatsby-image"
 import React from "react"
 
 import { authorData } from "../constants/constants"
+import { A } from "./a"
 import { IconGithub } from "./icons/icon-github"
 import { IconTwitter } from "./icons/icon-twitter"
 
@@ -67,14 +68,10 @@ export const Bio: React.FC = () => {
             {socialList.map((social) => {
               return (
                 <li key={social.name}>
-                  <a
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
+                  <A path={social.url} isExternalLink={true}>
                     <span className="sr-only">{social.name}</span>
                     {social.icon}
-                  </a>
+                  </A>
                 </li>
               )
             })}
