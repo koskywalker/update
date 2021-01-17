@@ -24,7 +24,7 @@ export const Bio: React.FC = () => {
 
   const image = data?.avatar?.childImageSharp?.fixed
 
-  const socialIconClassName = "w-6 h-6"
+  const socialIconClassName = "w-8 h-8"
   const socialList = [
     {
       name: authorData.social.github.name,
