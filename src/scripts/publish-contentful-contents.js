@@ -4,10 +4,6 @@ require("dotenv").config()
 // eslint-disable-next-line no-console
 process.on("unhandledRejection", console.dir)
 
-// 置換前後の文字列を指定
-const before = /\[\[toc\]\]/g
-const after = "```toc\n```"
-
 const sleep = (msec) => {
   return new Promise((resolve) => {
     return setTimeout(resolve, msec)
@@ -29,14 +25,10 @@ const client = contentful.createClient({
   })
 
   entries.items.map(async (entry) => {
-    const entryBody = entry.fields.body.ja
-    const updatedEntryBody = entryBody.replace(before, after)
-
-    if (entryBody !== updatedEntryBody) {
-      entry.fields.body = { ja: updatedEntryBody }
-      const updatedEntry = await entry.update()
+    if (entry.isUpdated()) {
+      await entry.publish()
       // eslint-disable-next-line no-console
-      console.log(`updated: ${updatedEntry.sys.id}`)
+      console.log(`published: ${entry.sys.id}`)
       await sleep(200)
     } else {
       // eslint-disable-next-line no-console
