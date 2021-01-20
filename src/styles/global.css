@@ -46,7 +46,7 @@ text-cyan-500
 /* 記事本文のスタイル */
 
 .prose a {
-  @apply no-underline;
+  @apply no-underline break-words;
 }
 
 .prose a:hover {
@@ -72,6 +72,10 @@ text-cyan-500
 .prose code::before,
 .prose code::after {
   @apply hidden;
+}
+
+.prose img {
+  @apply my-0 mx-auto border-2 border-gray-100;
 }
 
 /* 目次のスタイル */
@@ -112,4 +116,156 @@ text-cyan-500
 
 .prose ul ul > li::before {
   @apply bg-transparent border border-black;
+}
+
+/* 記事内の独自スタイル */
+
+.prose .screenshot-mobile-single {
+  @apply mt-0 mx-auto mb-6 w-9/12 md:w-1/2;
+}
+
+.prose .screenshot-mobile-double {
+  @apply flex items-start flex-wrap justify-between;
+}
+
+.prose .screenshot-mobile-double img {
+  @apply w-5/12;
+}
+
+.prose .button {
+  @apply inline-flex items-center px-4 py-2 mb-6 bg-cyan-500 text-white hover:no-underline hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-700;
+}
+
+.prose .button img {
+  @apply border-0;
+}
+
+.prose .button--accent {
+  @apply bg-red-400 hover:bg-red-600 focus:ring-red-600;
+}
+
+.prose .buttonDouble {
+  @apply flex flex-wrap justify-between;
+}
+
+.prose .cardReferenceInternal,
+.prose .cardReferenceExternal {
+  @apply border-2 border-gray-300 flex flex-wrap bg-white text-black font-bold py-2 pr-4 w-full mb-8 hover:no-underline hover:bg-gray-50;
+
+  max-width: 560px;
+}
+
+.prose .cardReferenceInternal__image,
+.prose .cardReferenceExternal__icon {
+  @apply flex flex-col justify-center items-center;
+}
+
+.prose .cardReferenceInternal__image {
+  @apply h-24 w-24 pl-2;
+}
+
+.prose .cardReferenceInternal__title {
+  @apply flex flex-wrap items-center leading-5 m-0 pl-2;
+
+  width: calc(100% - 6rem);
+}
+
+.prose .cardReferenceExternal__icon {
+  @apply h-20 w-20;
+}
+
+.prose .cardReferenceExternal__icon::before {
+  @apply bg-bookmark bg-contain block h-8 w-8 mt-1 mx-auto mb-0;
+
+  content: '';
+}
+
+.prose .cardReferenceExternal__title {
+  @apply border-l-2 border-gray-300 flex flex-wrap items-center leading-5 pl-2;
+
+  width: calc(100% - 5rem);
+}
+
+/* アプリーチ */
+
+.prose .appreach {
+  @apply border-2 border-gray-100 mb-5 p-2 md:p-4;
+}
+
+.prose .appreach img {
+  @apply border-0;
+}
+
+.prose .appreach::after {
+  @apply clear-both block;
+
+  content: '';
+}
+
+.prose .appreach__icon {
+  @apply float-left h-auto w-1/4 md:w-1/5;
+}
+
+.prose .appreach__detail {
+  @apply inline-block ml-1 w-2/3;
+}
+
+.prose .appreach__detail::after {
+  @apply clear-both block;
+
+  content: '';
+}
+
+.prose .appreach__name {
+  @apply leading-5 m-0 md:text-lg;
+}
+
+.prose .appreach__info {
+  @apply text-sm my-2;
+}
+
+.prose .appreach__developper,
+.prose .appreach__price {
+  @apply mr-2;
+}
+
+.prose .appreach__links {
+  @apply inline-block w-full md:ml-1 md:w-2/3;
+}
+
+.prose .appreach__aslink {
+  @apply inline-block mr-1;
+
+  width: 134px;
+}
+
+.prose .appreach__gplink {
+  @apply inline-block;
+
+  width: 134px;
+}
+
+/* 枠 */
+
+.prose .success,
+.prose .info,
+.prose .warning,
+.prose .danger {
+  @apply p-4 mb-6;
+}
+
+.prose .success {
+  @apply bg-green-100;
+}
+
+.prose .info {
+  @apply bg-blue-100;
+}
+
+.prose .warning {
+  @apply bg-yellow-100;
+}
+
+.prose .danger {
+  @apply bg-red-100;
 }

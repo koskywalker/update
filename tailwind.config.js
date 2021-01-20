@@ -65,6 +65,11 @@ module.exports = {
           },
         }
       },
+      backgroundImage: () => {
+        return {
+          bookmark: "url('/images/icon-bookmark.svg')",
+        }
+      },
     },
     screens: {
       xs: "375px",

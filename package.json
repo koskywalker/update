@@ -48,6 +48,7 @@
     "gatsby-remark-images": "3.8.0",
     "gatsby-remark-images-contentful": "2.7.0",
     "gatsby-remark-prismjs": "3.10.0",
+    "gatsby-remark-responsive-iframe": "^2.10.0",
     "gatsby-remark-table-of-contents": "^1.0.0",
     "gatsby-source-contentful": "4.3.0",
     "gatsby-source-filesystem": "2.8.0",

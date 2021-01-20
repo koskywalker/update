@@ -1371,10 +1371,10 @@ enum ContentfulBlogPostFieldsEnum {
   createdAt = 'createdAt',
   updatedAt = 'updatedAt',
   sys___type = 'sys.type',
+  sys___revision = 'sys.revision',
   sys___contentType___sys___type = 'sys.contentType.sys.type',
   sys___contentType___sys___linkType = 'sys.contentType.sys.linkType',
   sys___contentType___sys___id = 'sys.contentType.sys.id',
-  sys___revision = 'sys.revision',
   gatsbyPath = 'gatsbyPath',
   parent___id = 'parent.id',
   parent___parent___id = 'parent.parent.id',
@@ -1645,8 +1645,8 @@ type ContentfulBlogPostSortInput = {
 
 type ContentfulBlogPostSys = {
   readonly type: Maybe<Scalars['String']>;
-  readonly contentType: Maybe<ContentfulBlogPostSysContentType>;
   readonly revision: Maybe<Scalars['Int']>;
+  readonly contentType: Maybe<ContentfulBlogPostSysContentType>;
 };
 
 type ContentfulBlogPostSysContentType = {
@@ -1671,8 +1671,8 @@ type ContentfulBlogPostSysContentTypeSysFilterInput = {
 
 type ContentfulBlogPostSysFilterInput = {
   readonly type: Maybe<StringQueryOperatorInput>;
-  readonly contentType: Maybe<ContentfulBlogPostSysContentTypeFilterInput>;
   readonly revision: Maybe<IntQueryOperatorInput>;
+  readonly contentType: Maybe<ContentfulBlogPostSysContentTypeFilterInput>;
 };
 
 type ContentfulContentType = Node & {

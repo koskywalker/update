@@ -4,10 +4,9 @@ require("dotenv").config()
 // eslint-disable-next-line no-console
 process.on("unhandledRejection", console.dir)
 
-// 置換前後の文字列を指定
-const before = /(@kosuke_upd)/g
-const after =
-  '(<a href="https//twitter.com/kosuke_upd/" target="_blank" rel="noopener noreferrer">@kosuke_upd</a>)'
+// 検索文字列を指定
+// const regex = /cardReferenceExternal/g
+const regex = "upd.world/wp-content/uploads"
 
 const sleep = (msec) => {
   return new Promise((resolve) => {
@@ -31,13 +30,10 @@ const client = contentful.createClient({
 
   entries.items.map(async (entry) => {
     const entryBody = entry.fields.body.ja
-    const updatedEntryBody = entryBody.replace(before, after)
 
-    if (entryBody !== updatedEntryBody) {
-      entry.fields.body = { ja: updatedEntryBody }
-      const updatedEntry = await entry.update()
+    if (entryBody.search(regex) !== -1) {
       // eslint-disable-next-line no-console
-      console.log(`updated: ${updatedEntry.sys.id}`)
+      console.log(`id: ${entry.sys.id}`)
       await sleep(200)
     } else {
       // eslint-disable-next-line no-console
