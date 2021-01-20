@@ -4,8 +4,9 @@ import { Breadcrumb } from "../components/breadcrumb"
 import { Layout } from "../components/layout"
 import { Seo } from "../components/seo"
 
-const NotFoundPage: React.FC = () => {
-  const pageTitle = "404: Not Found"
+const Thanks: React.FC = () => {
+  const pageTitle = "お問い合わせありがとうございます"
+
   return (
     <Layout>
       <Seo pageTitle={pageTitle} />
@@ -19,8 +20,10 @@ const NotFoundPage: React.FC = () => {
               </h1>
             </div>
             <div className="mt-8 lg:mt-12">
-              <p>お探しのページは存在しません.</p>
-              <p className="mt-4">URL が間違っていないかご確認ください.</p>
+              <p>頂いたメッセージを確認します.</p>
+              <p className="mt-4">
+                通常2営業日以内にお返事しますので今しばらくお待ちください.
+              </p>
             </div>
           </div>
         </div>
@@ -30,4 +33,4 @@ const NotFoundPage: React.FC = () => {
 }
 
 // eslint-disable-next-line import/no-default-export
-export default NotFoundPage
+export default Thanks

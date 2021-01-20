@@ -3,6 +3,7 @@ import Image from "gatsby-image"
 import React from "react"
 
 import { authorData } from "../constants/constants"
+import { A } from "./a"
 import { IconGithub } from "./icons/icon-github"
 import { IconTwitter } from "./icons/icon-twitter"
 
@@ -12,7 +13,7 @@ export const SidebarProfile: React.FC = () => {
       query SidebarProfile {
         avatar: file(absolutePath: { regex: "/profile.png/" }) {
           childImageSharp {
-            fixed(width: 150, height: 150) {
+            fixed(width: 150) {
               ...GatsbyImageSharpFixed
             }
           }
@@ -23,34 +24,22 @@ export const SidebarProfile: React.FC = () => {
 
   const image = data?.avatar?.childImageSharp?.fixed
 
-  const socialIconClassName = "w-8 h-8"
+  const socialIconClassName = "w-6 h-6 sm:w-8 sm:h-8 text-white"
   const socialList = [
     {
       name: authorData.social.github.name,
       url: authorData.social.github.url,
-      icon: (
-        <IconGithub
-          className={socialIconClassName}
-          ariaHidden={true}
-          color="white"
-        />
-      ),
+      icon: <IconGithub className={socialIconClassName} ariaHidden={true} />,
     },
     {
       name: authorData.social.twitter.name,
       url: authorData.social.twitter.url,
-      icon: (
-        <IconTwitter
-          className={socialIconClassName}
-          ariaHidden={true}
-          color="white"
-        />
-      ),
+      icon: <IconTwitter className={socialIconClassName} ariaHidden={true} />,
     },
   ]
 
   return (
-    <div className="py-4 mx-4 text-white border-t border-gray-500 xs:py-6 sm:py-8">
+    <div className="py-4 mx-4 text-white border-t border-gray-300 xs:py-6 sm:py-8">
       <div>
         {image && (
           <div className="justify-center hidden xs:flex">
@@ -62,14 +51,14 @@ export const SidebarProfile: React.FC = () => {
           </div>
         )}
         <div className="xs:mt-2 sm:mt-6 space-y-4">
-          <div className="font-medium text-center sm:text-lg leading-6 space-y-1">
+          <div className="font-bold text-center leading-6 space-y-1">
             <h3>{authorData.name}</h3>
             <p className="text-gray-400">{authorData.label}</p>
           </div>
           <div className="hidden md:block space-y-2">
             {authorData.description.map((sentence, index) => {
               return (
-                <p key={`sentence-${index}`} className="text-sm font-medium">
+                <p key={`sentence-${index}`} className="text-sm">
                   {sentence}
                 </p>
               )
@@ -81,10 +70,10 @@ export const SidebarProfile: React.FC = () => {
         {socialList.map((social) => {
           return (
             <li key={social.name}>
-              <a href={social.url} target="_blank" rel="noopener noreferrer">
+              <A path={social.url} isExternalLink={true}>
                 <span className="sr-only">{social.name}</span>
                 {social.icon}
-              </a>
+              </A>
             </li>
           )
         })}

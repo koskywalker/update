@@ -1,17 +1,13 @@
 import { Location } from "@reach/router"
 import React, { useCallback, useEffect, useState } from "react"
 
-import { toggleEnableScroll } from "../utils/utils"
+import { toggleEnableScroll, wait } from "../utils/utils"
 import { IconMenu } from "./icons/icon-menu"
 import { LogoLink } from "./logo-link"
 import { Particles } from "./particles"
 import { Sidebar } from "./sidebar"
 
-type IProps = {
-  isThreeColumn: boolean
-}
-
-export const Layout: React.FC<IProps> = ({ children, isThreeColumn }) => {
+export const Layout: React.FC = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
   /**
@@ -25,9 +21,10 @@ export const Layout: React.FC<IProps> = ({ children, isThreeColumn }) => {
   /**
    * モバイル用サイドバーを閉じる.
    */
-  const closeSidebar = () => {
-    toggleEnableScroll()
+  const closeSidebar = async () => {
     setIsSidebarOpen(false)
+    await wait(1000)
+    toggleEnableScroll()
   }
 
   /**
@@ -68,12 +65,12 @@ export const Layout: React.FC<IProps> = ({ children, isThreeColumn }) => {
               <div className="flex flex-col flex-1 order-2 min-w-0 overflow-hidden">
                 {/* header */}
                 <header className="lg:hidden">
-                  <div className="flex items-center justify-between mx-4 border-b border-gray-200 py-1.5">
+                  <div className="flex items-center justify-between mx-4 border-b border-gray-300 py-1.5">
                     {logo}
                     <div>
                       <button
                         type="button"
-                        className="inline-flex items-center justify-center w-12 h-12 -mr-3 text-black rounded-md"
+                        className="inline-flex items-center justify-center w-12 h-12 -mr-3 text-black"
                         onClick={openSidebar}
                       >
                         <span className="sr-only">Open sidebar</span>
@@ -85,20 +82,10 @@ export const Layout: React.FC<IProps> = ({ children, isThreeColumn }) => {
                 <div className="relative flex flex-1 overflow-hidden">
                   {/* main */}
                   <main className="relative flex-1 overflow-y-auto focus:outline-none">
-                    <div className="absolute inset-0 px-4 py-6 sm:px-6 lg:px-8">
-                      <div className="h-full">
-                        <div>{children}</div>
-                      </div>
+                    <div className="absolute inset-0 px-4 py-8 mx-auto md:max-w-7xl sm:px-6 lg:px-8">
+                      <div className="h-full">{children}</div>
                     </div>
                   </main>
-                  {isThreeColumn && (
-                    // side-menu-secondary
-                    <aside className="relative flex-shrink-0 hidden border-l border-gray-200 xl:flex xl:flex-col w-96">
-                      <div className="absolute inset-0 px-4 py-6 sm:px-6 lg:px-8">
-                        <div className="h-full border-4 border-gray-200 border-dashed rounded-lg"></div>
-                      </div>
-                    </aside>
-                  )}
                 </div>
               </div>
               {/* side-menu-primary */}

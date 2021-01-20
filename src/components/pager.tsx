@@ -1,7 +1,7 @@
-import { Link } from "gatsby"
 import React from "react"
 
 import { pathObject } from "../constants/constants"
+import { A } from "./a"
 import { IconChevronLeft } from "./icons/icon-chevron-left"
 import { IconChevronRight } from "./icons/icon-chevron-right"
 
@@ -28,8 +28,8 @@ export const Pager = ({ pageContext }: any) => {
       </p>
       <div className="flex justify-end flex-1">
         {previousPagePath && (
-          <Link
-            to={
+          <A
+            path={
               previousPagePath === pathObject.home.path
                 ? previousPagePath
                 : `${previousPagePath}/`
@@ -38,16 +38,16 @@ export const Pager = ({ pageContext }: any) => {
           >
             <IconChevronLeft className="w-5 h-5 mr-3" ariaHidden={true} />
             前へ
-          </Link>
+          </A>
         )}
         {nextPagePath && (
-          <Link
-            to={`${nextPagePath}/`}
+          <A
+            path={`${nextPagePath}/`}
             className="inline-flex items-center p-2 ml-3 text-sm font-medium text-black"
           >
             次へ
             <IconChevronRight className="w-5 h-5 ml-3" ariaHidden={true} />
-          </Link>
+          </A>
         )}
       </div>
     </nav>

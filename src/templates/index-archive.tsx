@@ -20,7 +20,7 @@ const IndexArchive: React.FC<IProps> = ({ data, pageContext }) => {
 
   if (posts.length === 0) {
     return (
-      <Layout isThreeColumn={false}>
+      <Layout>
         <Seo pageTitle={pageTitle} />
         <Hero />
         <p>No blog posts found. Add markdown posts.</p>
@@ -29,7 +29,7 @@ const IndexArchive: React.FC<IProps> = ({ data, pageContext }) => {
   }
 
   return (
-    <Layout isThreeColumn={false}>
+    <Layout>
       <Seo pageTitle={pageTitle} />
       <Hero />
       <ArticleList articleList={posts} pageContext={pageContext} />

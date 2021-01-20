@@ -17,6 +17,11 @@ module.exports = {
         violet: colors.violet,
         fuchsia: colors.fuchsia,
         rose: colors.rose,
+        twitter: "#1da1f2",
+        facebook: "#1877f2",
+        hatena: "#00a4de",
+        pocket: "#d81b60",
+        line: "#00c300",
       },
       fontFamily: {
         main: [
@@ -46,6 +51,25 @@ module.exports = {
         ],
         accent: ["Adumu"],
       },
+      boxShadow: {
+        custom: "0 0 10px 3px rgba(0, 0, 0, 0.2)",
+      },
+      typography: (theme) => {
+        return {
+          DEFAULT: {
+            css: {
+              a: {
+                color: theme("colors.cyan.600"),
+              },
+            },
+          },
+        }
+      },
+      backgroundImage: () => {
+        return {
+          bookmark: "url('/images/icon-bookmark.svg')",
+        }
+      },
     },
     screens: {
       xs: "375px",
@@ -55,6 +79,12 @@ module.exports = {
       "-10": "-10",
     },
   },
-  variants: {},
-  plugins: [],
+  variants: {
+    extend: {
+      opacity: ["disabled"],
+      backgroundColor: ["disabled"],
+      cursor: ["disabled"],
+    },
+  },
+  plugins: [require("@tailwindcss/typography")],
 }

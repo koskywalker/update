@@ -10,7 +10,7 @@ export const authorData = {
   description: [
     "フリーランスのフロントエンドエンジニア.",
     "普段は個人やチームでのプロダクト開発, ブログ運営をメインに活動しています. たまに勉強会も開いています.",
-    "一人のクリエイターとして, 一人の人間として日々の体験をもとに感じたことや考えたことなどを発信します！",
+    "現在, ゲームに関するプロダクトを仲間とともに開発しています！",
   ],
   social: {
     github: {
@@ -27,10 +27,10 @@ export const authorData = {
 }
 
 export const heroSentenceList = [
-  'I&#39;m <span class="text-cyan-400">A Developer</span>.',
-  'I&#39;m <span class="text-rose-400">A Designer</span>.',
-  'I&#39;m <span class="text-emerald-400">A Blogger</span>.',
-  'I&#39;m <span class="text-yellow-400">An SEO Expert</span>.',
+  'I&#39;m <span class="text-cyan-500">A Developer</span>.',
+  'I&#39;m <span class="text-rose-500">A Designer</span>.',
+  'I&#39;m <span class="text-emerald-500">A Blogger</span>.',
+  'I&#39;m <span class="text-yellow-500">An SEO Expert</span>.',
 ]
 
 export const pathObject = {

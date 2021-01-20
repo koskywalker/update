@@ -1,15 +1,22 @@
-import { graphql, Link } from "gatsby"
+import { graphql } from "gatsby"
 import React from "react"
 
 import { Bio } from "../components/bio"
+import { Breadcrumb } from "../components/breadcrumb"
+import { ButtonLink } from "../components/button-link"
 import { Layout } from "../components/layout"
+import { PublishDate } from "../components/publish-date"
 import { Seo } from "../components/seo"
+import { ShareButtons } from "../components/share-buttons"
+import { TimeToRead } from "../components/time-to-read"
+import { UpdateDate } from "../components/update-date"
 
 type IProps = {
   data: GatsbyTypes.PostBySlugQuery
+  location: Location
 }
 
-const BlogPost: React.FC<IProps> = ({ data }) => {
+const BlogPost: React.FC<IProps> = ({ data, location }) => {
   const post = data.contentfulBlogPost
 
   const title = post?.title ?? ""
@@ -17,51 +24,108 @@ const BlogPost: React.FC<IProps> = ({ data }) => {
   const publishDate = post?.publishDate ?? ""
   const updateDate = post?.updatedAt ?? ""
   const timeToRead = post?.body?.childMarkdownRemark?.timeToRead ?? ""
-  const authorName = post?.author?.name ?? ""
   const tags = post?.tags ?? []
   const image = {
     src: post?.heroImage?.file?.url ?? "",
     alt: post?.heroImage?.description ?? "",
   }
   const bodyHtml = post?.body?.childMarkdownRemark?.html ?? ""
+  const toc = post?.body?.childMarkdownRemark?.tableOfContents ?? ""
+
+  const articleMetaClassName = "text-gray-400"
+  const articleMetaList = [
+    {
+      name: "publishDate",
+      content: <PublishDate date={publishDate} color={articleMetaClassName} />,
+    },
+    {
+      name: "updateDate",
+      content: <UpdateDate date={updateDate} color={articleMetaClassName} />,
+    },
+    {
+      name: "timeToRead",
+      content: (
+        <TimeToRead time={timeToRead.toString()} color={articleMetaClassName} />
+      ),
+    },
+  ]
 
   return (
-    <Layout isThreeColumn={true}>
+    <Layout>
       <Seo pageTitle={title} pageDescription={description} />
+      <Breadcrumb currentPageTitle={title} />
       <article
-        className="blog-post"
+        className="flex pb-8 my-8"
         itemScope
         itemType="http://schema.org/Article"
       >
-        <header>
-          <h1 itemProp="headline">{title}</h1>
-          <p>{publishDate}</p>
-          <p>{updateDate}</p>
-          <p>{timeToRead}分</p>
-          <p>{authorName}</p>
-          {tags.length && (
-            <ul>
-              {tags.map((tag, index) => {
-                return (
-                  <li key={index}>
-                    <Link to={`/tags/${tag?.slug}` || ""}>{tag?.name}</Link>
-                  </li>
-                )
-              })}
-            </ul>
-          )}
-          <img src={image.src} alt={image.alt} />
-        </header>
-        <section
-          dangerouslySetInnerHTML={{
-            __html: bodyHtml,
-          }}
-          itemProp="articleBody"
-        />
-        <hr />
-        <footer>
-          <Bio />
-        </footer>
+        <div className="overflow-hidden bg-white shadow-custom">
+          <div className="px-4 pt-8 sm:px-6">
+            <h1
+              className="text-2xl font-bold leading-7 sm:text-3xl"
+              itemProp="headline"
+            >
+              {title}
+            </h1>
+            <div className="mt-4">
+              <div className="flex flex-wrap -m-1">
+                {articleMetaList.map((item) => {
+                  return (
+                    <div key={item.name} className="p-1">
+                      {item.content}
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+            {tags.length && (
+              <div className="pt-4 -m-1">
+                {tags.map((tag, index) => {
+                  return (
+                    <ButtonLink
+                      key={index}
+                      path={`/tags/${tag?.slug}/`}
+                      size="sm"
+                      className="m-1"
+                    >
+                      {tag?.name || ""}
+                    </ButtonLink>
+                  )
+                })}
+              </div>
+            )}
+            <div className="mt-6">
+              <img src={image.src} alt={image.alt} />
+            </div>
+          </div>
+          <div
+            className="max-w-full px-4 pt-8 sm:px-6 prose"
+            dangerouslySetInnerHTML={{
+              __html: bodyHtml,
+            }}
+            itemProp="articleBody"
+          ></div>
+          <div className="px-4 pt-16 sm:px-6">
+            <ShareButtons location={location} title={title} />
+          </div>
+          <div className="px-4 py-16 sm:px-6">
+            <Bio />
+          </div>
+        </div>
+        <aside className="relative flex-shrink-0 hidden xl:flex xl:flex-col w-96">
+          <div className="absolute inset-0 ml-8">
+            <div className="h-full">
+              <div className="sticky max-w-full px-6 py-8 bg-white shadow-custom top-8 prose">
+                <div
+                  className="toc toc-side"
+                  dangerouslySetInnerHTML={{
+                    __html: toc,
+                  }}
+                ></div>
+              </div>
+            </div>
+          </div>
+        </aside>
       </article>
     </Layout>
   )
@@ -75,12 +139,12 @@ export const pageQuery = graphql`
     contentfulBlogPost(slug: { eq: $slug }) {
       slug
       title
-      updatedAt(formatString: "YYYY/MM/DD")
+      updatedAt
       tags {
         slug
         name
       }
-      publishDate(formatString: "YYYY/MM/DD")
+      publishDate
       heroImage {
         description
         file {
@@ -93,11 +157,9 @@ export const pageQuery = graphql`
       body {
         childMarkdownRemark {
           timeToRead
+          tableOfContents(absolute: false, pathToSlugField: "frontmatter.title")
           html
         }
-      }
-      author {
-        name
       }
     }
   }

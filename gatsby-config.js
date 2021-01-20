@@ -9,7 +9,8 @@ module.exports = {
       resolve: "gatsby-source-contentful",
       options: {
         spaceId: process.env.CONTENTFUL_SPACE_ID,
-        accessToken: process.env.CONTENTFUL_CONTENT_DELIVERY_API_ACCESS_TOKEN,
+        accessToken: process.env.CONTENTFUL_CONTENT_PREVIEW_API_ACCESS_TOKEN,
+        host: process.env.CONTENTFUL_HOST_PREVIEW,
       },
     },
     {
@@ -41,7 +42,22 @@ module.exports = {
               rel: "nofollow",
             },
           },
+          {
+            resolve: "gatsby-remark-table-of-contents",
+            options: {
+              exclude: "",
+              tight: false,
+              ordered: false,
+              fromHeading: 2,
+              toHeading: 3,
+              className: "toc",
+            },
+          },
+          {
+            resolve: "gatsby-remark-autolink-headers",
+          },
           "gatsby-remark-prismjs",
+          "gatsby-remark-responsive-iframe",
         ],
       },
     },
@@ -55,7 +71,7 @@ module.exports = {
         short_name: "UPDATE",
         start_url: "/",
         background_color: "#ffffff",
-        theme_color: "#663399",
+        theme_color: "#06b6d4",
         display: "minimal-ui",
         icon: "./src/images/icon-update.png",
       },
