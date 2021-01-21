@@ -4,11 +4,15 @@ import { Breadcrumb } from "../components/breadcrumb"
 import { Layout } from "../components/layout"
 import { Seo } from "../components/seo"
 
-const NotFoundPage: React.FC = () => {
+type IProps = {
+  location: Location
+}
+
+const NotFoundPage: React.FC<IProps> = ({ location }) => {
   const pageTitle = "404: Not Found"
   return (
-    <Layout>
-      <Seo pageTitle={pageTitle} />
+    <Layout location={location}>
+      <Seo pageTitle={pageTitle} location={location} />
       <Breadcrumb currentPageTitle={pageTitle} />
       <div className="py-8">
         <div className="px-4 py-8 overflow-hidden bg-white shadow-custom sm:px-6 lg:px-8 lg:py-16">

@@ -6,15 +6,13 @@ import { Hero } from "../components/hero"
 import { Layout } from "../components/layout"
 import { Seo } from "../components/seo"
 
-type IContainerProps = {
+type IProps = {
   data: GatsbyTypes.TagsArchiveQuery
-}
-
-type IProps = IContainerProps & {
   pageContext: any
+  location: Location
 }
 
-const TagsArchive: React.FC<IProps> = ({ data, pageContext }) => {
+const TagsArchive: React.FC<IProps> = ({ data, pageContext, location }) => {
   const posts = data.allContentfulBlogPost.edges
   const { tagName } = pageContext
 
@@ -22,8 +20,8 @@ const TagsArchive: React.FC<IProps> = ({ data, pageContext }) => {
 
   if (posts.length === 0) {
     return (
-      <Layout>
-        <Seo pageTitle={pageTitle} />
+      <Layout location={location}>
+        <Seo pageTitle={pageTitle} location={location} />
         <Hero />
         <p>No blog posts found. Add markdown posts.</p>
       </Layout>
@@ -31,8 +29,8 @@ const TagsArchive: React.FC<IProps> = ({ data, pageContext }) => {
   }
 
   return (
-    <Layout>
-      <Seo pageTitle={pageTitle} />
+    <Layout location={location}>
+      <Seo pageTitle={pageTitle} location={location} />
       <Hero />
       <h1
         className="text-2xl font-bold leading-7 sm:text-3xl"

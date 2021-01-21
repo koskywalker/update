@@ -51,8 +51,16 @@ const BlogPost: React.FC<IProps> = ({ data, location }) => {
   ]
 
   return (
-    <Layout>
-      <Seo pageTitle={title} pageDescription={description} />
+    <Layout location={location}>
+      <Seo
+        pageTitle={title}
+        pageDescription={description}
+        pageImage={image.src}
+        type="article"
+        publishDate={publishDate}
+        updateDate={updateDate}
+        location={location}
+      />
       <Breadcrumb currentPageTitle={title} />
       <article
         className="flex pb-8 my-8"
