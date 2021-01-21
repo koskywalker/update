@@ -65,19 +65,17 @@ export const Seo: React.FC<IProps> = ({
     },
   }
 
-  const jsonLdBaseConfig = [
-    {
-      "@context": "http://schema.org",
-      "@type": pageType,
-      inLanguage: "ja",
-      url: pageUrl,
-      name: pageTitleFormatted,
-      author,
-      publisher,
-      image: pageImageFormatted,
-      description: pageDescriptionFormatted,
-    },
-  ]
+  const jsonLdBaseConfig = {
+    "@context": "http://schema.org",
+    "@type": pageType,
+    inLanguage: "ja",
+    url: pageUrl,
+    name: pageTitleFormatted,
+    author,
+    publisher,
+    image: pageImageFormatted,
+    description: pageDescriptionFormatted,
+  }
 
   const jsonLdBlogConfig = {
     "@context": "http://schema.org",
