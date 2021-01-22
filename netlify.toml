@@ -2,7 +2,7 @@
 command = "gatsby build"
 
 [context.production]
-command = "BASE_URL=$URL gatsby build"
+command = "GATSBY_BASE_URL=$URL gatsby build"
 
 [context.deploy-preview]
-command = "BASE_URL=$DEPLOY_PRIME_URL gatsby build"
+command = "GATSBY_BASE_URL=$DEPLOY_PRIME_URL gatsby build"
