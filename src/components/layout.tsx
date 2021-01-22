@@ -1,4 +1,3 @@
-import { Location } from "@reach/router"
 import React, { useCallback, useEffect, useState } from "react"
 
 import { toggleEnableScroll, wait } from "../utils/utils"
@@ -7,7 +6,21 @@ import { LogoLink } from "./logo-link"
 import { Particles } from "./particles"
 import { Sidebar } from "./sidebar"
 
-export const Layout: React.FC = ({ children }) => {
+type IProps = {
+  location: Location
+}
+
+export const Layout: React.FC<IProps> = ({ children, location }) => {
+  const rootPath = `${__PATH_PREFIX__}/`
+  const isRoot = location.pathname === rootPath
+  const logo = isRoot ? (
+    <h1>
+      <LogoLink className="w-auto h-8 sm:h-10" color="black" />
+    </h1>
+  ) : (
+    <LogoLink className="w-auto h-8 sm:h-10" color="black" />
+  )
+
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
   /**
@@ -45,59 +58,43 @@ export const Layout: React.FC = ({ children }) => {
   }, [keydownEscAndCloseSidebar])
 
   return (
-    <Location>
-      {({ location }) => {
-        const rootPath = `${__PATH_PREFIX__}/`
-        const isRoot = location.pathname === rootPath
-        const logo = isRoot ? (
-          <h1>
-            <LogoLink className="w-auto h-8 sm:h-10" color="black" />
-          </h1>
-        ) : (
-          <LogoLink className="w-auto h-8 sm:h-10" color="black" />
-        )
-
-        return (
-          <>
-            <Particles />
-            <div className="flex h-screen overflow-hidden">
-              {/* main */}
-              <div className="flex flex-col flex-1 order-2 min-w-0 overflow-hidden">
-                {/* header */}
-                <header className="lg:hidden">
-                  <div className="flex items-center justify-between mx-4 border-b border-gray-300 py-1.5">
-                    {logo}
-                    <div>
-                      <button
-                        type="button"
-                        className="inline-flex items-center justify-center w-12 h-12 -mr-3 text-black"
-                        onClick={openSidebar}
-                      >
-                        <span className="sr-only">Open sidebar</span>
-                        <IconMenu className="w-6 h-6" ariaHidden={true} />
-                      </button>
-                    </div>
-                  </div>
-                </header>
-                <div className="relative flex flex-1 overflow-hidden">
-                  {/* main */}
-                  <main className="relative flex-1 overflow-y-auto focus:outline-none">
-                    <div className="absolute inset-0 px-4 py-8 mx-auto md:max-w-7xl sm:px-6 lg:px-8">
-                      <div className="h-full">{children}</div>
-                    </div>
-                  </main>
-                </div>
+    <>
+      <Particles />
+      <div className="flex h-screen overflow-hidden">
+        {/* main */}
+        <div className="flex flex-col flex-1 order-2 min-w-0 overflow-hidden">
+          {/* header */}
+          <header className="lg:hidden">
+            <div className="flex items-center justify-between mx-4 border-b border-gray-300 py-1.5">
+              {logo}
+              <div>
+                <button
+                  type="button"
+                  className="inline-flex items-center justify-center w-12 h-12 -mr-3 text-black"
+                  onClick={openSidebar}
+                >
+                  <span className="sr-only">Open sidebar</span>
+                  <IconMenu className="w-6 h-6" ariaHidden={true} />
+                </button>
               </div>
-              {/* side-menu-primary */}
-              <Sidebar
-                location={location}
-                isSidebarOpen={isSidebarOpen}
-                closeSidebar={closeSidebar}
-              />
             </div>
-          </>
-        )
-      }}
-    </Location>
+          </header>
+          <div className="relative flex flex-1 overflow-hidden">
+            {/* main */}
+            <main className="relative flex-1 overflow-y-auto focus:outline-none">
+              <div className="absolute inset-0 px-4 py-8 mx-auto md:max-w-7xl sm:px-6 lg:px-8">
+                <div className="h-full">{children}</div>
+              </div>
+            </main>
+          </div>
+        </div>
+        {/* side-menu-primary */}
+        <Sidebar
+          location={location}
+          isSidebarOpen={isSidebarOpen}
+          closeSidebar={closeSidebar}
+        />
+      </div>
+    </>
   )
 }

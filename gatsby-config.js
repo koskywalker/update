@@ -2,7 +2,7 @@ require("dotenv").config({ path: ".env" })
 
 module.exports = {
   siteMetadata: {
-    siteUrl: process.env.BASE_URL,
+    siteUrl: process.env.GATSBY_BASE_URL,
   },
   plugins: [
     {
@@ -63,7 +63,6 @@ module.exports = {
     },
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-sitemap",
-    "gatsby-plugin-offline",
     {
       resolve: "gatsby-plugin-manifest",
       options: {
@@ -76,6 +75,7 @@ module.exports = {
         icon: "./src/images/icon-update.png",
       },
     },
+    "gatsby-plugin-offline",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     {

@@ -9,9 +9,10 @@ import { Seo } from "../components/seo"
 
 type IProps = {
   data: GatsbyTypes.PortfolioQuery
+  location: Location
 }
 
-const Portfolio: React.FC<IProps> = ({ data }) => {
+const Portfolio: React.FC<IProps> = ({ data, location }) => {
   const portfolioImageUpdate = data.imageUpdate?.childImageSharp?.fluid
   const portfolioImageCopilin = data.imageCopilin?.childImageSharp?.fluid
 
@@ -52,8 +53,8 @@ const Portfolio: React.FC<IProps> = ({ data }) => {
   ]
 
   return (
-    <Layout>
-      <Seo pageTitle={pageTitle} />
+    <Layout location={location}>
+      <Seo pageTitle={pageTitle} location={location} />
       <Breadcrumb currentPageTitle={pageTitle} />
       <div className="py-8">
         <div className="px-4 py-8 overflow-hidden bg-white shadow-custom sm:px-6 lg:px-8 lg:py-16">

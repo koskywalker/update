@@ -23,7 +23,11 @@ const defaultValues = {
   message: "",
 }
 
-const Contact: React.FC = () => {
+type IProps = {
+  location: Location
+}
+
+const Contact: React.FC<IProps> = ({ location }) => {
   const pageTitle = "お問い合わせ"
 
   const {
@@ -57,8 +61,8 @@ const Contact: React.FC = () => {
   }
 
   return (
-    <Layout>
-      <Seo pageTitle={pageTitle} />
+    <Layout location={location}>
+      <Seo pageTitle={pageTitle} location={location} />
       <Breadcrumb currentPageTitle={pageTitle} />
       <div className="py-8">
         <div className="px-4 py-8 overflow-hidden bg-white shadow-custom sm:px-6 lg:px-8 lg:py-16">

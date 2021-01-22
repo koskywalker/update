@@ -6,22 +6,20 @@ import { Hero } from "../components/hero"
 import { Layout } from "../components/layout"
 import { Seo } from "../components/seo"
 
-type IContainerProps = {
+type IProps = {
   data: GatsbyTypes.IndexArchiveQuery
-}
-
-type IProps = IContainerProps & {
   pageContext: any
+  location: Location
 }
 
-const IndexArchive: React.FC<IProps> = ({ data, pageContext }) => {
+const IndexArchive: React.FC<IProps> = ({ data, pageContext, location }) => {
   const posts = data.allContentfulBlogPost.edges
   const pageTitle = "フロントエンドエンジニアこうすけのクリエイターブログ"
 
   if (posts.length === 0) {
     return (
-      <Layout>
-        <Seo pageTitle={pageTitle} />
+      <Layout location={location}>
+        <Seo pageTitle={pageTitle} location={location} />
         <Hero />
         <p>No blog posts found. Add markdown posts.</p>
       </Layout>
@@ -29,8 +27,8 @@ const IndexArchive: React.FC<IProps> = ({ data, pageContext }) => {
   }
 
   return (
-    <Layout>
-      <Seo pageTitle={pageTitle} />
+    <Layout location={location}>
+      <Seo pageTitle={pageTitle} location={location} />
       <Hero />
       <ArticleList articleList={posts} pageContext={pageContext} />
     </Layout>
