@@ -31,7 +31,7 @@ export const Seo: React.FC<IProps> = ({
   const siteUrl = process.env.GATSBY_BASE_URL
   const siteName = siteData.title
   const siteDescription = siteData.description
-  const siteIconUrl = `${siteUrl}images/icon-update.png`
+  const siteIconUrl = `${siteUrl}/images/icon-update.png`
 
   const pageUrl = location.href
   const pageTitleFormatted = `${pageTitle} - ${siteData.title}`
