@@ -2,7 +2,7 @@ require("dotenv").config({ path: ".env" })
 
 module.exports = {
   siteMetadata: {
-    siteUrl: process.env.BASE_URL,
+    siteUrl: process.env.GATSBY_BASE_URL,
   },
   plugins: [
     {
