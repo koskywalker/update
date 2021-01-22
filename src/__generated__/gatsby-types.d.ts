@@ -6455,11 +6455,6 @@ type TagsArchiveQuery = { readonly allContentfulBlogPost: { readonly edges: Read
         )>, readonly tags: Maybe<ReadonlyArray<Maybe<Pick<ContentfulTag, 'name' | 'slug'>>>> }
       ) }> } };
 
-type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
-
 type GatsbyImageSharpFluidFragment = Pick<ImageSharpFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
 
 type PortfolioQueryVariables = Exact<{ [key: string]: never; }>;
@@ -6479,6 +6474,11 @@ type PostBySlugQuery = { readonly contentfulBlogPost: Maybe<(
       & { readonly file: Maybe<Pick<ContentfulAssetFile, 'url'>> }
     )>, readonly description: Maybe<Pick<contentfulBlogPostDescriptionTextNode, 'description'>>, readonly body: Maybe<{ readonly childMarkdownRemark: Maybe<Pick<MarkdownRemark, 'timeToRead' | 'tableOfContents' | 'html'>> }> }
   )> };
+
+type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
 
 type BioQueryVariables = Exact<{ [key: string]: never; }>;
 

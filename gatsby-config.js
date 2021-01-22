@@ -63,19 +63,19 @@ module.exports = {
     },
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-sitemap",
-    {
-      resolve: "gatsby-plugin-manifest",
-      options: {
-        name: "UPDATE",
-        short_name: "UPDATE",
-        start_url: "/",
-        background_color: "#ffffff",
-        theme_color: "#06b6d4",
-        display: "minimal-ui",
-        icon: "./src/images/icon-update.png",
-      },
-    },
-    "gatsby-plugin-offline",
+    // {
+    //   resolve: "gatsby-plugin-manifest",
+    //   options: {
+    //     name: "UPDATE",
+    //     short_name: "UPDATE",
+    //     start_url: "/",
+    //     background_color: "#ffffff",
+    //     theme_color: "#06b6d4",
+    //     display: "minimal-ui",
+    //     icon: "./src/images/icon-update.png",
+    //   },
+    // },
+    // "gatsby-plugin-offline",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     {
