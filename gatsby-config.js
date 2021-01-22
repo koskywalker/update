@@ -56,7 +56,12 @@ module.exports = {
           {
             resolve: "gatsby-remark-autolink-headers",
           },
-          "gatsby-remark-prismjs",
+          {
+            resolve: "gatsby-remark-prismjs",
+            options: {
+              inlineCodeMarker: null,
+            },
+          },
           "gatsby-remark-responsive-iframe",
         ],
       },
