@@ -63,7 +63,6 @@ module.exports = {
     },
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-sitemap",
-    "gatsby-plugin-offline",
     {
       resolve: "gatsby-plugin-manifest",
       options: {
@@ -73,9 +72,10 @@ module.exports = {
         background_color: "#ffffff",
         theme_color: "#06b6d4",
         display: "minimal-ui",
-        icon: "./src/images/icon-update.png",
+        icon: "images/icon-update.png",
       },
     },
+    "gatsby-plugin-offline",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     {
