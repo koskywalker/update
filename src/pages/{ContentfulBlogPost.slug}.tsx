@@ -62,17 +62,10 @@ const BlogPost: React.FC<IProps> = ({ data, location }) => {
         location={location}
       />
       <Breadcrumb currentPageTitle={title} />
-      <article
-        className="flex pb-8 my-8"
-        itemScope
-        itemType="http://schema.org/Article"
-      >
+      <article className="flex pb-8 my-8">
         <div className="overflow-hidden bg-white shadow-custom">
           <div className="px-4 pt-8 sm:px-6">
-            <h1
-              className="text-2xl font-bold leading-7 sm:text-3xl"
-              itemProp="headline"
-            >
+            <h1 className="text-2xl font-bold leading-7 sm:text-3xl">
               {title}
             </h1>
             <div className="mt-4">
@@ -111,7 +104,6 @@ const BlogPost: React.FC<IProps> = ({ data, location }) => {
             dangerouslySetInnerHTML={{
               __html: bodyHtml,
             }}
-            itemProp="articleBody"
           ></div>
           <div className="px-4 pt-16 sm:px-6">
             <ShareButtons location={location} title={title} />

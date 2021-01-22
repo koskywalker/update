@@ -32,12 +32,7 @@ const TagsArchive: React.FC<IProps> = ({ data, pageContext, location }) => {
     <Layout location={location}>
       <Seo pageTitle={pageTitle} location={location} />
       <Hero />
-      <h1
-        className="text-2xl font-bold leading-7 sm:text-3xl"
-        itemProp="headline"
-      >
-        {pageTitle}
-      </h1>
+      <h1 className="text-2xl font-bold leading-7 sm:text-3xl">{pageTitle}</h1>
       <div className="mt-8">
         <ArticleList articleList={posts} pageContext={pageContext} />
       </div>

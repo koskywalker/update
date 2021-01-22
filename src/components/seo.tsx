@@ -68,10 +68,10 @@ export const Seo: React.FC<IProps> = ({
   const jsonLdBaseConfig = {
     "@context": "http://schema.org",
     "@type": pageType,
+    name: siteName,
     inLanguage: "ja",
     url: pageUrl,
-    name: pageTitleFormatted,
-    author,
+    headline: pageTitleFormatted,
     publisher,
     image: pageImageFormatted,
     description: pageDescriptionFormatted,
@@ -80,28 +80,21 @@ export const Seo: React.FC<IProps> = ({
   const jsonLdBlogConfig = {
     "@context": "http://schema.org",
     "@type": "BlogPosting",
-    url: pageUrl,
-    name: pageTitleFormatted,
-    headline: pageTitleFormatted,
-    image: {
-      "@type": "ImageObject",
-      url: pageImageFormatted,
-    },
-    description: pageDescriptionFormatted,
-    dataPublished: publishDate,
-    dateModified: updateDate,
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": pageUrl,
     },
+    headline: pageTitleFormatted,
+    description: pageDescriptionFormatted,
+    image: pageImageFormatted,
+    dataPublished: publishDate,
+    dateModified: updateDate,
     author,
     publisher,
   }
 
   const jsonLdConfigList =
-    type === "article"
-      ? [jsonLdBaseConfig, jsonLdBlogConfig]
-      : [jsonLdBaseConfig]
+    type === "article" ? jsonLdBlogConfig : jsonLdBaseConfig
 
   return (
     <Helmet
