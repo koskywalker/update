@@ -86,5 +86,5 @@ module.exports = {
       cursor: ["disabled", "hover"],
     },
   },
-  plugins: [require("@tailwindcss/typography")],
+  // plugins: [require("@tailwindcss/typography")],
 }
