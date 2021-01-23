@@ -80,11 +80,11 @@ module.exports = {
     },
   },
   variants: {
-    extend: {
-      opacity: ["responsive", "disabled"],
-      backgroundColor: ["responsive", "disabled", "hover", "focus"],
-      cursor: ["responsive", "disabled", "hover"],
-    },
+    // extend: {
+    //   opacity: ["disabled"],
+    //   backgroundColor: ["disabled"],
+    //   cursor: ["disabled"],
+    // },
   },
   plugins: [require("@tailwindcss/typography")],
 }
