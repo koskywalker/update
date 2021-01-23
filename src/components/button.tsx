@@ -44,7 +44,7 @@ export const Button: React.FC<IProps> = ({
     <button
       type={type}
       disabled={disabled}
-      className={`inline-flex items-center justify-center font-bold text-white disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-offset-2 ${sizeClassName} ${statusClassName} ${colorClassName} ${className}`}
+      className={`inline-flex items-center justify-center font-bold text-white disabled:opacity-50 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 ${sizeClassName} ${statusClassName} ${colorClassName} ${className}`}
     >
       {text}
     </button>
