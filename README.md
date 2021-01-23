@@ -1,86 +1,100 @@
-<!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
-<p align="center">
-  <a href="https://www.gatsbyjs.com">
-    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
-  </a>
-</p>
 <h1 align="center">
-  Gatsby's blog starter
+  <a href="https://upd.world">
+    <img alt="UPDATE" src="https://upd.world/images/logo.svg" width="320" />
+  </a>
 </h1>
 
-Kick off your project with this blog boilerplate. This starter ships with the main Gatsby configuration files you might need to get up and running blazing fast with the blazing fast app generator for React.
+Gatsby x TypeScript x Contentful x Vercel を使用した Jamstack 構成のブログ.
 
-_Have another more specific idea? You may want to check out our vibrant collection of [official and community-created starters](https://www.gatsbyjs.com/docs/gatsby-starters/)._
+- アプリケーション : Gatsby x TypeScript x Tailwind CSS
+- コンテンツ管理 : Contentful
+- ホスティング : Vercel
 
-## 🚀 Quick start
+ブログ URL : [https://upd.world/](https://upd.world/)
 
-1.  **Create a Gatsby site.**
+## 🌏 環境構築手順
 
-    Use the Gatsby CLI to create a new site, specifying the blog starter.
+### 1. yarn をインストール
 
-    ```shell
-    # create a new Gatsby site using the blog starter
-    gatsby new my-blog-starter https://github.com/gatsbyjs/gatsby-starter-blog
-    ```
+``` shell
+npm install --global yarn
+```
 
-1.  **Start developing.**
+### 2. リポジトリを clone
 
-    Navigate into your new site’s directory and start it up.
+当リポジトリを clone する.
 
-    ```shell
-    cd my-blog-starter/
-    gatsby develop
-    ```
+### 3. npm package をインストール
 
-1.  **Open the source code and start editing!**
+``` shell
+cd update/
+yarn install
+```
 
-    Your site is now running at `http://localhost:8000`!
+### 4. 開発サーバーを起動
 
-    _Note: You'll also see a second link: _`http://localhost:8000/___graphql`_. This is a tool you can use to experiment with querying your data. Learn more about using this tool in the [Gatsby tutorial](https://www.gatsbyjs.com/tutorial/part-five/#introducing-graphiql)._
+``` shell
+yarn develop
+```
 
-    Open the `my-blog-starter` directory in your code editor of choice and edit `src/pages/index.js`. Save your changes and the browser will update in real time!
+## 🚀 デプロイ手順
 
-## 🧐 What's inside?
+### 開発環境へのデプロイ
 
-A quick look at the top-level files and directories you'll see in a Gatsby project.
+ローカルで Git の main ブランチから開発用のブランチを切り, リモートに push することで自動的に開発環境にデプロイされる.
 
-    .
-    ├── node_modules
-    ├── src
-    ├── .gitignore
-    ├── .prettierrc
-    ├── gatsby-browser.js
-    ├── gatsby-config.js
-    ├── gatsby-node.js
-    ├── gatsby-ssr.js
-    ├── LICENSE
-    ├── package-lock.json
-    ├── package.json
-    └── README.md
+その後も, ローカルで commit -> push してリモートに反映させることで, 都度開発環境にデプロイされる.
 
-1.  **`/node_modules`**: This directory contains all of the modules of code that your project depends on (npm packages) are automatically installed.
+### 本番環境へのデプロイ
 
-2.  **`/src`**: This directory will contain all of the code related to what you will see on the front-end of your site (what you see in the browser) such as your site header or a page template. `src` is a convention for “source code”.
+GitHub 上で, 開発用のブランチ -> main ブランチへのプルリクエストを作成し, main ブランチにマージすることで本番環境へのデプロイが走る.
 
-3.  **`.gitignore`**: This file tells git which files it should not track / not maintain a version history for.
+## 🎄 ファイル構成
 
-4.  **`.prettierrc`**: This is a configuration file for [Prettier](https://prettier.io/). Prettier is a tool to help keep the formatting of your code consistent.
+``` shell
+.
+├── .vscode
+├── src
+├── static
+├── .editorconfig
+├── .env.sample
+├── .eslintignore
+├── .eslintrc.js
+├── .gitignore
+├── .prettierignore
+├── .prettierrc.js
+├── .stylelintrc.js
+├── gatsby-browser.js
+├── gatsby-config.js
+├── gatsby-node.js
+├── package.json
+├── postcss.config.js
+├── README.md
+├── tailwind.config.js
+├── tsconfig.json
+└── yarn.lock
+```
 
-5.  **`gatsby-browser.js`**: This file is where Gatsby expects to find any usage of the [Gatsby browser APIs](https://www.gatsbyjs.com/docs/browser-apis/) (if any). These allow customization/extension of default Gatsby settings affecting the browser.
-
-6.  **`gatsby-config.js`**: This is the main configuration file for a Gatsby site. This is where you can specify information about your site (metadata) like the site title and description, which Gatsby plugins you’d like to include, etc. (Check out the [config docs](https://www.gatsbyjs.com/docs/gatsby-config/) for more detail).
-
-7.  **`gatsby-node.js`**: This file is where Gatsby expects to find any usage of the [Gatsby Node APIs](https://www.gatsbyjs.com/docs/node-apis/) (if any). These allow customization/extension of default Gatsby settings affecting pieces of the site build process.
-
-8.  **`gatsby-ssr.js`**: This file is where Gatsby expects to find any usage of the [Gatsby server-side rendering APIs](https://www.gatsbyjs.com/docs/ssr-apis/) (if any). These allow customization of default Gatsby settings affecting server-side rendering.
-
-9.  **`LICENSE`**: This Gatsby starter is licensed under the 0BSD license. This means that you can see this file as a placeholder and replace it with your own license.
-
-10. **`package-lock.json`** (See `package.json` below, first). This is an automatically generated file based on the exact versions of your npm dependencies that were installed for your project. **(You won’t change this file directly).**
-
-11. **`package.json`**: A manifest file for Node.js projects, which includes things like metadata (the project’s name, author, etc). This manifest is how npm knows which packages to install for your project.
-
-12. **`README.md`**: A text file containing useful reference information about your project.
+1. **`/.vscode`**: VS Code の設定.
+2. **`/src`**: アプリケーションのメインのソースコードがこのディレクトリに格納されている.
+3. **`/static`**: 当ディレクトリはサーバールートに直接マッピングされ, プロジェクトルート URL からアクセスできる.
+4. **`.editorconfig`**: EditorConfig の設定ファイル.
+5. **`.env.sample`**: 環境変数ファイル (`.env` ファイル) のサンプルファイル. 開発時は当ファイルを複製し `.env` というファイル名に変更して使用する.
+6. **`.eslintignore`**: ESLint に無視してほしいファイルを指定.
+7. **`.eslintrc.js`**: ESLint の設定ファイル.
+8. **`.gitignore`**: Git 管理したくないファイルを指定する.
+9. **`.prettierignore`**: Prettier に無視してほしいファイルを指定.
+10. **`.prettierrc.js`**: Prettier の設定ファイル.
+11. **`.stylelintrc.js`**: stylelint の設定ファイル.
+12. **`gatsby-browser.js`**: [Gatsby browser APIs](https://www.gatsbyjs.com/docs/browser-apis/) 参照.
+13. **`gatsby-config.js`**: [config docs](https://www.gatsbyjs.com/docs/gatsby-config/) 参照.
+14. **`gatsby-node.js`**: [Gatsby Node APIs](https://www.gatsbyjs.com/docs/node-apis/) 参照.
+15. **`package.json`**: npm package の管理ファイル.
+16. **`postcss.config.js`**: PostCSS の設定ファイル.
+17. **`README.md`**: 当リポジトリの README ファイル.
+18. **`tailwind.config.js`**: Tailwind CSS の設定ファイル.
+19. **`tsconfig.json`**: TypeScript の設定ファイル.
+20. **`yarn.lock`**: npm package の依存関係を管理するファイル.
 
 ## 🎓 Learning Gatsby
 
@@ -89,11 +103,3 @@ Looking for more guidance? Full documentation for Gatsby lives [on the website](
 - **For most developers, we recommend starting with our [in-depth tutorial for creating a site with Gatsby](https://www.gatsbyjs.com/tutorial/).** It starts with zero assumptions about your level of ability and walks through every step of the process.
 
 - **To dive straight into code samples, head [to our documentation](https://www.gatsbyjs.com/docs/).** In particular, check out the _Guides_, _API Reference_, and _Advanced Tutorials_ sections in the sidebar.
-
-## 💫 Deploy
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-blog)
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/gatsbyjs/gatsby-starter-blog)
-
-<!-- AUTO-GENERATED-CONTENT:END -->

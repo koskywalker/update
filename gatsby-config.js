@@ -4,7 +4,7 @@ const siteTitle = "UPDATE"
 
 module.exports = {
   siteMetadata: {
-    siteUrl: process.env.GATSBY_BASE_URL,
+    siteUrl: `https://${process.env.GATSBY_BASE_URL}`,
   },
   plugins: [
     {
@@ -116,8 +116,8 @@ module.exports = {
                   title: node.title,
                   description: node.description.description,
                   date: node.publishDate,
-                  url: `${process.env.GATSBY_BASE_URL}/${node.slug}`,
-                  guid: `${process.env.GATSBY_BASE_URL}/${node.slug}`,
+                  url: `https://${process.env.GATSBY_BASE_URL}/${node.slug}`,
+                  guid: `https://${process.env.GATSBY_BASE_URL}/${node.slug}`,
                 }
               })
             },
@@ -142,8 +142,8 @@ module.exports = {
             `,
             output: "/rss.xml",
             title: siteTitle,
-            feed_url: `${process.env.GATSBY_BASE_URL}/rss.xml`,
-            site_url: process.env.GATSBY_BASE_URL,
+            feed_url: `https://${process.env.GATSBY_BASE_URL}/rss.xml`,
+            site_url: `https://${process.env.GATSBY_BASE_URL}`,
           },
         ],
       },

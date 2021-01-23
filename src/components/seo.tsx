@@ -28,7 +28,7 @@ export const Seo: React.FC<IProps> = ({
   const isRoot = location.pathname === rootPath
   const pageType = isRoot ? "WebSite" : "WebPage"
 
-  const siteUrl = process.env.GATSBY_BASE_URL
+  const siteUrl = `https://${process.env.GATSBY_BASE_URL}`
   const siteName = siteData.title
   const siteDescription = siteData.description
   const siteIconUrl = `${siteUrl}/images/icon-update.png`

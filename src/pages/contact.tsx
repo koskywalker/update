@@ -1,3 +1,4 @@
+import axios from "axios"
 import React from "react"
 import { useForm } from "react-hook-form"
 
@@ -29,12 +30,13 @@ type IProps = {
 
 const Contact: React.FC<IProps> = ({ location }) => {
   const pageTitle = "お問い合わせ"
+  const postUrl = "https://formspree.io/f/xjvpleqq"
 
   const {
     register,
     errors,
-    handleSubmit,
     reset,
+    handleSubmit,
     formState,
   } = useForm<FormInputs>({
     mode: "onTouched",
@@ -46,11 +48,10 @@ const Contact: React.FC<IProps> = ({ location }) => {
 
   const onSubmit = (data: any, e: any) => {
     e.preventDefault()
-    // eslint-disable-next-line no-console
-    fetch("/", {
+    axios({
       method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(data).toString(),
+      url: postUrl,
+      data,
     })
       .then(() => {
         reset()
@@ -74,18 +75,14 @@ const Contact: React.FC<IProps> = ({ location }) => {
             </div>
             <div className="mt-8 lg:mt-12">
               <form
-                name="contact"
+                action={postUrl}
                 method="POST"
-                action="/thanks/"
-                netlify-honeypot="bot-field"
-                data-netlify="true"
                 className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8"
                 onSubmit={() => {
                   return handleSubmit(onSubmit)()
                 }}
               >
-                <input type="hidden" name="bot-field" />
-                <input type="hidden" name="form-name" value="contact" />
+                <input type="text" name="_gotcha" style={{ display: "none" }} />
                 <div className="sm:col-span-2">
                   <InputWithLabel
                     label="名前"
@@ -128,7 +125,7 @@ const Contact: React.FC<IProps> = ({ location }) => {
                   <InputWithLabel
                     label="メールアドレス"
                     type="email"
-                    name="email"
+                    name="_replyto"
                     autoComplete="email"
                     placeholder="you@example.com"
                     maxlength={512}

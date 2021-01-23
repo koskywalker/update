@@ -22,16 +22,16 @@ const Portfolio: React.FC<IProps> = ({ data, location }) => {
       title: "UPDATE",
       url: "https://upd.world/",
       subTitle:
-        "Nuxt.js x Contentful x Netlify で作成した Jamstack 構成のブログ",
+        "Gatsby x TypeScript x Contentful x Vercel 構成の Jamstack 構成のブログ",
       image: portfolioImageUpdate,
       meta: {
-        period: "2020/01 - 2020/09",
-        technologies: "Nuxt.js, Contentful, Netlify, GitHub",
+        period: "2020/01 - 随時更新中",
+        technologies: "Gatsby, TypeScript, Contentful, Vercel, GitHub",
       },
       description: [
-        "Nuxt.js の SSG を使用して構築した Jamstack 構成のブログです. コンテンツ管理に Contentful を, ホスティングに Netlify を, ソースコード管理に GitHub を使用しています.",
-        "もともと WordPress で運用していたブログをモダンな技術を用いて作りかえました.",
-        "Nuxt.js に加え上記技術を使用することで, 高い DX を保ちやすく, UX を高めやすい環境を構築しました.",
+        "上記技術スタックで構築した Jamstack 構成のブログです. アプリケーションは Gatsby, TypeScript, コンテンツ管理に Contentful, ホスティングに Vercel, ソースコード管理に GitHub を使用しています.",
+        "もともと WordPress で運用していたブログでしたが, パフォーマンスと UX を改善しようと思いから 2020年1月より Nuxt.js ベースの SPA として構築開始し2020年9月にリリース. その後さらなるパフォーマンス向上を求めて Gatsby ベースの SPA として構築し直し2021年1月にリリースしました.",
+        "高いパフォーマンス, DX (Development Experience), UX を発揮しやすく, 柔軟性の高いプロダクトとして構築できました.",
       ],
     },
     {
@@ -71,15 +71,17 @@ const Portfolio: React.FC<IProps> = ({ data, location }) => {
                     <h2 className="text-2xl font-bold">{item.title}</h2>
                     <p className="mt-4">{item.subTitle}</p>
                     <div className="grid grid-cols-1 xl:grid-cols-2 xl:gap-x-4">
-                      <Image
-                        fluid={item.image}
-                        alt={item.title}
-                        imgStyle={{
-                          border: "1px solid #ccc",
-                          objectFit: "contain",
-                        }}
-                        className="mt-8"
-                      />
+                      <div>
+                        <Image
+                          fluid={item.image}
+                          alt={item.title}
+                          imgStyle={{
+                            border: "1px solid #ccc",
+                            objectFit: "contain",
+                          }}
+                          className="mt-8"
+                        />
+                      </div>
                       <div className="mt-8">
                         <ul className="ml-4 list-disc grid grid-cols-1 gap-y-2">
                           <li>製作期間: {item.meta.period}</li>
