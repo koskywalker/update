@@ -1,5 +1,4 @@
 import axios from "axios"
-import { navigate } from "gatsby"
 import React from "react"
 import { useForm } from "react-hook-form"
 
@@ -32,7 +31,13 @@ type IProps = {
 const Contact: React.FC<IProps> = ({ location }) => {
   const pageTitle = "お問い合わせ"
 
-  const { register, errors, handleSubmit, formState } = useForm<FormInputs>({
+  const {
+    register,
+    errors,
+    reset,
+    handleSubmit,
+    formState,
+  } = useForm<FormInputs>({
     mode: "onTouched",
     criteriaMode: "all",
     defaultValues,
@@ -48,7 +53,7 @@ const Contact: React.FC<IProps> = ({ location }) => {
       data,
     })
       .then(() => {
-        navigate("/thanks/")
+        reset()
       })
       .catch((error: any) => {
         console.error(error)
@@ -69,7 +74,7 @@ const Contact: React.FC<IProps> = ({ location }) => {
             </div>
             <div className="mt-8 lg:mt-12">
               <form
-                method="POST"
+                action="/thanks/"
                 className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8"
                 onSubmit={() => {
                   return handleSubmit(onSubmit)()
