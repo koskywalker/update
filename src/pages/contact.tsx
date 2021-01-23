@@ -1,3 +1,4 @@
+import axios from "axios"
 import React from "react"
 import { useForm } from "react-hook-form"
 
@@ -46,11 +47,10 @@ const Contact: React.FC<IProps> = ({ location }) => {
 
   const onSubmit = (data: any, e: any) => {
     e.preventDefault()
-    // eslint-disable-next-line no-console
-    fetch("/", {
+    axios({
       method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(data).toString(),
+      url: "https://formspree.io/f/xjvpleqq",
+      data,
     })
       .then(() => {
         reset()
@@ -74,18 +74,12 @@ const Contact: React.FC<IProps> = ({ location }) => {
             </div>
             <div className="mt-8 lg:mt-12">
               <form
-                name="contact"
-                method="POST"
                 action="/thanks/"
-                netlify-honeypot="bot-field"
-                data-netlify="true"
                 className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8"
                 onSubmit={() => {
                   return handleSubmit(onSubmit)()
                 }}
               >
-                <input type="hidden" name="bot-field" />
-                <input type="hidden" name="form-name" value="contact" />
                 <div className="sm:col-span-2">
                   <InputWithLabel
                     label="名前"
