@@ -74,7 +74,7 @@ const Contact: React.FC<IProps> = ({ location }) => {
             </div>
             <div className="mt-8 lg:mt-12">
               <form
-                action="/thanks/"
+                action="https://formspree.io/f/xjvpleqq"
                 method="POST"
                 className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8"
                 onSubmit={() => {
