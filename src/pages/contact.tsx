@@ -30,6 +30,7 @@ type IProps = {
 
 const Contact: React.FC<IProps> = ({ location }) => {
   const pageTitle = "お問い合わせ"
+  const postUrl = "https://formspree.io/f/xjvpleqq"
 
   const {
     register,
@@ -49,7 +50,7 @@ const Contact: React.FC<IProps> = ({ location }) => {
     e.preventDefault()
     axios({
       method: "POST",
-      url: "https://formspree.io/f/xjvpleqq",
+      url: postUrl,
       data,
     })
       .then(() => {
@@ -74,18 +75,13 @@ const Contact: React.FC<IProps> = ({ location }) => {
             </div>
             <div className="mt-8 lg:mt-12">
               <form
-                action="https://formspree.io/f/xjvpleqq"
+                action={postUrl}
                 method="POST"
                 className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8"
                 onSubmit={() => {
                   return handleSubmit(onSubmit)()
                 }}
               >
-                <input
-                  type="hidden"
-                  name="_next"
-                  value={`//${process.env.GATSBY_BASE_URL}/thanks/`}
-                />
                 <input type="text" name="_gotcha" style={{ display: "none" }} />
                 <div className="sm:col-span-2">
                   <InputWithLabel
