@@ -123,7 +123,7 @@ const Contact: React.FC<IProps> = ({ location }) => {
                   <InputWithLabel
                     label="メールアドレス"
                     type="email"
-                    name="email"
+                    name="_replyto"
                     autoComplete="email"
                     placeholder="you@example.com"
                     maxlength={512}
