@@ -81,7 +81,11 @@ const Contact: React.FC<IProps> = ({ location }) => {
                   return handleSubmit(onSubmit)()
                 }}
               >
-                <input type="hidden" name="_next" value="/thanks/" />
+                <input
+                  type="hidden"
+                  name="_next"
+                  value={`https://${process.env.GATSBY_BASE_URL}/thanks/`}
+                />
                 <div className="sm:col-span-2">
                   <InputWithLabel
                     label="名前"
