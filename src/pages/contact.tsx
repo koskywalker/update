@@ -1,4 +1,5 @@
 import axios from "axios"
+import { navigate } from "gatsby"
 import React from "react"
 import { useForm } from "react-hook-form"
 
@@ -31,13 +32,7 @@ type IProps = {
 const Contact: React.FC<IProps> = ({ location }) => {
   const pageTitle = "お問い合わせ"
 
-  const {
-    register,
-    errors,
-    handleSubmit,
-    reset,
-    formState,
-  } = useForm<FormInputs>({
+  const { register, errors, handleSubmit, formState } = useForm<FormInputs>({
     mode: "onTouched",
     criteriaMode: "all",
     defaultValues,
@@ -53,7 +48,7 @@ const Contact: React.FC<IProps> = ({ location }) => {
       data,
     })
       .then(() => {
-        reset()
+        navigate("/thanks/")
       })
       .catch((error: any) => {
         console.error(error)
@@ -74,7 +69,7 @@ const Contact: React.FC<IProps> = ({ location }) => {
             </div>
             <div className="mt-8 lg:mt-12">
               <form
-                action="https://formspree.io/f/xjvpleqq"
+                action="/thanks/"
                 method="POST"
                 className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8"
                 onSubmit={() => {
@@ -86,6 +81,7 @@ const Contact: React.FC<IProps> = ({ location }) => {
                   name="_next"
                   value={`https://${process.env.GATSBY_BASE_URL}/thanks/`}
                 />
+                <input type="text" name="_gotcha" style={{ display: "none" }} />
                 <div className="sm:col-span-2">
                   <InputWithLabel
                     label="名前"
