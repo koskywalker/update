@@ -2,6 +2,9 @@ require("dotenv").config({ path: ".env" })
 
 const siteTitle = "UPDATE"
 
+// eslint-disable-next-line no-console
+console.log(process.env.GATSBY_BASE_URL)
+
 module.exports = {
   siteMetadata: {
     siteUrl: process.env.GATSBY_BASE_URL,
