@@ -75,7 +75,6 @@ const Contact: React.FC<IProps> = ({ location }) => {
             <div className="mt-8 lg:mt-12">
               <form
                 method="POST"
-                action="/thanks/"
                 className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8"
                 onSubmit={() => {
                   return handleSubmit(onSubmit)()
@@ -84,7 +83,7 @@ const Contact: React.FC<IProps> = ({ location }) => {
                 <input
                   type="hidden"
                   name="_next"
-                  value={`https://${process.env.GATSBY_BASE_URL}/thanks/`}
+                  value={`//${process.env.GATSBY_BASE_URL}/thanks/`}
                 />
                 <input type="text" name="_gotcha" style={{ display: "none" }} />
                 <div className="sm:col-span-2">
