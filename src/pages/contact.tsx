@@ -81,6 +81,7 @@ const Contact: React.FC<IProps> = ({ location }) => {
                   return handleSubmit(onSubmit)()
                 }}
               >
+                <input type="hidden" name="_next" value="/thanks/" />
                 <div className="sm:col-span-2">
                   <InputWithLabel
                     label="名前"
