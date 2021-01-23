@@ -54,17 +54,17 @@ module.exports = {
       boxShadow: {
         custom: "0 0 10px 3px rgba(0, 0, 0, 0.2)",
       },
-      // typography: (theme) => {
-      //   return {
-      //     DEFAULT: {
-      //       css: {
-      //         a: {
-      //           color: theme("colors.cyan.600"),
-      //         },
-      //       },
-      //     },
-      //   }
-      // },
+      typography: (theme) => {
+        return {
+          DEFAULT: {
+            css: {
+              a: {
+                color: theme("colors.cyan.600"),
+              },
+            },
+          },
+        }
+      },
       backgroundImage: () => {
         return {
           bookmark: "url('/images/icon-bookmark.svg')",
@@ -82,8 +82,8 @@ module.exports = {
   variants: {
     extend: {
       opacity: ["disabled"],
-      // backgroundColor: ["disabled"],
-      cursor: ["disabled"],
+      backgroundColor: ["disabled", "hover", "focus"],
+      cursor: ["disabled", "hover"],
     },
   },
   plugins: [require("@tailwindcss/typography")],
