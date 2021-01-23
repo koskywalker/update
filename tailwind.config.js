@@ -82,7 +82,7 @@ module.exports = {
   variants: {
     extend: {
       opacity: ["disabled"],
-      backgroundColor: ["disabled"],
+      // backgroundColor: ["disabled"],
       cursor: ["disabled"],
     },
   },
