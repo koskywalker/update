@@ -179,7 +179,6 @@ enum ContentfulAssetFieldsEnum {
   file___details___image___height = 'file.details.image.height',
   file___fileName = 'file.fileName',
   file___contentType = 'file.contentType',
-  file___upload = 'file.upload',
   title = 'title',
   description = 'description',
   node_locale = 'node_locale',
@@ -317,7 +316,6 @@ type ContentfulAssetFile = {
   readonly details: Maybe<ContentfulAssetFileDetails>;
   readonly fileName: Maybe<Scalars['String']>;
   readonly contentType: Maybe<Scalars['String']>;
-  readonly upload: Maybe<Scalars['String']>;
 };
 
 type ContentfulAssetFileDetails = {
@@ -345,7 +343,6 @@ type ContentfulAssetFileFilterInput = {
   readonly details: Maybe<ContentfulAssetFileDetailsFilterInput>;
   readonly fileName: Maybe<StringQueryOperatorInput>;
   readonly contentType: Maybe<StringQueryOperatorInput>;
-  readonly upload: Maybe<StringQueryOperatorInput>;
 };
 
 type ContentfulAssetFilterInput = {
@@ -915,7 +912,6 @@ enum ContentfulBlogPostFieldsEnum {
   heroImage___file___details___size = 'heroImage.file.details.size',
   heroImage___file___fileName = 'heroImage.file.fileName',
   heroImage___file___contentType = 'heroImage.file.contentType',
-  heroImage___file___upload = 'heroImage.file.upload',
   heroImage___title = 'heroImage.title',
   heroImage___description = 'heroImage.description',
   heroImage___node_locale = 'heroImage.node_locale',
@@ -1001,11 +997,6 @@ enum ContentfulBlogPostFieldsEnum {
   author___contentful_id = 'author.contentful_id',
   author___id = 'author.id',
   author___node_locale = 'author.node_locale',
-  author___spaceId = 'author.spaceId',
-  author___createdAt = 'author.createdAt',
-  author___updatedAt = 'author.updatedAt',
-  author___sys___type = 'author.sys.type',
-  author___sys___revision = 'author.sys.revision',
   author___name = 'author.name',
   author___title = 'author.title',
   author___blog_post = 'author.blog_post',
@@ -1027,12 +1018,12 @@ enum ContentfulBlogPostFieldsEnum {
   author___blog_post___author___contentful_id = 'author.blog_post.author.contentful_id',
   author___blog_post___author___id = 'author.blog_post.author.id',
   author___blog_post___author___node_locale = 'author.blog_post.author.node_locale',
-  author___blog_post___author___spaceId = 'author.blog_post.author.spaceId',
-  author___blog_post___author___createdAt = 'author.blog_post.author.createdAt',
-  author___blog_post___author___updatedAt = 'author.blog_post.author.updatedAt',
   author___blog_post___author___name = 'author.blog_post.author.name',
   author___blog_post___author___title = 'author.blog_post.author.title',
   author___blog_post___author___blog_post = 'author.blog_post.author.blog_post',
+  author___blog_post___author___spaceId = 'author.blog_post.author.spaceId',
+  author___blog_post___author___createdAt = 'author.blog_post.author.createdAt',
+  author___blog_post___author___updatedAt = 'author.blog_post.author.updatedAt',
   author___blog_post___author___children = 'author.blog_post.author.children',
   author___blog_post___tags = 'author.blog_post.tags',
   author___blog_post___tags___contentful_id = 'author.blog_post.tags.contentful_id',
@@ -1076,6 +1067,11 @@ enum ContentfulBlogPostFieldsEnum {
   author___blog_post___childContentfulBlogPostBodyTextNode___id = 'author.blog_post.childContentfulBlogPostBodyTextNode.id',
   author___blog_post___childContentfulBlogPostBodyTextNode___children = 'author.blog_post.childContentfulBlogPostBodyTextNode.children',
   author___blog_post___childContentfulBlogPostBodyTextNode___body = 'author.blog_post.childContentfulBlogPostBodyTextNode.body',
+  author___spaceId = 'author.spaceId',
+  author___createdAt = 'author.createdAt',
+  author___updatedAt = 'author.updatedAt',
+  author___sys___type = 'author.sys.type',
+  author___sys___revision = 'author.sys.revision',
   author___parent___id = 'author.parent.id',
   author___parent___parent___id = 'author.parent.parent.id',
   author___parent___parent___children = 'author.parent.parent.children',
@@ -1138,12 +1134,12 @@ enum ContentfulBlogPostFieldsEnum {
   tags___blog_post___author___contentful_id = 'tags.blog_post.author.contentful_id',
   tags___blog_post___author___id = 'tags.blog_post.author.id',
   tags___blog_post___author___node_locale = 'tags.blog_post.author.node_locale',
-  tags___blog_post___author___spaceId = 'tags.blog_post.author.spaceId',
-  tags___blog_post___author___createdAt = 'tags.blog_post.author.createdAt',
-  tags___blog_post___author___updatedAt = 'tags.blog_post.author.updatedAt',
   tags___blog_post___author___name = 'tags.blog_post.author.name',
   tags___blog_post___author___title = 'tags.blog_post.author.title',
   tags___blog_post___author___blog_post = 'tags.blog_post.author.blog_post',
+  tags___blog_post___author___spaceId = 'tags.blog_post.author.spaceId',
+  tags___blog_post___author___createdAt = 'tags.blog_post.author.createdAt',
+  tags___blog_post___author___updatedAt = 'tags.blog_post.author.updatedAt',
   tags___blog_post___author___children = 'tags.blog_post.author.children',
   tags___blog_post___tags = 'tags.blog_post.tags',
   tags___blog_post___tags___contentful_id = 'tags.blog_post.tags.contentful_id',
@@ -1969,13 +1965,13 @@ type ContentfulPerson = ContentfulReference & ContentfulEntry & Node & {
   readonly contentful_id: Scalars['String'];
   readonly id: Scalars['ID'];
   readonly node_locale: Scalars['String'];
+  readonly name: Maybe<Scalars['String']>;
+  readonly title: Maybe<Scalars['String']>;
+  readonly blog_post: Maybe<ReadonlyArray<Maybe<ContentfulBlogPost>>>;
   readonly spaceId: Maybe<Scalars['String']>;
   readonly createdAt: Maybe<Scalars['Date']>;
   readonly updatedAt: Maybe<Scalars['Date']>;
   readonly sys: Maybe<ContentfulPersonSys>;
-  readonly name: Maybe<Scalars['String']>;
-  readonly title: Maybe<Scalars['String']>;
-  readonly blog_post: Maybe<ReadonlyArray<Maybe<ContentfulBlogPost>>>;
   readonly parent: Maybe<Node>;
   readonly children: ReadonlyArray<Node>;
   readonly internal: Internal;
@@ -2028,14 +2024,6 @@ enum ContentfulPersonFieldsEnum {
   contentful_id = 'contentful_id',
   id = 'id',
   node_locale = 'node_locale',
-  spaceId = 'spaceId',
-  createdAt = 'createdAt',
-  updatedAt = 'updatedAt',
-  sys___type = 'sys.type',
-  sys___contentType___sys___type = 'sys.contentType.sys.type',
-  sys___contentType___sys___linkType = 'sys.contentType.sys.linkType',
-  sys___contentType___sys___id = 'sys.contentType.sys.id',
-  sys___revision = 'sys.revision',
   name = 'name',
   title = 'title',
   blog_post = 'blog_post',
@@ -2053,7 +2041,6 @@ enum ContentfulPersonFieldsEnum {
   blog_post___heroImage___file___url = 'blog_post.heroImage.file.url',
   blog_post___heroImage___file___fileName = 'blog_post.heroImage.file.fileName',
   blog_post___heroImage___file___contentType = 'blog_post.heroImage.file.contentType',
-  blog_post___heroImage___file___upload = 'blog_post.heroImage.file.upload',
   blog_post___heroImage___title = 'blog_post.heroImage.title',
   blog_post___heroImage___description = 'blog_post.heroImage.description',
   blog_post___heroImage___node_locale = 'blog_post.heroImage.node_locale',
@@ -2115,11 +2102,6 @@ enum ContentfulPersonFieldsEnum {
   blog_post___author___contentful_id = 'blog_post.author.contentful_id',
   blog_post___author___id = 'blog_post.author.id',
   blog_post___author___node_locale = 'blog_post.author.node_locale',
-  blog_post___author___spaceId = 'blog_post.author.spaceId',
-  blog_post___author___createdAt = 'blog_post.author.createdAt',
-  blog_post___author___updatedAt = 'blog_post.author.updatedAt',
-  blog_post___author___sys___type = 'blog_post.author.sys.type',
-  blog_post___author___sys___revision = 'blog_post.author.sys.revision',
   blog_post___author___name = 'blog_post.author.name',
   blog_post___author___title = 'blog_post.author.title',
   blog_post___author___blog_post = 'blog_post.author.blog_post',
@@ -2135,6 +2117,11 @@ enum ContentfulPersonFieldsEnum {
   blog_post___author___blog_post___updatedAt = 'blog_post.author.blog_post.updatedAt',
   blog_post___author___blog_post___gatsbyPath = 'blog_post.author.blog_post.gatsbyPath',
   blog_post___author___blog_post___children = 'blog_post.author.blog_post.children',
+  blog_post___author___spaceId = 'blog_post.author.spaceId',
+  blog_post___author___createdAt = 'blog_post.author.createdAt',
+  blog_post___author___updatedAt = 'blog_post.author.updatedAt',
+  blog_post___author___sys___type = 'blog_post.author.sys.type',
+  blog_post___author___sys___revision = 'blog_post.author.sys.revision',
   blog_post___author___parent___id = 'blog_post.author.parent.id',
   blog_post___author___parent___children = 'blog_post.author.parent.children',
   blog_post___author___children = 'blog_post.author.children',
@@ -2332,6 +2319,14 @@ enum ContentfulPersonFieldsEnum {
   blog_post___childContentfulBlogPostBodyTextNode___childMarkdownRemark___timeToRead = 'blog_post.childContentfulBlogPostBodyTextNode.childMarkdownRemark.timeToRead',
   blog_post___childContentfulBlogPostBodyTextNode___childMarkdownRemark___tableOfContents = 'blog_post.childContentfulBlogPostBodyTextNode.childMarkdownRemark.tableOfContents',
   blog_post___childContentfulBlogPostBodyTextNode___childMarkdownRemark___children = 'blog_post.childContentfulBlogPostBodyTextNode.childMarkdownRemark.children',
+  spaceId = 'spaceId',
+  createdAt = 'createdAt',
+  updatedAt = 'updatedAt',
+  sys___type = 'sys.type',
+  sys___revision = 'sys.revision',
+  sys___contentType___sys___type = 'sys.contentType.sys.type',
+  sys___contentType___sys___linkType = 'sys.contentType.sys.linkType',
+  sys___contentType___sys___id = 'sys.contentType.sys.id',
   parent___id = 'parent.id',
   parent___parent___id = 'parent.parent.id',
   parent___parent___parent___id = 'parent.parent.parent.id',
@@ -2423,13 +2418,13 @@ type ContentfulPersonFilterInput = {
   readonly contentful_id: Maybe<StringQueryOperatorInput>;
   readonly id: Maybe<StringQueryOperatorInput>;
   readonly node_locale: Maybe<StringQueryOperatorInput>;
+  readonly name: Maybe<StringQueryOperatorInput>;
+  readonly title: Maybe<StringQueryOperatorInput>;
+  readonly blog_post: Maybe<ContentfulBlogPostFilterListInput>;
   readonly spaceId: Maybe<StringQueryOperatorInput>;
   readonly createdAt: Maybe<DateQueryOperatorInput>;
   readonly updatedAt: Maybe<DateQueryOperatorInput>;
   readonly sys: Maybe<ContentfulPersonSysFilterInput>;
-  readonly name: Maybe<StringQueryOperatorInput>;
-  readonly title: Maybe<StringQueryOperatorInput>;
-  readonly blog_post: Maybe<ContentfulBlogPostFilterListInput>;
   readonly parent: Maybe<NodeFilterInput>;
   readonly children: Maybe<NodeFilterListInput>;
   readonly internal: Maybe<InternalFilterInput>;
@@ -2451,8 +2446,8 @@ type ContentfulPersonSortInput = {
 
 type ContentfulPersonSys = {
   readonly type: Maybe<Scalars['String']>;
-  readonly contentType: Maybe<ContentfulPersonSysContentType>;
   readonly revision: Maybe<Scalars['Int']>;
+  readonly contentType: Maybe<ContentfulPersonSysContentType>;
 };
 
 type ContentfulPersonSysContentType = {
@@ -2477,8 +2472,8 @@ type ContentfulPersonSysContentTypeSysFilterInput = {
 
 type ContentfulPersonSysFilterInput = {
   readonly type: Maybe<StringQueryOperatorInput>;
-  readonly contentType: Maybe<ContentfulPersonSysContentTypeFilterInput>;
   readonly revision: Maybe<IntQueryOperatorInput>;
+  readonly contentType: Maybe<ContentfulPersonSysContentTypeFilterInput>;
 };
 
 type ContentfulReference = {
@@ -2630,7 +2625,6 @@ enum ContentfulTagFieldsEnum {
   blog_post___heroImage___file___url = 'blog_post.heroImage.file.url',
   blog_post___heroImage___file___fileName = 'blog_post.heroImage.file.fileName',
   blog_post___heroImage___file___contentType = 'blog_post.heroImage.file.contentType',
-  blog_post___heroImage___file___upload = 'blog_post.heroImage.file.upload',
   blog_post___heroImage___title = 'blog_post.heroImage.title',
   blog_post___heroImage___description = 'blog_post.heroImage.description',
   blog_post___heroImage___node_locale = 'blog_post.heroImage.node_locale',
@@ -2692,11 +2686,6 @@ enum ContentfulTagFieldsEnum {
   blog_post___author___contentful_id = 'blog_post.author.contentful_id',
   blog_post___author___id = 'blog_post.author.id',
   blog_post___author___node_locale = 'blog_post.author.node_locale',
-  blog_post___author___spaceId = 'blog_post.author.spaceId',
-  blog_post___author___createdAt = 'blog_post.author.createdAt',
-  blog_post___author___updatedAt = 'blog_post.author.updatedAt',
-  blog_post___author___sys___type = 'blog_post.author.sys.type',
-  blog_post___author___sys___revision = 'blog_post.author.sys.revision',
   blog_post___author___name = 'blog_post.author.name',
   blog_post___author___title = 'blog_post.author.title',
   blog_post___author___blog_post = 'blog_post.author.blog_post',
@@ -2712,6 +2701,11 @@ enum ContentfulTagFieldsEnum {
   blog_post___author___blog_post___updatedAt = 'blog_post.author.blog_post.updatedAt',
   blog_post___author___blog_post___gatsbyPath = 'blog_post.author.blog_post.gatsbyPath',
   blog_post___author___blog_post___children = 'blog_post.author.blog_post.children',
+  blog_post___author___spaceId = 'blog_post.author.spaceId',
+  blog_post___author___createdAt = 'blog_post.author.createdAt',
+  blog_post___author___updatedAt = 'blog_post.author.updatedAt',
+  blog_post___author___sys___type = 'blog_post.author.sys.type',
+  blog_post___author___sys___revision = 'blog_post.author.sys.revision',
   blog_post___author___parent___id = 'blog_post.author.parent.id',
   blog_post___author___parent___children = 'blog_post.author.parent.children',
   blog_post___author___children = 'blog_post.author.children',
@@ -5029,13 +5023,13 @@ type Query_contentfulPersonArgs = {
   contentful_id: Maybe<StringQueryOperatorInput>;
   id: Maybe<StringQueryOperatorInput>;
   node_locale: Maybe<StringQueryOperatorInput>;
+  name: Maybe<StringQueryOperatorInput>;
+  title: Maybe<StringQueryOperatorInput>;
+  blog_post: Maybe<ContentfulBlogPostFilterListInput>;
   spaceId: Maybe<StringQueryOperatorInput>;
   createdAt: Maybe<DateQueryOperatorInput>;
   updatedAt: Maybe<DateQueryOperatorInput>;
   sys: Maybe<ContentfulPersonSysFilterInput>;
-  name: Maybe<StringQueryOperatorInput>;
-  title: Maybe<StringQueryOperatorInput>;
-  blog_post: Maybe<ContentfulBlogPostFilterListInput>;
   parent: Maybe<NodeFilterInput>;
   children: Maybe<NodeFilterListInput>;
   internal: Maybe<InternalFilterInput>;
@@ -5750,15 +5744,15 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___routeChangeEventName = 'pluginCreator.pluginOptions.routeChangeEventName',
   pluginCreator___pluginOptions___outputPath = 'pluginCreator.pluginOptions.outputPath',
   pluginCreator___pluginOptions___maxWidth = 'pluginCreator.pluginOptions.maxWidth',
+  pluginCreator___pluginOptions___withWebp = 'pluginCreator.pluginOptions.withWebp',
+  pluginCreator___pluginOptions___loading = 'pluginCreator.pluginOptions.loading',
   pluginCreator___pluginOptions___linkImagesToOriginal = 'pluginCreator.pluginOptions.linkImagesToOriginal',
   pluginCreator___pluginOptions___showCaptions = 'pluginCreator.pluginOptions.showCaptions',
   pluginCreator___pluginOptions___markdownCaptions = 'pluginCreator.pluginOptions.markdownCaptions',
   pluginCreator___pluginOptions___sizeByPixelDensity = 'pluginCreator.pluginOptions.sizeByPixelDensity',
   pluginCreator___pluginOptions___backgroundColor = 'pluginCreator.pluginOptions.backgroundColor',
   pluginCreator___pluginOptions___quality = 'pluginCreator.pluginOptions.quality',
-  pluginCreator___pluginOptions___withWebp = 'pluginCreator.pluginOptions.withWebp',
   pluginCreator___pluginOptions___tracedSVG = 'pluginCreator.pluginOptions.tracedSVG',
-  pluginCreator___pluginOptions___loading = 'pluginCreator.pluginOptions.loading',
   pluginCreator___pluginOptions___disableBgImageOnAlpha = 'pluginCreator.pluginOptions.disableBgImageOnAlpha',
   pluginCreator___pluginOptions___disableBgImage = 'pluginCreator.pluginOptions.disableBgImage',
   pluginCreator___pluginOptions___target = 'pluginCreator.pluginOptions.target',
@@ -5994,15 +5988,15 @@ enum SitePluginFieldsEnum {
   pluginOptions___plugins___name = 'pluginOptions.plugins.name',
   pluginOptions___plugins___version = 'pluginOptions.plugins.version',
   pluginOptions___plugins___pluginOptions___maxWidth = 'pluginOptions.plugins.pluginOptions.maxWidth',
+  pluginOptions___plugins___pluginOptions___withWebp = 'pluginOptions.plugins.pluginOptions.withWebp',
+  pluginOptions___plugins___pluginOptions___loading = 'pluginOptions.plugins.pluginOptions.loading',
   pluginOptions___plugins___pluginOptions___linkImagesToOriginal = 'pluginOptions.plugins.pluginOptions.linkImagesToOriginal',
   pluginOptions___plugins___pluginOptions___showCaptions = 'pluginOptions.plugins.pluginOptions.showCaptions',
   pluginOptions___plugins___pluginOptions___markdownCaptions = 'pluginOptions.plugins.pluginOptions.markdownCaptions',
   pluginOptions___plugins___pluginOptions___sizeByPixelDensity = 'pluginOptions.plugins.pluginOptions.sizeByPixelDensity',
   pluginOptions___plugins___pluginOptions___backgroundColor = 'pluginOptions.plugins.pluginOptions.backgroundColor',
   pluginOptions___plugins___pluginOptions___quality = 'pluginOptions.plugins.pluginOptions.quality',
-  pluginOptions___plugins___pluginOptions___withWebp = 'pluginOptions.plugins.pluginOptions.withWebp',
   pluginOptions___plugins___pluginOptions___tracedSVG = 'pluginOptions.plugins.pluginOptions.tracedSVG',
-  pluginOptions___plugins___pluginOptions___loading = 'pluginOptions.plugins.pluginOptions.loading',
   pluginOptions___plugins___pluginOptions___disableBgImageOnAlpha = 'pluginOptions.plugins.pluginOptions.disableBgImageOnAlpha',
   pluginOptions___plugins___pluginOptions___disableBgImage = 'pluginOptions.plugins.pluginOptions.disableBgImage',
   pluginOptions___plugins___pluginOptions___target = 'pluginOptions.plugins.pluginOptions.target',
@@ -6032,15 +6026,15 @@ enum SitePluginFieldsEnum {
   pluginOptions___routeChangeEventName = 'pluginOptions.routeChangeEventName',
   pluginOptions___outputPath = 'pluginOptions.outputPath',
   pluginOptions___maxWidth = 'pluginOptions.maxWidth',
+  pluginOptions___withWebp = 'pluginOptions.withWebp',
+  pluginOptions___loading = 'pluginOptions.loading',
   pluginOptions___linkImagesToOriginal = 'pluginOptions.linkImagesToOriginal',
   pluginOptions___showCaptions = 'pluginOptions.showCaptions',
   pluginOptions___markdownCaptions = 'pluginOptions.markdownCaptions',
   pluginOptions___sizeByPixelDensity = 'pluginOptions.sizeByPixelDensity',
   pluginOptions___backgroundColor = 'pluginOptions.backgroundColor',
   pluginOptions___quality = 'pluginOptions.quality',
-  pluginOptions___withWebp = 'pluginOptions.withWebp',
   pluginOptions___tracedSVG = 'pluginOptions.tracedSVG',
-  pluginOptions___loading = 'pluginOptions.loading',
   pluginOptions___disableBgImageOnAlpha = 'pluginOptions.disableBgImageOnAlpha',
   pluginOptions___disableBgImage = 'pluginOptions.disableBgImage',
   pluginOptions___target = 'pluginOptions.target',
@@ -6211,15 +6205,15 @@ type SitePluginPluginOptions = {
   readonly routeChangeEventName: Maybe<Scalars['String']>;
   readonly outputPath: Maybe<Scalars['String']>;
   readonly maxWidth: Maybe<Scalars['Int']>;
+  readonly withWebp: Maybe<Scalars['Boolean']>;
+  readonly loading: Maybe<Scalars['String']>;
   readonly linkImagesToOriginal: Maybe<Scalars['Boolean']>;
   readonly showCaptions: Maybe<Scalars['Boolean']>;
   readonly markdownCaptions: Maybe<Scalars['Boolean']>;
   readonly sizeByPixelDensity: Maybe<Scalars['Boolean']>;
   readonly backgroundColor: Maybe<Scalars['String']>;
   readonly quality: Maybe<Scalars['Int']>;
-  readonly withWebp: Maybe<Scalars['Boolean']>;
   readonly tracedSVG: Maybe<Scalars['Boolean']>;
-  readonly loading: Maybe<Scalars['String']>;
   readonly disableBgImageOnAlpha: Maybe<Scalars['Boolean']>;
   readonly disableBgImage: Maybe<Scalars['Boolean']>;
   readonly target: Maybe<Scalars['String']>;
@@ -6295,15 +6289,15 @@ type SitePluginPluginOptionsFilterInput = {
   readonly routeChangeEventName: Maybe<StringQueryOperatorInput>;
   readonly outputPath: Maybe<StringQueryOperatorInput>;
   readonly maxWidth: Maybe<IntQueryOperatorInput>;
+  readonly withWebp: Maybe<BooleanQueryOperatorInput>;
+  readonly loading: Maybe<StringQueryOperatorInput>;
   readonly linkImagesToOriginal: Maybe<BooleanQueryOperatorInput>;
   readonly showCaptions: Maybe<BooleanQueryOperatorInput>;
   readonly markdownCaptions: Maybe<BooleanQueryOperatorInput>;
   readonly sizeByPixelDensity: Maybe<BooleanQueryOperatorInput>;
   readonly backgroundColor: Maybe<StringQueryOperatorInput>;
   readonly quality: Maybe<IntQueryOperatorInput>;
-  readonly withWebp: Maybe<BooleanQueryOperatorInput>;
   readonly tracedSVG: Maybe<BooleanQueryOperatorInput>;
-  readonly loading: Maybe<StringQueryOperatorInput>;
   readonly disableBgImageOnAlpha: Maybe<BooleanQueryOperatorInput>;
   readonly disableBgImage: Maybe<BooleanQueryOperatorInput>;
   readonly target: Maybe<StringQueryOperatorInput>;
@@ -6373,15 +6367,15 @@ type SitePluginPluginOptionsPluginsFilterListInput = {
 
 type SitePluginPluginOptionsPluginsPluginOptions = {
   readonly maxWidth: Maybe<Scalars['Int']>;
+  readonly withWebp: Maybe<Scalars['Boolean']>;
+  readonly loading: Maybe<Scalars['String']>;
   readonly linkImagesToOriginal: Maybe<Scalars['Boolean']>;
   readonly showCaptions: Maybe<Scalars['Boolean']>;
   readonly markdownCaptions: Maybe<Scalars['Boolean']>;
   readonly sizeByPixelDensity: Maybe<Scalars['Boolean']>;
   readonly backgroundColor: Maybe<Scalars['String']>;
   readonly quality: Maybe<Scalars['Int']>;
-  readonly withWebp: Maybe<Scalars['Boolean']>;
   readonly tracedSVG: Maybe<Scalars['Boolean']>;
-  readonly loading: Maybe<Scalars['String']>;
   readonly disableBgImageOnAlpha: Maybe<Scalars['Boolean']>;
   readonly disableBgImage: Maybe<Scalars['Boolean']>;
   readonly target: Maybe<Scalars['String']>;
@@ -6397,15 +6391,15 @@ type SitePluginPluginOptionsPluginsPluginOptions = {
 
 type SitePluginPluginOptionsPluginsPluginOptionsFilterInput = {
   readonly maxWidth: Maybe<IntQueryOperatorInput>;
+  readonly withWebp: Maybe<BooleanQueryOperatorInput>;
+  readonly loading: Maybe<StringQueryOperatorInput>;
   readonly linkImagesToOriginal: Maybe<BooleanQueryOperatorInput>;
   readonly showCaptions: Maybe<BooleanQueryOperatorInput>;
   readonly markdownCaptions: Maybe<BooleanQueryOperatorInput>;
   readonly sizeByPixelDensity: Maybe<BooleanQueryOperatorInput>;
   readonly backgroundColor: Maybe<StringQueryOperatorInput>;
   readonly quality: Maybe<IntQueryOperatorInput>;
-  readonly withWebp: Maybe<BooleanQueryOperatorInput>;
   readonly tracedSVG: Maybe<BooleanQueryOperatorInput>;
-  readonly loading: Maybe<StringQueryOperatorInput>;
   readonly disableBgImageOnAlpha: Maybe<BooleanQueryOperatorInput>;
   readonly disableBgImage: Maybe<BooleanQueryOperatorInput>;
   readonly target: Maybe<StringQueryOperatorInput>;
@@ -6468,6 +6462,8 @@ type WebPOptions = {
   readonly quality: Maybe<Scalars['Int']>;
 };
 
+type GatsbyContentfulFluid_withWebp_noBase64Fragment = Pick<ContentfulFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
+
 type IndexArchiveQueryVariables = Exact<{
   skip: Scalars['Int'];
   limit: Scalars['Int'];
@@ -6478,7 +6474,7 @@ type IndexArchiveQuery = { readonly allContentfulBlogPost: { readonly edges: Rea
         Pick<ContentfulBlogPost, 'title' | 'slug' | 'publishDate' | 'updatedAt'>
         & { readonly heroImage: Maybe<(
           Pick<ContentfulAsset, 'description'>
-          & { readonly file: Maybe<Pick<ContentfulAssetFile, 'url'>> }
+          & { readonly fluid: Maybe<GatsbyContentfulFluid_withWebp_noBase64Fragment> }
         )>, readonly tags: Maybe<ReadonlyArray<Maybe<Pick<ContentfulTag, 'name' | 'slug'>>>> }
       ) }> } };
 
@@ -6493,7 +6489,7 @@ type TagsArchiveQuery = { readonly allContentfulBlogPost: { readonly edges: Read
         Pick<ContentfulBlogPost, 'title' | 'slug' | 'publishDate' | 'updatedAt'>
         & { readonly description: Maybe<Pick<contentfulBlogPostDescriptionTextNode, 'description'>>, readonly heroImage: Maybe<(
           Pick<ContentfulAsset, 'description'>
-          & { readonly file: Maybe<Pick<ContentfulAssetFile, 'url'>> }
+          & { readonly fluid: Maybe<GatsbyContentfulFluid_withWebp_noBase64Fragment> }
         )>, readonly tags: Maybe<ReadonlyArray<Maybe<Pick<ContentfulTag, 'name' | 'slug'>>>> }
       ) }> } };
 
@@ -6518,7 +6514,7 @@ type PostBySlugQuery = { readonly contentfulBlogPost: Maybe<(
     Pick<ContentfulBlogPost, 'slug' | 'title' | 'updatedAt' | 'publishDate'>
     & { readonly tags: Maybe<ReadonlyArray<Maybe<Pick<ContentfulTag, 'slug' | 'name'>>>>, readonly heroImage: Maybe<(
       Pick<ContentfulAsset, 'description'>
-      & { readonly file: Maybe<Pick<ContentfulAssetFile, 'url'>> }
+      & { readonly file: Maybe<Pick<ContentfulAssetFile, 'url'>>, readonly fluid: Maybe<GatsbyContentfulFluid_withWebp_noBase64Fragment> }
     )>, readonly description: Maybe<Pick<contentfulBlogPostDescriptionTextNode, 'description'>>, readonly body: Maybe<{ readonly childMarkdownRemark: Maybe<Pick<MarkdownRemark, 'timeToRead' | 'tableOfContents' | 'html'>> }> }
   )> };
 
@@ -6531,6 +6527,44 @@ type SidebarProfileQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type SidebarProfileQuery = { readonly avatar: Maybe<{ readonly childImageSharp: Maybe<{ readonly fixed: Maybe<GatsbyImageSharpFixedFragment> }> }> };
+
+type GatsbyContentfulFixedFragment = Pick<ContentfulFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
+
+type GatsbyContentfulFixed_tracedSVGFragment = Pick<ContentfulFixed, 'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet'>;
+
+type GatsbyContentfulFixed_noBase64Fragment = Pick<ContentfulFixed, 'width' | 'height' | 'src' | 'srcSet'>;
+
+type GatsbyContentfulFixed_withWebpFragment = Pick<ContentfulFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
+
+type GatsbyContentfulFixed_withWebp_noBase64Fragment = Pick<ContentfulFixed, 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
+
+type GatsbyContentfulFluidFragment = Pick<ContentfulFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
+
+type GatsbyContentfulFluid_tracedSVGFragment = Pick<ContentfulFluid, 'tracedSVG' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
+
+type GatsbyContentfulFluid_noBase64Fragment = Pick<ContentfulFluid, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
+
+type GatsbyContentfulFluid_withWebpFragment = Pick<ContentfulFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
+
+type GatsbyContentfulResolutionsFragment = Pick<ContentfulResolutions, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
+
+type GatsbyContentfulResolutions_tracedSVGFragment = Pick<ContentfulResolutions, 'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet'>;
+
+type GatsbyContentfulResolutions_noBase64Fragment = Pick<ContentfulResolutions, 'width' | 'height' | 'src' | 'srcSet'>;
+
+type GatsbyContentfulResolutions_withWebpFragment = Pick<ContentfulResolutions, 'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
+
+type GatsbyContentfulResolutions_withWebp_noBase64Fragment = Pick<ContentfulResolutions, 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
+
+type GatsbyContentfulSizesFragment = Pick<ContentfulSizes, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
+
+type GatsbyContentfulSizes_tracedSVGFragment = Pick<ContentfulSizes, 'tracedSVG' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
+
+type GatsbyContentfulSizes_noBase64Fragment = Pick<ContentfulSizes, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
+
+type GatsbyContentfulSizes_withWebpFragment = Pick<ContentfulSizes, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
+
+type GatsbyContentfulSizes_withWebp_noBase64Fragment = Pick<ContentfulSizes, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
 
 type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
@@ -6579,45 +6613,5 @@ type GatsbyImageSharpSizes_withWebp_tracedSVGFragment = Pick<ImageSharpSizes, 't
 type GatsbyImageSharpSizes_noBase64Fragment = Pick<ImageSharpSizes, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
 
 type GatsbyImageSharpSizes_withWebp_noBase64Fragment = Pick<ImageSharpSizes, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type GatsbyContentfulFixedFragment = Pick<ContentfulFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
-
-type GatsbyContentfulFixed_tracedSVGFragment = Pick<ContentfulFixed, 'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet'>;
-
-type GatsbyContentfulFixed_noBase64Fragment = Pick<ContentfulFixed, 'width' | 'height' | 'src' | 'srcSet'>;
-
-type GatsbyContentfulFixed_withWebpFragment = Pick<ContentfulFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
-
-type GatsbyContentfulFixed_withWebp_noBase64Fragment = Pick<ContentfulFixed, 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
-
-type GatsbyContentfulFluidFragment = Pick<ContentfulFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyContentfulFluid_tracedSVGFragment = Pick<ContentfulFluid, 'tracedSVG' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyContentfulFluid_noBase64Fragment = Pick<ContentfulFluid, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyContentfulFluid_withWebpFragment = Pick<ContentfulFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type GatsbyContentfulFluid_withWebp_noBase64Fragment = Pick<ContentfulFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type GatsbyContentfulResolutionsFragment = Pick<ContentfulResolutions, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
-
-type GatsbyContentfulResolutions_tracedSVGFragment = Pick<ContentfulResolutions, 'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet'>;
-
-type GatsbyContentfulResolutions_noBase64Fragment = Pick<ContentfulResolutions, 'width' | 'height' | 'src' | 'srcSet'>;
-
-type GatsbyContentfulResolutions_withWebpFragment = Pick<ContentfulResolutions, 'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
-
-type GatsbyContentfulResolutions_withWebp_noBase64Fragment = Pick<ContentfulResolutions, 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
-
-type GatsbyContentfulSizesFragment = Pick<ContentfulSizes, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyContentfulSizes_tracedSVGFragment = Pick<ContentfulSizes, 'tracedSVG' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyContentfulSizes_noBase64Fragment = Pick<ContentfulSizes, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyContentfulSizes_withWebpFragment = Pick<ContentfulSizes, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type GatsbyContentfulSizes_withWebp_noBase64Fragment = Pick<ContentfulSizes, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
 
 }

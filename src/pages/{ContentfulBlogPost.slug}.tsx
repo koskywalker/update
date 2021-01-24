@@ -1,4 +1,5 @@
 import { graphql } from "gatsby"
+import Image from "gatsby-image"
 import React from "react"
 
 import { Bio } from "../components/bio"
@@ -25,10 +26,9 @@ const BlogPost: React.FC<IProps> = ({ data, location }) => {
   const updateDate = post?.updatedAt ?? ""
   const timeToRead = post?.body?.childMarkdownRemark?.timeToRead ?? ""
   const tags = post?.tags ?? []
-  const image = {
-    src: post?.heroImage?.file?.url ?? "",
-    alt: post?.heroImage?.description ?? "",
-  }
+  const image = post?.heroImage?.fluid
+  const imageSrc = post?.heroImage?.file?.url ?? ""
+  const imageAlt = post?.heroImage?.description ?? ""
   const bodyHtml = post?.body?.childMarkdownRemark?.html ?? ""
   const toc = post?.body?.childMarkdownRemark?.tableOfContents ?? ""
 
@@ -55,7 +55,7 @@ const BlogPost: React.FC<IProps> = ({ data, location }) => {
       <Seo
         pageTitle={title}
         pageDescription={description}
-        pageImage={image.src}
+        pageImage={imageSrc}
         type="article"
         publishDate={publishDate}
         updateDate={updateDate}
@@ -96,7 +96,7 @@ const BlogPost: React.FC<IProps> = ({ data, location }) => {
               </div>
             )}
             <div className="mt-6">
-              <img src={image.src} alt={image.alt} />
+              {image && <Image fluid={image} alt={imageAlt} />}
             </div>
           </div>
           <div
@@ -149,6 +149,9 @@ export const pageQuery = graphql`
         description
         file {
           url
+        }
+        fluid(maxWidth: 800) {
+          ...GatsbyContentfulFluid_withWebp_noBase64
         }
       }
       description {
