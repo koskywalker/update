@@ -1,6 +1,6 @@
 <h1 align="center">
   <a href="https://upd.world">
-    <img alt="UPDATE" src="https://upd.world/images/logo.svg" width="320" />
+    <img alt="UPDATE" src="https://upd.world/images/logo-light.svg" width="320" />
   </a>
 </h1>
 
