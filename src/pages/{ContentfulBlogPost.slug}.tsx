@@ -32,7 +32,7 @@ const BlogPost: React.FC<IProps> = ({ data, location }) => {
   const bodyHtml = post?.body?.childMarkdownRemark?.html ?? ""
   const toc = post?.body?.childMarkdownRemark?.tableOfContents ?? ""
 
-  const articleMetaClassName = "text-gray-400"
+  const articleMetaClassName = "text-gray-500"
   const articleMetaList = [
     {
       name: "publishDate",

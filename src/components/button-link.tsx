@@ -30,8 +30,9 @@ export const ButtonLink: React.FC<IProps> = ({
       sizeClassName = "px-6 py-3 text-base w-full"
   }
 
-  const colorName = accent ? "fuchsia" : "cyan"
-  const colorClassName = `bg-${colorName}-500 hover:bg-${colorName}-700 focus:bg-${colorName}-700 focus:ring-${colorName}-700`
+  const colorDefaultClassName = `bg-cyan-500 hover:bg-cyan-700 focus:bg-cyan-700 focus:ring-cyan-700`
+  const colorAccentClassName = `bg-fuchsia-500 hover:bg-fuchsia-700 focus:bg-fuchsia-700 focus:ring-fuchsia-700`
+  const colorClassName = accent ? colorAccentClassName : colorDefaultClassName
 
   const totalClassName = `inline-flex items-center justify-center font-bold text-white focus:outline-none focus:ring-2 focus:ring-offset-2 ${sizeClassName} ${colorClassName} ${className}`
 

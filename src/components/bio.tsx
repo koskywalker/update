@@ -53,7 +53,7 @@ export const Bio: React.FC = () => {
         <div className="space-y-4">
           <div className="font-bold text-center md:text-left">
             <p>{authorData.name}</p>
-            <p className="text-gray-400">{authorData.label}</p>
+            <p className="text-gray-500">{authorData.label}</p>
           </div>
           <div className="space-y-2">
             {authorData.description.map((sentence, index) => {

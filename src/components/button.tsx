@@ -35,19 +35,17 @@ export const Button: React.FC<IProps> = ({
     ? "cursor-wait"
     : "disabled:cursor-not-allowed"
   const colorDefaultClassName = disabled
-    ? `bg-cyan-500`
-    : `bg-cyan-500 hover:bg-cyan-700 focus:bg-cyan-700 focus:ring-cyan-700`
+    ? "bg-cyan-500"
+    : "bg-cyan-500 hover:bg-cyan-700 focus:bg-cyan-700 focus:ring-cyan-700"
   const colorAccentClassName = disabled
-    ? `bg-fuchsia-500`
-    : `bg-fuchsia-500 hover:bg-fuchsia-700 focus:bg-fuchsia-700 focus:ring-fuchsia-700`
+    ? "bg-fuchsia-500"
+    : "bg-fuchsia-500 hover:bg-fuchsia-700 focus:bg-fuchsia-700 focus:ring-fuchsia-700"
   const colorClassName = accent ? colorAccentClassName : colorDefaultClassName
 
+  const totalClassName = `inline-flex items-center justify-center font-bold text-white disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-offset-2 ${sizeClassName} ${statusClassName} ${colorClassName} ${className}`
+
   return (
-    <button
-      type={type}
-      disabled={disabled}
-      className={`inline-flex items-center justify-center font-bold text-white disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-offset-2 ${sizeClassName} ${statusClassName} ${colorClassName} ${className}`}
-    >
+    <button type={type} disabled={disabled} className={totalClassName}>
       {text}
     </button>
   )
