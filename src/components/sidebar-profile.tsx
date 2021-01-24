@@ -14,7 +14,7 @@ export const SidebarProfile: React.FC = () => {
         avatar: file(absolutePath: { regex: "/profile.png/" }) {
           childImageSharp {
             fixed(width: 150) {
-              ...GatsbyImageSharpFixed
+              ...GatsbyImageSharpFixed_withWebp_noBase64
             }
           }
         }

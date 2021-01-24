@@ -27,6 +27,7 @@ module.exports = {
         outputPath: `src/__generated__/gatsby-types.d.ts`,
       },
     },
+    "gatsby-plugin-sharp",
     {
       resolve: "gatsby-transformer-remark",
       options: {
@@ -34,7 +35,9 @@ module.exports = {
           {
             resolve: "gatsby-remark-images",
             options: {
-              maxWidth: 630,
+              maxWidth: 800,
+              withWebp: true,
+              loading: "lazy",
             },
           },
           {
@@ -83,7 +86,6 @@ module.exports = {
       },
     },
     "gatsby-plugin-offline",
-    "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     {
       resolve: "gatsby-source-filesystem",

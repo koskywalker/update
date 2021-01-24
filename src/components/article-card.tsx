@@ -1,4 +1,5 @@
 import dayjs from "dayjs"
+import Image from "gatsby-image"
 import React from "react"
 
 import { A } from "./a"
@@ -10,9 +11,7 @@ type IProps = {
   article: {
     slug: string
     heroImage: {
-      file: {
-        url: string
-      }
+      fluid: any
       description: string
     }
     publishDate: string
@@ -31,11 +30,13 @@ export const ArticleCard: React.FC<IProps> = ({ article }) => {
       <div>
         <A path={`/${article.slug}/`} className="block">
           <div className="flex-shrink-0">
-            <img
-              className="object-cover w-full h-48"
-              src={article.heroImage?.file?.url}
-              alt={article.heroImage?.description}
-            />
+            {article.heroImage?.fluid && (
+              <Image
+                className="object-cover w-full h-48"
+                fixed={article.heroImage?.fluid}
+                alt={article.heroImage?.description}
+              />
+            )}
           </div>
           <div className="flex items-center px-6 pt-6 text-sm text-gray-400 space-x-1">
             <IconCalendar className="flex-shrink-0 w-4 h-4" ariaHidden={true} />

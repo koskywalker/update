@@ -62,8 +62,8 @@ export const pageQuery = graphql`
           }
           heroImage {
             description
-            file {
-              url
+            fluid(maxWidth: 400) {
+              ...GatsbyContentfulFluid_withWebp_noBase64
             }
           }
           tags {

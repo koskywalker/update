@@ -127,14 +127,14 @@ export const pageQuery = graphql`
     imageUpdate: file(absolutePath: { regex: "/portfolio-update.png/" }) {
       childImageSharp {
         fluid {
-          ...GatsbyImageSharpFluid
+          ...GatsbyImageSharpFluid_withWebp_noBase64
         }
       }
     }
     imageCopilin: file(absolutePath: { regex: "/portfolio-copilin.png/" }) {
       childImageSharp {
         fluid {
-          ...GatsbyImageSharpFluid
+          ...GatsbyImageSharpFluid_withWebp_noBase64
         }
       }
     }
