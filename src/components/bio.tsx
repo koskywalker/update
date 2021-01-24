@@ -13,8 +13,8 @@ export const Bio: React.FC = () => {
       query Bio {
         avatar: file(absolutePath: { regex: "/profile.png/" }) {
           childImageSharp {
-            fixed(width: 100, height: 100, quality: 95) {
-              ...GatsbyImageSharpFixed
+            fixed(width: 100) {
+              ...GatsbyImageSharpFixed_withWebp_noBase64
             }
           }
         }
