@@ -60,33 +60,29 @@ export const Layout: React.FC<IProps> = ({ children, location }) => {
   return (
     <>
       <Particles />
-      <div className="flex h-screen overflow-hidden">
+      <div className="flex">
         {/* main */}
-        <div className="flex flex-col flex-1 order-2 min-w-0 overflow-hidden">
+        <div className="order-2 w-full lg:ml-64 lg:w-container-lg">
+          {/* main */}
+          <main className="mt-16 lg:m-0">
+            <div className="px-4 py-8 mx-auto md:max-w-7xl sm:px-6 lg:px-8">
+              {children}
+            </div>
+          </main>
           {/* header */}
-          <header className="lg:hidden">
-            <div className="flex items-center justify-between mx-4 border-b border-gray-300 py-1.5">
+          <header className="fixed top-0 w-full bg-white lg:hidden">
+            <div className="flex items-center justify-between h-16 mx-4 border-b border-gray-300 py-1.5">
               {logo}
-              <div>
-                <button
-                  type="button"
-                  className="inline-flex items-center justify-center w-12 h-12 -mr-3 text-black"
-                  onClick={openSidebar}
-                >
-                  <span className="sr-only">Open sidebar</span>
-                  <IconMenu className="w-6 h-6" ariaHidden={true} />
-                </button>
-              </div>
+              <button
+                type="button"
+                className="inline-flex items-center justify-center w-12 h-12 -mr-3 text-black"
+                onClick={openSidebar}
+              >
+                <span className="sr-only">Open sidebar</span>
+                <IconMenu className="w-6 h-6" ariaHidden={true} />
+              </button>
             </div>
           </header>
-          <div className="relative flex flex-1 overflow-hidden">
-            {/* main */}
-            <main className="relative flex-1 overflow-y-auto focus:outline-none">
-              <div className="absolute inset-0 px-4 py-8 mx-auto md:max-w-7xl sm:px-6 lg:px-8">
-                <div className="h-full">{children}</div>
-              </div>
-            </main>
-          </div>
         </div>
         {/* side-menu-primary */}
         <Sidebar

@@ -95,7 +95,7 @@ export const Sidebar: React.FC<IProps> = ({
         </div>
       </Transition>
 
-      <div className="order-1 hidden lg:flex lg:flex-shrink-0">
+      <div className="fixed order-1 hidden h-screen lg:flex lg:flex-shrink-0">
         <div className="flex flex-col w-64">
           <div className="flex flex-col flex-1 h-0 bg-black">
             <div className="flex flex-col flex-1 pt-5 pb-4 overflow-y-auto">
