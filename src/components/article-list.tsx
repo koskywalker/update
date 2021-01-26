@@ -10,9 +10,9 @@ type IProps = {
 
 export const ArticleList: React.FC<IProps> = ({ articleList, pageContext }) => {
   return (
-    <div className="relative lg:pb-8">
-      <div className="relative mx-auto max-w-7xl">
-        <div className="max-w-lg mx-auto md:max-w-none grid gap-5 md:grid-cols-2 xl:grid-cols-3 lg:max-w-none">
+    <div className="lg:pb-8">
+      <div className="mx-auto max-w-7xl">
+        <div className="mx-auto grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {articleList.map((post: any) => {
             return <ArticleCard key={post.node.slug} article={post.node} />
           })}
