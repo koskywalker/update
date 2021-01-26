@@ -54,8 +54,8 @@ module.exports = {
       boxShadow: {
         custom: "0 0 10px 3px rgba(0, 0, 0, 0.2)",
       },
-      height: {
-        custom: "calc(100vh - 4rem)",
+      width: {
+        "container-lg": "calc(100% - 16rem)",
       },
       typography: (theme) => {
         return {

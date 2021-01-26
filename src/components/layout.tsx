@@ -62,9 +62,15 @@ export const Layout: React.FC<IProps> = ({ children, location }) => {
       <Particles />
       <div className="flex">
         {/* main */}
-        <div className="order-2 w-full lg:ml-64">
+        <div className="order-2 w-full lg:ml-64 lg:w-container-lg">
+          {/* main */}
+          <main className="mt-16 lg:m-0">
+            <div className="px-4 py-8 mx-auto md:max-w-7xl sm:px-6 lg:px-8">
+              {children}
+            </div>
+          </main>
           {/* header */}
-          <header className="fixed top-0 w-full lg:hidden">
+          <header className="fixed top-0 w-full bg-white lg:hidden">
             <div className="flex items-center justify-between h-16 mx-4 border-b border-gray-300 py-1.5">
               {logo}
               <button
@@ -77,12 +83,6 @@ export const Layout: React.FC<IProps> = ({ children, location }) => {
               </button>
             </div>
           </header>
-          {/* main */}
-          <main className="fixed mt-16 overflow-auto lg:static lg:overflow-visible lg:m-0 b-0 h-custom lg:h-auto">
-            <div className="px-4 py-8 mx-auto md:max-w-7xl sm:px-6 lg:px-8">
-              {children}
-            </div>
-          </main>
         </div>
         {/* side-menu-primary */}
         <Sidebar
