@@ -5742,6 +5742,7 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___id = 'pluginCreator.pluginOptions.id',
   pluginCreator___pluginOptions___includeInDevelopment = 'pluginCreator.pluginOptions.includeInDevelopment',
   pluginCreator___pluginOptions___routeChangeEventName = 'pluginCreator.pluginOptions.routeChangeEventName',
+  pluginCreator___pluginOptions___publisherId = 'pluginCreator.pluginOptions.publisherId',
   pluginCreator___pluginOptions___outputPath = 'pluginCreator.pluginOptions.outputPath',
   pluginCreator___pluginOptions___base64Width = 'pluginCreator.pluginOptions.base64Width',
   pluginCreator___pluginOptions___stripMetadata = 'pluginCreator.pluginOptions.stripMetadata',
@@ -6024,6 +6025,7 @@ enum SitePluginFieldsEnum {
   pluginOptions___id = 'pluginOptions.id',
   pluginOptions___includeInDevelopment = 'pluginOptions.includeInDevelopment',
   pluginOptions___routeChangeEventName = 'pluginOptions.routeChangeEventName',
+  pluginOptions___publisherId = 'pluginOptions.publisherId',
   pluginOptions___outputPath = 'pluginOptions.outputPath',
   pluginOptions___base64Width = 'pluginOptions.base64Width',
   pluginOptions___stripMetadata = 'pluginOptions.stripMetadata',
@@ -6203,6 +6205,7 @@ type SitePluginPluginOptions = {
   readonly id: Maybe<Scalars['String']>;
   readonly includeInDevelopment: Maybe<Scalars['Boolean']>;
   readonly routeChangeEventName: Maybe<Scalars['String']>;
+  readonly publisherId: Maybe<Scalars['String']>;
   readonly outputPath: Maybe<Scalars['String']>;
   readonly base64Width: Maybe<Scalars['Int']>;
   readonly stripMetadata: Maybe<Scalars['Boolean']>;
@@ -6287,6 +6290,7 @@ type SitePluginPluginOptionsFilterInput = {
   readonly id: Maybe<StringQueryOperatorInput>;
   readonly includeInDevelopment: Maybe<BooleanQueryOperatorInput>;
   readonly routeChangeEventName: Maybe<StringQueryOperatorInput>;
+  readonly publisherId: Maybe<StringQueryOperatorInput>;
   readonly outputPath: Maybe<StringQueryOperatorInput>;
   readonly base64Width: Maybe<IntQueryOperatorInput>;
   readonly stripMetadata: Maybe<BooleanQueryOperatorInput>;
@@ -6523,11 +6527,6 @@ type BioQueryVariables = Exact<{ [key: string]: never; }>;
 
 type BioQuery = { readonly avatar: Maybe<{ readonly childImageSharp: Maybe<{ readonly fixed: Maybe<GatsbyImageSharpFixed_withWebp_noBase64Fragment> }> }> };
 
-type SidebarProfileQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type SidebarProfileQuery = { readonly avatar: Maybe<{ readonly childImageSharp: Maybe<{ readonly fixed: Maybe<GatsbyImageSharpFixed_withWebp_noBase64Fragment> }> }> };
-
 type GatsbyContentfulFixedFragment = Pick<ContentfulFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
 type GatsbyContentfulFixed_tracedSVGFragment = Pick<ContentfulFixed, 'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet'>;
@@ -6613,5 +6612,10 @@ type GatsbyImageSharpSizes_withWebp_tracedSVGFragment = Pick<ImageSharpSizes, 't
 type GatsbyImageSharpSizes_noBase64Fragment = Pick<ImageSharpSizes, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
 
 type GatsbyImageSharpSizes_withWebp_noBase64Fragment = Pick<ImageSharpSizes, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
+
+type SidebarProfileQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type SidebarProfileQuery = { readonly avatar: Maybe<{ readonly childImageSharp: Maybe<{ readonly fixed: Maybe<GatsbyImageSharpFixed_withWebp_noBase64Fragment> }> }> };
 
 }
