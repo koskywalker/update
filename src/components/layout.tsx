@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react"
 
-import { toggleEnableScroll, wait } from "../utils/utils"
+import { disableScroll, enableScroll, wait } from "../utils/utils"
 import { IconMenu } from "./icons/icon-menu"
 import { LogoLink } from "./logo-link"
 import { Particles } from "./particles"
@@ -28,7 +28,7 @@ export const Layout: React.FC<IProps> = ({ children, location }) => {
    */
   const openSidebar = () => {
     setIsSidebarOpen(true)
-    toggleEnableScroll()
+    disableScroll()
   }
 
   /**
@@ -37,7 +37,7 @@ export const Layout: React.FC<IProps> = ({ children, location }) => {
   const closeSidebar = async () => {
     setIsSidebarOpen(false)
     await wait(1000)
-    toggleEnableScroll()
+    enableScroll()
   }
 
   /**

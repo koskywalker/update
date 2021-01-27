@@ -1,7 +1,8 @@
+import { navigate } from "gatsby"
 import React from "react"
 
 import { pathObject } from "../constants/constants"
-import { A } from "./a"
+import { enableScroll } from "../utils/utils"
 import { IconBookOpen } from "./icons/icon-book-open"
 import { IconCode } from "./icons/icon-code"
 import { IconFilm } from "./icons/icon-film"
@@ -76,23 +77,34 @@ export const SidebarMenu: React.FC<IProps> = ({ location }) => {
     },
   ]
 
+  /**
+   * スクロールを有効にして指定のページへ遷移.
+   */
+  const goToNextPage = (path: string): void => {
+    enableScroll()
+    navigate(path)
+  }
+
   return (
     <nav aria-label="Sidebar" className="mt-5">
       <div className="space-y-1">
         {menuList.map((menu) => {
           return (
-            <A
+            <button
+              type="button"
               key={menu.id}
-              path={menu.path}
-              className={`flex items-center px-4 py-2 text-base font-medium group ${
+              className={`flex items-center w-full px-4 py-2 text-base font-medium group ${
                 currentPathFormatted === menu.path
                   ? "text-white bg-gray-500"
                   : "text-gray-300 hover:bg-gray-500 hover:text-white"
               }`}
+              onClick={() => {
+                goToNextPage(menu.path)
+              }}
             >
               {menu.icon}
               {menu.name}
-            </A>
+            </button>
           )
         })}
       </div>
