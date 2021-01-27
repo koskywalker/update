@@ -22,6 +22,12 @@ module.exports = {
       },
     },
     {
+      resolve: "gatsby-plugin-google-adsense",
+      options: {
+        publisherId: "ca-pub-7421917972211870",
+      },
+    },
+    {
       resolve: "gatsby-plugin-typegen",
       options: {
         outputPath: `src/__generated__/gatsby-types.d.ts`,
