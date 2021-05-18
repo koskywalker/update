@@ -32,19 +32,13 @@ const Contact: React.FC<IProps> = ({ location }) => {
   const pageTitle = "お問い合わせ"
   const postUrl = "https://formspree.io/f/xjvpleqq"
 
-  const {
-    register,
-    errors,
-    reset,
-    handleSubmit,
-    formState,
-  } = useForm<FormInputs>({
+  const { register, reset, handleSubmit, formState } = useForm<FormInputs>({
     mode: "onTouched",
     criteriaMode: "all",
     defaultValues,
   })
 
-  const { isDirty, isSubmitting, isValid } = formState
+  const { isDirty, isSubmitting, isValid, errors } = formState
 
   const onSubmit = (data: any, e: any) => {
     e.preventDefault()
@@ -92,13 +86,14 @@ const Contact: React.FC<IProps> = ({ location }) => {
                     placeholder="山田太郎"
                     maxlength={512}
                     required={true}
-                    register={register({
+                    register={register}
+                    validation={{
                       required: "名前を入力してください.",
                       maxLength: {
                         value: 512,
                         message: "512文字以内で入力してださい.",
                       },
-                    })}
+                    }}
                     error={errors.name}
                   />
                   <ErrorMessageList name="name" errors={errors} />
@@ -111,12 +106,13 @@ const Contact: React.FC<IProps> = ({ location }) => {
                     autoComplete="organization"
                     placeholder="株式会社XXXX"
                     maxlength={512}
-                    register={register({
+                    register={register}
+                    validation={{
                       maxLength: {
                         value: 512,
                         message: "512文字以内で入力してださい.",
                       },
-                    })}
+                    }}
                     error={errors.company}
                   />
                   <ErrorMessageList name="company" errors={errors} />
@@ -130,20 +126,22 @@ const Contact: React.FC<IProps> = ({ location }) => {
                     placeholder="you@example.com"
                     maxlength={512}
                     required={true}
-                    register={register({
+                    register={register}
+                    validation={{
                       required: "メールアドレスを入力してください.",
                       pattern: {
-                        value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                        value:
+                          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
                         message: "メールアドレスの形式が誤っています.",
                       },
                       maxLength: {
                         value: 512,
                         message: "512文字以内で入力してださい.",
                       },
-                    })}
-                    error={errors.email}
+                    }}
+                    error={errors._replyto}
                   />
-                  <ErrorMessageList name="email" errors={errors} />
+                  <ErrorMessageList name="_replyto" errors={errors} />
                 </div>
                 <div className="sm:col-span-2">
                   <TextareaWithLabel
@@ -151,13 +149,14 @@ const Contact: React.FC<IProps> = ({ location }) => {
                     name="message"
                     maxlength={10000}
                     required={true}
-                    register={register({
+                    register={register}
+                    validation={{
                       required: "メッセージを入力してください",
                       maxLength: {
                         value: 10000,
                         message: "10000文字以内で入力してださい.",
                       },
-                    })}
+                    }}
                     error={errors.message}
                   />
                   <ErrorMessageList name="message" errors={errors} />

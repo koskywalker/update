@@ -14,11 +14,9 @@ Gatsby x TypeScript x Contentful x Vercel を使用した Jamstack 構成のブ�
 
 ## 🌏 環境構築手順
 
-### 1. yarn をインストール
+### 1. Node.js をインストール
 
-``` shell
-npm install --global yarn
-```
+[ダウンロード | Node.js](https://nodejs.org/ja/download/)
 
 ### 2. リポジトリを clone
 
@@ -28,13 +26,13 @@ npm install --global yarn
 
 ``` shell
 cd update/
-yarn install
+npm install
 ```
 
 ### 4. 開発サーバーを起動
 
 ``` shell
-yarn develop
+npm run develop
 ```
 
 ## 🚀 デプロイ手順
@@ -67,12 +65,12 @@ GitHub 上で, 開発用のブランチ -> main ブランチへのプルリク�
 ├── gatsby-browser.js
 ├── gatsby-config.js
 ├── gatsby-node.js
+├── package-lock.json
 ├── package.json
 ├── postcss.config.js
 ├── README.md
 ├── tailwind.config.js
-├── tsconfig.json
-└── yarn.lock
+└── tsconfig.json
 ```
 
 1. **`/.vscode`**: VS Code の設定.
@@ -89,12 +87,12 @@ GitHub 上で, 開発用のブランチ -> main ブランチへのプルリク�
 12. **`gatsby-browser.js`**: [Gatsby browser APIs](https://www.gatsbyjs.com/docs/browser-apis/) 参照.
 13. **`gatsby-config.js`**: [config docs](https://www.gatsbyjs.com/docs/gatsby-config/) 参照.
 14. **`gatsby-node.js`**: [Gatsby Node APIs](https://www.gatsbyjs.com/docs/node-apis/) 参照.
-15. **`package.json`**: npm package の管理ファイル.
-16. **`postcss.config.js`**: PostCSS の設定ファイル.
-17. **`README.md`**: 当リポジトリの README ファイル.
-18. **`tailwind.config.js`**: Tailwind CSS の設定ファイル.
-19. **`tsconfig.json`**: TypeScript の設定ファイル.
-20. **`yarn.lock`**: npm package の依存関係を管理するファイル.
+15. **`package-lock.json`**: npm package の依存関係を管理するファイル.
+16. **`package.json`**: npm package の管理ファイル.
+17. **`postcss.config.js`**: PostCSS の設定ファイル.
+18. **`README.md`**: 当リポジトリの README ファイル.
+19. **`tailwind.config.js`**: Tailwind CSS の設定ファイル.
+20. **`tsconfig.json`**: TypeScript の設定ファイル.
 
 ## 🎓 Learning Gatsby
 

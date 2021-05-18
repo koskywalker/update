@@ -10,6 +10,7 @@ type IProps = {
   maxlength: number
   required?: boolean
   register?: any
+  validation?: any
   error?: any
 }
 
@@ -20,6 +21,7 @@ export const TextareaWithLabel: React.FC<IProps> = ({
   maxlength,
   required = false,
   register,
+  validation,
   error = null,
 }) => {
   return (
@@ -33,6 +35,7 @@ export const TextareaWithLabel: React.FC<IProps> = ({
           rows={rows}
           maxlength={maxlength}
           register={register}
+          validation={validation}
           error={error}
         ></Textarea>
         <div

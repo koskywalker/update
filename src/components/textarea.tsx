@@ -5,6 +5,7 @@ type IProps = {
   rows?: number
   maxlength: number
   register?: any
+  validation?: any
   error?: any
 }
 
@@ -13,6 +14,7 @@ export const Textarea: React.FC<IProps> = ({
   rows = 8,
   maxlength,
   register,
+  validation,
   error = null,
 }) => {
   return (
@@ -26,7 +28,7 @@ export const Textarea: React.FC<IProps> = ({
           ? "pr-10 border-red-300 focus:ring-red-500 focus:border-red-500"
           : "border-gray-300 focus:ring-cyan-500 focus:border-cyan-500"
       }`}
-      ref={register}
+      {...register(name, validation)}
     ></textarea>
   )
 }

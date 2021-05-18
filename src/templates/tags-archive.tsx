@@ -62,9 +62,7 @@ export const pageQuery = graphql`
           }
           heroImage {
             description
-            fluid(maxWidth: 400) {
-              ...GatsbyContentfulFluid_withWebp_noBase64
-            }
+            gatsbyImageData
           }
           tags {
             name

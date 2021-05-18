@@ -1,5 +1,5 @@
 import { graphql } from "gatsby"
-import Image from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 
 import { Bio } from "../components/bio"
@@ -26,7 +26,7 @@ const BlogPost: React.FC<IProps> = ({ data, location }) => {
   const updateDate = post?.updatedAt ?? ""
   const timeToRead = post?.body?.childMarkdownRemark?.timeToRead ?? ""
   const tags = post?.tags ?? []
-  const image = post?.heroImage?.fluid
+  const image = post?.heroImage?.gatsbyImageData
   const imageSrc = post?.heroImage?.file?.url ?? ""
   const imageAlt = post?.heroImage?.description ?? ""
   const bodyHtml = post?.body?.childMarkdownRemark?.html ?? ""
@@ -96,7 +96,7 @@ const BlogPost: React.FC<IProps> = ({ data, location }) => {
               </div>
             )}
             <div className="mt-6">
-              {image && <Image fluid={image} alt={imageAlt} />}
+              {image && <GatsbyImage image={image} alt={imageAlt} />}
             </div>
           </div>
           <div
@@ -150,9 +150,7 @@ export const pageQuery = graphql`
         file {
           url
         }
-        fluid(maxWidth: 800) {
-          ...GatsbyContentfulFluid_withWebp_noBase64
-        }
+        gatsbyImageData
       }
       description {
         description

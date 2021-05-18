@@ -6,12 +6,8 @@ import { IconChevronLeft } from "./icons/icon-chevron-left"
 import { IconChevronRight } from "./icons/icon-chevron-right"
 
 export const Pager = ({ pageContext }: any) => {
-  const {
-    humanPageNumber,
-    previousPagePath,
-    nextPagePath,
-    lastPageNumber,
-  } = pageContext
+  const { humanPageNumber, previousPagePath, nextPagePath, lastPageNumber } =
+    pageContext
 
   if (lastPageNumber === 1) {
     return null

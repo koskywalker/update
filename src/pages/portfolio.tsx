@@ -1,5 +1,5 @@
 import { graphql } from "gatsby"
-import Image from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 
 import { Breadcrumb } from "../components/breadcrumb"
@@ -13,8 +13,10 @@ type IProps = {
 }
 
 const Portfolio: React.FC<IProps> = ({ data, location }) => {
-  const portfolioImageUpdate = data.imageUpdate?.childImageSharp?.fluid
-  const portfolioImageCopilin = data.imageCopilin?.childImageSharp?.fluid
+  const portfolioImageUpdate =
+    data.imageUpdate?.childImageSharp?.gatsbyImageData
+  const portfolioImageCopilin =
+    data.imageCopilin?.childImageSharp?.gatsbyImageData
 
   const pageTitle = "ポートフォリオ"
   const items = [
@@ -36,8 +38,7 @@ const Portfolio: React.FC<IProps> = ({ data, location }) => {
     },
     {
       title: "コピリン",
-      url:
-        "https://chrome.google.com/webstore/detail/%E3%82%B3%E3%83%94%E3%83%AA%E3%83%B3/jmjkimbpmdcnlohbclgfdmckjnjlfhnd?hl=ja",
+      url: "https://chrome.google.com/webstore/detail/%E3%82%B3%E3%83%94%E3%83%AA%E3%83%B3/jmjkimbpmdcnlohbclgfdmckjnjlfhnd?hl=ja",
       subTitle: "Vue.js x Filebase で作成した SPA (Chrome 拡張機能)",
       image: portfolioImageCopilin,
       meta: {
@@ -72,8 +73,8 @@ const Portfolio: React.FC<IProps> = ({ data, location }) => {
                     <p className="mt-4">{item.subTitle}</p>
                     <div className="grid grid-cols-1 xl:grid-cols-2 xl:gap-x-4">
                       <div>
-                        <Image
-                          fluid={item.image}
+                        <GatsbyImage
+                          image={item.image}
                           alt={item.title}
                           imgStyle={{
                             border: "1px solid #ccc",
@@ -126,16 +127,12 @@ export const pageQuery = graphql`
   query Portfolio {
     imageUpdate: file(absolutePath: { regex: "/portfolio-update.png/" }) {
       childImageSharp {
-        fluid {
-          ...GatsbyImageSharpFluid_withWebp_noBase64
-        }
+        gatsbyImageData(placeholder: NONE, layout: FULL_WIDTH)
       }
     }
     imageCopilin: file(absolutePath: { regex: "/portfolio-copilin.png/" }) {
       childImageSharp {
-        fluid {
-          ...GatsbyImageSharpFluid_withWebp_noBase64
-        }
+        gatsbyImageData(placeholder: NONE, layout: FULL_WIDTH)
       }
     }
   }

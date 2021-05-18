@@ -6,6 +6,9 @@ module.exports = {
   siteMetadata: {
     siteUrl: `https://${process.env.GATSBY_BASE_URL}`,
   },
+  flags: {
+    THE_FLAG: false,
+  },
   plugins: [
     {
       resolve: "gatsby-source-contentful",
@@ -33,6 +36,7 @@ module.exports = {
         outputPath: `src/__generated__/gatsby-types.d.ts`,
       },
     },
+    "gatsby-plugin-image",
     "gatsby-plugin-sharp",
     {
       resolve: "gatsby-transformer-remark",

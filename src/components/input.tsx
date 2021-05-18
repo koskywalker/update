@@ -7,6 +7,7 @@ type IProps = {
   placeholder?: string
   maxlength: number
   register?: any
+  validation?: any
   error?: any
 }
 
@@ -17,13 +18,13 @@ export const Input: React.FC<IProps> = ({
   placeholder,
   maxlength,
   register,
+  validation,
   error = null,
 }) => {
   return (
     <input
       type={type}
       id={name}
-      name={name}
       autoComplete={autoComplete}
       placeholder={placeholder}
       maxLength={maxlength}
@@ -32,7 +33,7 @@ export const Input: React.FC<IProps> = ({
           ? "pr-10 border-red-300 focus:ring-red-500 focus:border-red-500"
           : "border-gray-300 focus:ring-cyan-500 focus:border-cyan-500"
       }`}
-      ref={register}
+      {...register(name, validation)}
     />
   )
 }

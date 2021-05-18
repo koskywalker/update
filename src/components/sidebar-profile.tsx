@@ -1,5 +1,5 @@
 import { graphql, useStaticQuery } from "gatsby"
-import Image from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 
 import { authorData } from "../constants/constants"
@@ -13,16 +13,14 @@ export const SidebarProfile: React.FC = () => {
       query SidebarProfile {
         avatar: file(absolutePath: { regex: "/profile.png/" }) {
           childImageSharp {
-            fixed(width: 150) {
-              ...GatsbyImageSharpFixed_withWebp_noBase64
-            }
+            gatsbyImageData(width: 150, placeholder: NONE, layout: FIXED)
           }
         }
       }
     `
   )
 
-  const image = data?.avatar?.childImageSharp?.fixed
+  const image = data?.avatar?.childImageSharp?.gatsbyImageData
 
   const socialIconClassName = "w-6 h-6 sm:w-8 sm:h-8 text-white"
   const socialList = [
@@ -43,8 +41,8 @@ export const SidebarProfile: React.FC = () => {
       <div>
         {image && (
           <div className="justify-center hidden xs:flex">
-            <Image
-              fixed={image}
+            <GatsbyImage
+              image={image}
               alt={authorData.name}
               className="block rounded-full"
             />

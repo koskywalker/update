@@ -13,6 +13,7 @@ type IProps = {
   required?: boolean
   error: any
   register?: any
+  validation?: any
 }
 
 export const InputWithLabel: React.FC<IProps> = ({
@@ -24,6 +25,7 @@ export const InputWithLabel: React.FC<IProps> = ({
   maxlength,
   required = false,
   register,
+  validation,
   error = null,
 }) => {
   return (
@@ -39,6 +41,7 @@ export const InputWithLabel: React.FC<IProps> = ({
           placeholder={placeholder}
           maxlength={maxlength}
           register={register}
+          validation={validation}
           error={error}
         />
         <div

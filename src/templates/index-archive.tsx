@@ -52,9 +52,7 @@ export const pageQuery = graphql`
           publishDate(formatString: "YYYY-MM-DD")
           updatedAt(formatString: "YYYY-MM-DD")
           heroImage {
-            fluid(maxWidth: 400) {
-              ...GatsbyContentfulFluid_withWebp_noBase64
-            }
+            gatsbyImageData
             description
           }
           tags {
