@@ -30,6 +30,7 @@ export const Particles: React.FC = () => {
       move: {
         enable: true,
         outMode: "bounce",
+        speed: 1,
       },
       number: {
         density: {
@@ -46,6 +47,7 @@ export const Particles: React.FC = () => {
         value: 5,
       },
     },
+    detectRetina: true,
   }
   const particlesOptionsLarge = {
     ...particlesOptionsDefault,
@@ -68,7 +70,7 @@ export const Particles: React.FC = () => {
       },
     },
   }
-  const particlesOptions =
+  const particlesOptions: any =
     windowInnerWidth < breakPoint
       ? particlesOptionsDefault
       : particlesOptionsLarge

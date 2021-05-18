@@ -13,14 +13,14 @@ import { TextareaWithLabel } from "../components/textarea-with-label"
 type FormInputs = {
   name: string
   company: string
-  email: string
+  _replyto: string
   message: string
 }
 
 const defaultValues = {
   name: "",
   company: "",
-  email: "",
+  _replyto: "",
   message: "",
 }
 
