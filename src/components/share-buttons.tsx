@@ -94,7 +94,7 @@ export const ShareButtons: React.FC<IProps> = ({ location, title }) => {
   return (
     <div className="flex flex-wrap">
       <p className="w-full text-xl font-bold text-center md:text-2xl">
-        \ この記事をシェア！ /
+        \ 記事が良かったらシェア！ /
       </p>
       <div className="flex items-center justify-center w-full mt-4 space-x-4 xs:space-x-6 md:space-x-16">
         {socialList.map((item) => {
