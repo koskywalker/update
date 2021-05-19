@@ -5,7 +5,7 @@ export const siteData = {
 }
 
 export const authorData = {
-  name: "むらかこうすけ (Kosuke Muraka)",
+  name: "むらかこうすけ",
   description: [
     "フリーのソフトウェアエンジニア.",
     "アプリ開発, ブログ運営, YouTube 発信をメインに活動しています.",
