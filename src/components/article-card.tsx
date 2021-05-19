@@ -25,6 +25,9 @@ type IProps = {
 }
 
 export const ArticleCard: React.FC<IProps> = ({ article }) => {
+  const publishDate = dayjs(article.publishDate).format("YYYY年MM月DD日")
+  const updateDate = dayjs(article.updatedAt).format("YYYY年MM月DD日")
+
   return (
     <div className="flex flex-col overflow-hidden bg-white shadow-custom">
       <div>
@@ -40,13 +43,16 @@ export const ArticleCard: React.FC<IProps> = ({ article }) => {
           </div>
           <div className="flex items-center px-6 pt-6 text-sm text-gray-500 space-x-1">
             <IconCalendar className="flex-shrink-0 w-4 h-4" ariaHidden={true} />
-            <time dateTime={article.publishDate}>
-              {dayjs(article.publishDate).format("YYYY年MM月DD日")}
-            </time>
-            <IconRefresh className="flex-shrink-0 w-4 h-4" ariaHidden={true} />
-            <time dateTime={article.updatedAt}>
-              {dayjs(article.updatedAt).format("YYYY年MM月DD日")}
-            </time>
+            <time dateTime={article.publishDate}>{publishDate}</time>
+            {publishDate !== updateDate && (
+              <>
+                <IconRefresh
+                  className="flex-shrink-0 w-4 h-4"
+                  ariaHidden={true}
+                />
+                <time dateTime={article.updatedAt}>{updateDate}</time>
+              </>
+            )}
           </div>
           <h2 className="px-6 pt-3 text-xl font-semibold">{article.title}</h2>
         </A>
