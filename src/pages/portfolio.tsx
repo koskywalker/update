@@ -127,12 +127,12 @@ export const pageQuery = graphql`
   query Portfolio {
     imageUpdate: file(absolutePath: { regex: "/portfolio-update.png/" }) {
       childImageSharp {
-        gatsbyImageData(placeholder: NONE, layout: FULL_WIDTH)
+        gatsbyImageData
       }
     }
     imageCopilin: file(absolutePath: { regex: "/portfolio-copilin.png/" }) {
       childImageSharp {
-        gatsbyImageData(placeholder: NONE, layout: FULL_WIDTH)
+        gatsbyImageData
       }
     }
   }

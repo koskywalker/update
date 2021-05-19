@@ -1,5 +1,4 @@
-import { graphql, useStaticQuery } from "gatsby"
-import { GatsbyImage } from "gatsby-plugin-image"
+import { StaticImage } from "gatsby-plugin-image"
 import React from "react"
 
 import { authorData } from "../constants/constants"
@@ -8,20 +7,6 @@ import { IconGithub } from "./icons/icon-github"
 import { IconTwitter } from "./icons/icon-twitter"
 
 export const SidebarProfile: React.FC = () => {
-  const data = useStaticQuery<GatsbyTypes.SidebarProfileQuery>(
-    graphql`
-      query SidebarProfile {
-        avatar: file(absolutePath: { regex: "/profile.png/" }) {
-          childImageSharp {
-            gatsbyImageData(width: 150, placeholder: NONE, layout: FIXED)
-          }
-        }
-      }
-    `
-  )
-
-  const image = data?.avatar?.childImageSharp?.gatsbyImageData
-
   const socialIconClassName = "w-6 h-6 sm:w-8 sm:h-8 text-white"
   const socialList = [
     {
@@ -39,15 +24,15 @@ export const SidebarProfile: React.FC = () => {
   return (
     <div className="py-4 mx-4 text-white border-t border-gray-300 xs:py-6 sm:py-8">
       <div>
-        {image && (
-          <div className="justify-center hidden xs:flex">
-            <GatsbyImage
-              image={image}
-              alt={authorData.name}
-              className="block rounded-full"
-            />
-          </div>
-        )}
+        <div className="justify-center hidden xs:flex">
+          <StaticImage
+            src="../images/profile.png"
+            alt={authorData.name}
+            className="block rounded-full"
+            width={150}
+            layout="fixed"
+          />
+        </div>
         <div className="xs:mt-2 sm:mt-6 space-y-4">
           <div className="font-bold text-center leading-6 space-y-1">
             <h3>{authorData.name}</h3>

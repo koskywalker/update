@@ -1,5 +1,4 @@
-import { graphql, useStaticQuery } from "gatsby"
-import { GatsbyImage } from "gatsby-plugin-image"
+import { StaticImage } from "gatsby-plugin-image"
 import React from "react"
 
 import { authorData } from "../constants/constants"
@@ -8,20 +7,6 @@ import { IconGithub } from "./icons/icon-github"
 import { IconTwitter } from "./icons/icon-twitter"
 
 export const Bio: React.FC = () => {
-  const data = useStaticQuery<GatsbyTypes.BioQuery>(
-    graphql`
-      query Bio {
-        avatar: file(absolutePath: { regex: "/profile.png/" }) {
-          childImageSharp {
-            gatsbyImageData(width: 100, layout: FIXED)
-          }
-        }
-      }
-    `
-  )
-
-  const image = data?.avatar?.childImageSharp?.gatsbyImageData
-
   const socialIconClassName = "w-8 h-8"
   const socialList = [
     {
@@ -39,13 +24,13 @@ export const Bio: React.FC = () => {
   return (
     <div className="pt-8 border-t border-gray-300 md:flex space-y-4 md:space-y-0">
       <div className="flex justify-center">
-        {image && (
-          <GatsbyImage
-            image={image}
-            className="object-cover rounded-full"
-            alt={authorData.name}
-          />
-        )}
+        <StaticImage
+          src="../images/profile.png"
+          className="object-cover rounded-full"
+          alt={authorData.name}
+          width={150}
+          layout="fixed"
+        />
       </div>
       <div className="flex-1 md:ml-4">
         <div className="space-y-4">

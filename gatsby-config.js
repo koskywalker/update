@@ -36,7 +36,6 @@ module.exports = {
         outputPath: `src/__generated__/gatsby-types.d.ts`,
       },
     },
-    "gatsby-plugin-image",
     "gatsby-plugin-sharp",
     {
       resolve: "gatsby-transformer-remark",

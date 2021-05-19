@@ -32,7 +32,7 @@ export const Sidebar: React.FC<IProps> = ({
     <>
       <Transition show={isSidebarOpen}>
         <div className="lg:hidden">
-          <div className="fixed inset-0 flex">
+          <div className="fixed inset-0 flex w-full">
             <Transition.Child
               enter="transition-opacity duration-1000"
               enterFrom="opacity-0"
@@ -56,39 +56,27 @@ export const Sidebar: React.FC<IProps> = ({
               leave="transition ease-in-out duration-1000 transform"
               leaveFrom="translate-x-0"
               leaveTo="-translate-x-full"
+              className="w-full"
             >
-              {(ref) => {
-                return (
-                  <div
-                    ref={ref}
-                    className="relative flex flex-col flex-1 w-full max-w-xs bg-black focus:outline-none"
+              <div className="relative flex flex-col flex-1 w-full h-screen max-w-xs bg-black focus:outline-none">
+                <div className="absolute top-0 right-0 pt-2 -mr-12">
+                  <button
+                    type="button"
+                    className="flex items-center justify-center w-10 h-10 ml-1 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                    onClick={closeSidebar}
                   >
-                    <div className="absolute top-0 right-0 pt-2 -mr-12">
-                      <button
-                        type="button"
-                        className="flex items-center justify-center w-10 h-10 ml-1 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-                        onClick={closeSidebar}
-                      >
-                        <span className="sr-only">Close sidebar</span>
-                        <IconX
-                          className="w-6 h-6 text-white"
-                          ariaHidden={true}
-                        />
-                      </button>
-                    </div>
-                    <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
-                      <div className="flex items-center flex-shrink-0 h-16 px-4">
-                        <LogoLink
-                          className="w-auto h-8 sm:h-10"
-                          color="white"
-                        />
-                      </div>
-                      <SidebarMenu location={location} />
-                    </div>
-                    <SidebarProfile />
+                    <span className="sr-only">Close sidebar</span>
+                    <IconX className="w-6 h-6 text-white" ariaHidden={true} />
+                  </button>
+                </div>
+                <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
+                  <div className="flex items-center flex-shrink-0 h-16 px-4">
+                    <LogoLink className="w-auto h-8 sm:h-10" color="white" />
                   </div>
-                )
-              }}
+                  <SidebarMenu location={location} />
+                </div>
+                <SidebarProfile />
+              </div>
             </Transition.Child>
             <div className="flex-shrink-0 w-14" aria-hidden="true"></div>
           </div>
