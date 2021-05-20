@@ -63,7 +63,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   // タグ一覧ページを生成.
   tags.forEach((tag) => {
-    if (!tag.node.blog_post.length) {
+    if (!tag.node.blog_post) {
       return
     }
     const tagName = tag.node.name
