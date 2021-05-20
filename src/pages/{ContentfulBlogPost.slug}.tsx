@@ -1,3 +1,4 @@
+import dayjs from "dayjs"
 import { graphql } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
@@ -33,22 +34,26 @@ const BlogPost: React.FC<IProps> = ({ data, location }) => {
   const toc = post?.body?.childMarkdownRemark?.tableOfContents ?? ""
 
   const articleMetaClassName = "text-gray-500"
-  const articleMetaList = [
-    {
-      name: "publishDate",
-      content: <PublishDate date={publishDate} color={articleMetaClassName} />,
-    },
-    {
-      name: "updateDate",
-      content: <UpdateDate date={updateDate} color={articleMetaClassName} />,
-    },
-    {
-      name: "timeToRead",
-      content: (
-        <TimeToRead time={timeToRead.toString()} color={articleMetaClassName} />
-      ),
-    },
-  ]
+  const publishDateObject = {
+    name: "publishDate",
+    content: <PublishDate date={publishDate} color={articleMetaClassName} />,
+  }
+  const updateDateObject = {
+    name: "updateDate",
+    content: <UpdateDate date={updateDate} color={articleMetaClassName} />,
+  }
+  const timeToReadObject = {
+    name: "timeToRead",
+    content: (
+      <TimeToRead time={timeToRead.toString()} color={articleMetaClassName} />
+    ),
+  }
+  const publishDateFormatted = dayjs(publishDate).format("YYYY年MM月DD日")
+  const updateDateFormatted = dayjs(updateDate).format("YYYY年MM月DD日")
+  const articleMetaList =
+    publishDateFormatted === updateDateFormatted
+      ? [publishDateObject, timeToReadObject]
+      : [publishDateObject, updateDateObject, timeToReadObject]
 
   return (
     <Layout location={location}>
