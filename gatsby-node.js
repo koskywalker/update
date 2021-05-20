@@ -63,6 +63,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   // タグ一覧ページを生成.
   tags.forEach((tag) => {
+    if (!tag.node.blog_post.length) {
+      return
+    }
     const tagName = tag.node.name
     const tagSlug = tag.node.slug
     const lastPageNumber = Math.ceil(tag.node.blog_post.length / postsPerPage)

@@ -2,6 +2,27 @@ require("dotenv").config({ path: ".env" })
 
 const siteTitle = "UPDATE"
 
+const environment = "production" // preview or production
+const contentfulConfig = {
+  preview: {
+    accessToken: process.env.CONTENTFUL_CONTENT_PREVIEW_API_ACCESS_TOKEN,
+    host: process.env.CONTENTFUL_HOST_PREVIEW,
+  },
+  production: {
+    accessToken: process.env.CONTENTFUL_CONTENT_DELIVERY_API_ACCESS_TOKEN,
+    host: process.env.CONTENTFUL_HOST,
+  },
+}
+const getContentfulConfig = (environment) => {
+  switch (environment) {
+    case "preview":
+      return contentfulConfig.preview
+    case "production":
+      return contentfulConfig.production
+  }
+}
+const currentContentfulConfig = getContentfulConfig(environment)
+
 module.exports = {
   siteMetadata: {
     siteUrl: `https://${process.env.GATSBY_BASE_URL}`,
@@ -14,8 +35,8 @@ module.exports = {
       resolve: "gatsby-source-contentful",
       options: {
         spaceId: process.env.CONTENTFUL_SPACE_ID,
-        accessToken: process.env.CONTENTFUL_CONTENT_DELIVERY_API_ACCESS_TOKEN,
-        host: process.env.CONTENTFUL_HOST,
+        accessToken: currentContentfulConfig.accessToken,
+        host: currentContentfulConfig.host,
       },
     },
     {
