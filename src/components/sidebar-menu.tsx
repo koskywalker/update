@@ -2,7 +2,6 @@ import { navigate } from "gatsby"
 import React from "react"
 
 import { pathObject } from "../constants/constants"
-import { enableScroll } from "../utils/utils"
 import { IconBookOpen } from "./icons/icon-book-open"
 import { IconCode } from "./icons/icon-code"
 import { IconFilm } from "./icons/icon-film"
@@ -81,7 +80,6 @@ export const SidebarMenu: React.FC<IProps> = ({ location }) => {
    * スクロールを有効にして指定のページへ遷移.
    */
   const goToNextPage = (path: string): void => {
-    enableScroll()
     navigate(path)
   }
 

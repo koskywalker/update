@@ -120,7 +120,7 @@ const BlogPost: React.FC<IProps> = ({ data, location }) => {
         <aside className="relative flex-shrink-0 hidden xl:flex xl:flex-col w-96">
           <div className="absolute inset-0 ml-8">
             <div className="h-full">
-              <div className="sticky max-w-full px-6 py-8 bg-white shadow-custom top-8 prose">
+              <div className="sticky max-w-full px-6 py-8 text-sm bg-white shadow-custom top-8 prose">
                 <div
                   className="toc toc-side"
                   dangerouslySetInnerHTML={{
@@ -163,7 +163,7 @@ export const pageQuery = graphql`
       body {
         childMarkdownRemark {
           timeToRead
-          tableOfContents(absolute: false, pathToSlugField: "frontmatter.title")
+          tableOfContents(maxDepth: 3)
           html
         }
       }

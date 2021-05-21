@@ -28,7 +28,7 @@ export const SidebarProfile: React.FC = () => {
           <StaticImage
             src="../images/profile.png"
             alt={authorData.name}
-            className="block rounded-full"
+            className="block object-cover rounded-full"
             width={150}
             layout="fixed"
           />

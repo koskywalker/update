@@ -259,7 +259,6 @@ type Site = Node & {
   readonly siteMetadata: Maybe<SiteSiteMetadata>;
   readonly port: Maybe<Scalars['Int']>;
   readonly host: Maybe<Scalars['String']>;
-  readonly flags: Maybe<SiteFlags>;
   readonly polyfill: Maybe<Scalars['Boolean']>;
   readonly pathPrefix: Maybe<Scalars['String']>;
   readonly id: Scalars['ID'];
@@ -274,10 +273,6 @@ type Site_buildTimeArgs = {
   fromNow: Maybe<Scalars['Boolean']>;
   difference: Maybe<Scalars['String']>;
   locale: Maybe<Scalars['String']>;
-};
-
-type SiteFlags = {
-  readonly THE_FLAG: Maybe<Scalars['Boolean']>;
 };
 
 type SiteSiteMetadata = {
@@ -986,11 +981,11 @@ type ContentfulTag = ContentfulReference & ContentfulEntry & Node & {
   readonly node_locale: Scalars['String'];
   readonly name: Maybe<Scalars['String']>;
   readonly slug: Maybe<Scalars['String']>;
+  readonly blog_post: Maybe<ReadonlyArray<Maybe<ContentfulBlogPost>>>;
   readonly spaceId: Maybe<Scalars['String']>;
   readonly createdAt: Maybe<Scalars['Date']>;
   readonly updatedAt: Maybe<Scalars['Date']>;
   readonly sys: Maybe<ContentfulTagSys>;
-  readonly blog_post: Maybe<ReadonlyArray<Maybe<ContentfulBlogPost>>>;
   readonly parent: Maybe<Node>;
   readonly children: ReadonlyArray<Node>;
   readonly internal: Internal;
@@ -1390,7 +1385,6 @@ type Query_siteArgs = {
   siteMetadata: Maybe<SiteSiteMetadataFilterInput>;
   port: Maybe<IntQueryOperatorInput>;
   host: Maybe<StringQueryOperatorInput>;
-  flags: Maybe<SiteFlagsFilterInput>;
   polyfill: Maybe<BooleanQueryOperatorInput>;
   pathPrefix: Maybe<StringQueryOperatorInput>;
   id: Maybe<StringQueryOperatorInput>;
@@ -1614,11 +1608,11 @@ type Query_contentfulTagArgs = {
   node_locale: Maybe<StringQueryOperatorInput>;
   name: Maybe<StringQueryOperatorInput>;
   slug: Maybe<StringQueryOperatorInput>;
+  blog_post: Maybe<ContentfulBlogPostFilterListInput>;
   spaceId: Maybe<StringQueryOperatorInput>;
   createdAt: Maybe<DateQueryOperatorInput>;
   updatedAt: Maybe<DateQueryOperatorInput>;
   sys: Maybe<ContentfulTagSysFilterInput>;
-  blog_post: Maybe<ContentfulBlogPostFilterListInput>;
   parent: Maybe<NodeFilterInput>;
   children: Maybe<NodeFilterListInput>;
   internal: Maybe<InternalFilterInput>;
@@ -2478,10 +2472,6 @@ type SiteSiteMetadataFilterInput = {
   readonly siteUrl: Maybe<StringQueryOperatorInput>;
 };
 
-type SiteFlagsFilterInput = {
-  readonly THE_FLAG: Maybe<BooleanQueryOperatorInput>;
-};
-
 type SiteConnection = {
   readonly totalCount: Scalars['Int'];
   readonly edges: ReadonlyArray<SiteEdge>;
@@ -2534,7 +2524,6 @@ type SiteFieldsEnum =
   | 'siteMetadata.siteUrl'
   | 'port'
   | 'host'
-  | 'flags.THE_FLAG'
   | 'polyfill'
   | 'pathPrefix'
   | 'id'
@@ -2638,7 +2627,6 @@ type SiteFilterInput = {
   readonly siteMetadata: Maybe<SiteSiteMetadataFilterInput>;
   readonly port: Maybe<IntQueryOperatorInput>;
   readonly host: Maybe<StringQueryOperatorInput>;
-  readonly flags: Maybe<SiteFlagsFilterInput>;
   readonly polyfill: Maybe<BooleanQueryOperatorInput>;
   readonly pathPrefix: Maybe<StringQueryOperatorInput>;
   readonly id: Maybe<StringQueryOperatorInput>;
@@ -4180,11 +4168,11 @@ type ContentfulTagFilterInput = {
   readonly node_locale: Maybe<StringQueryOperatorInput>;
   readonly name: Maybe<StringQueryOperatorInput>;
   readonly slug: Maybe<StringQueryOperatorInput>;
+  readonly blog_post: Maybe<ContentfulBlogPostFilterListInput>;
   readonly spaceId: Maybe<StringQueryOperatorInput>;
   readonly createdAt: Maybe<DateQueryOperatorInput>;
   readonly updatedAt: Maybe<DateQueryOperatorInput>;
   readonly sys: Maybe<ContentfulTagSysFilterInput>;
-  readonly blog_post: Maybe<ContentfulBlogPostFilterListInput>;
   readonly parent: Maybe<NodeFilterInput>;
   readonly children: Maybe<NodeFilterListInput>;
   readonly internal: Maybe<InternalFilterInput>;
@@ -4445,10 +4433,10 @@ type ContentfulBlogPostFieldsEnum =
   | 'author.blog_post.tags.node_locale'
   | 'author.blog_post.tags.name'
   | 'author.blog_post.tags.slug'
+  | 'author.blog_post.tags.blog_post'
   | 'author.blog_post.tags.spaceId'
   | 'author.blog_post.tags.createdAt'
   | 'author.blog_post.tags.updatedAt'
-  | 'author.blog_post.tags.blog_post'
   | 'author.blog_post.tags.children'
   | 'author.blog_post.description.id'
   | 'author.blog_post.description.children'
@@ -4543,11 +4531,6 @@ type ContentfulBlogPostFieldsEnum =
   | 'tags.node_locale'
   | 'tags.name'
   | 'tags.slug'
-  | 'tags.spaceId'
-  | 'tags.createdAt'
-  | 'tags.updatedAt'
-  | 'tags.sys.type'
-  | 'tags.sys.revision'
   | 'tags.blog_post'
   | 'tags.blog_post.contentful_id'
   | 'tags.blog_post.id'
@@ -4581,10 +4564,10 @@ type ContentfulBlogPostFieldsEnum =
   | 'tags.blog_post.tags.node_locale'
   | 'tags.blog_post.tags.name'
   | 'tags.blog_post.tags.slug'
+  | 'tags.blog_post.tags.blog_post'
   | 'tags.blog_post.tags.spaceId'
   | 'tags.blog_post.tags.createdAt'
   | 'tags.blog_post.tags.updatedAt'
-  | 'tags.blog_post.tags.blog_post'
   | 'tags.blog_post.tags.children'
   | 'tags.blog_post.description.id'
   | 'tags.blog_post.description.children'
@@ -4631,6 +4614,11 @@ type ContentfulBlogPostFieldsEnum =
   | 'tags.blog_post.internal.mediaType'
   | 'tags.blog_post.internal.owner'
   | 'tags.blog_post.internal.type'
+  | 'tags.spaceId'
+  | 'tags.createdAt'
+  | 'tags.updatedAt'
+  | 'tags.sys.type'
+  | 'tags.sys.revision'
   | 'tags.parent.id'
   | 'tags.parent.parent.id'
   | 'tags.parent.parent.children'
@@ -5525,11 +5513,6 @@ type ContentfulPersonFieldsEnum =
   | 'blog_post.tags.node_locale'
   | 'blog_post.tags.name'
   | 'blog_post.tags.slug'
-  | 'blog_post.tags.spaceId'
-  | 'blog_post.tags.createdAt'
-  | 'blog_post.tags.updatedAt'
-  | 'blog_post.tags.sys.type'
-  | 'blog_post.tags.sys.revision'
   | 'blog_post.tags.blog_post'
   | 'blog_post.tags.blog_post.contentful_id'
   | 'blog_post.tags.blog_post.id'
@@ -5545,6 +5528,11 @@ type ContentfulPersonFieldsEnum =
   | 'blog_post.tags.blog_post.childrenContentfulBlogPostBodyTextNode'
   | 'blog_post.tags.blog_post.childrenContentfulBlogPostDescriptionTextNode'
   | 'blog_post.tags.blog_post.children'
+  | 'blog_post.tags.spaceId'
+  | 'blog_post.tags.createdAt'
+  | 'blog_post.tags.updatedAt'
+  | 'blog_post.tags.sys.type'
+  | 'blog_post.tags.sys.revision'
   | 'blog_post.tags.parent.id'
   | 'blog_post.tags.parent.children'
   | 'blog_post.tags.children'
@@ -5984,14 +5972,6 @@ type ContentfulTagFieldsEnum =
   | 'node_locale'
   | 'name'
   | 'slug'
-  | 'spaceId'
-  | 'createdAt'
-  | 'updatedAt'
-  | 'sys.type'
-  | 'sys.revision'
-  | 'sys.contentType.sys.type'
-  | 'sys.contentType.sys.linkType'
-  | 'sys.contentType.sys.id'
   | 'blog_post'
   | 'blog_post.contentful_id'
   | 'blog_post.id'
@@ -6093,11 +6073,6 @@ type ContentfulTagFieldsEnum =
   | 'blog_post.tags.node_locale'
   | 'blog_post.tags.name'
   | 'blog_post.tags.slug'
-  | 'blog_post.tags.spaceId'
-  | 'blog_post.tags.createdAt'
-  | 'blog_post.tags.updatedAt'
-  | 'blog_post.tags.sys.type'
-  | 'blog_post.tags.sys.revision'
   | 'blog_post.tags.blog_post'
   | 'blog_post.tags.blog_post.contentful_id'
   | 'blog_post.tags.blog_post.id'
@@ -6113,6 +6088,11 @@ type ContentfulTagFieldsEnum =
   | 'blog_post.tags.blog_post.childrenContentfulBlogPostBodyTextNode'
   | 'blog_post.tags.blog_post.childrenContentfulBlogPostDescriptionTextNode'
   | 'blog_post.tags.blog_post.children'
+  | 'blog_post.tags.spaceId'
+  | 'blog_post.tags.createdAt'
+  | 'blog_post.tags.updatedAt'
+  | 'blog_post.tags.sys.type'
+  | 'blog_post.tags.sys.revision'
   | 'blog_post.tags.parent.id'
   | 'blog_post.tags.parent.children'
   | 'blog_post.tags.children'
@@ -6393,6 +6373,14 @@ type ContentfulTagFieldsEnum =
   | 'blog_post.internal.mediaType'
   | 'blog_post.internal.owner'
   | 'blog_post.internal.type'
+  | 'spaceId'
+  | 'createdAt'
+  | 'updatedAt'
+  | 'sys.type'
+  | 'sys.revision'
+  | 'sys.contentType.sys.type'
+  | 'sys.contentType.sys.linkType'
+  | 'sys.contentType.sys.id'
   | 'parent.id'
   | 'parent.parent.id'
   | 'parent.parent.parent.id'
@@ -7611,6 +7599,17 @@ type PortfolioQueryVariables = Exact<{ [key: string]: never; }>;
 
 type PortfolioQuery = { readonly imageUpdate: Maybe<{ readonly childImageSharp: Maybe<Pick<ImageSharp, 'gatsbyImageData'>> }>, readonly imageCopilin: Maybe<{ readonly childImageSharp: Maybe<Pick<ImageSharp, 'gatsbyImageData'>> }> };
 
+type IndexArchiveQueryVariables = Exact<{
+  skip: Scalars['Int'];
+  limit: Scalars['Int'];
+}>;
+
+
+type IndexArchiveQuery = { readonly allContentfulBlogPost: { readonly edges: ReadonlyArray<{ readonly node: (
+        Pick<ContentfulBlogPost, 'title' | 'slug' | 'publishDate' | 'updatedAt'>
+        & { readonly heroImage: Maybe<Pick<ContentfulAsset, 'gatsbyImageData' | 'description'>>, readonly tags: Maybe<ReadonlyArray<Maybe<Pick<ContentfulTag, 'name' | 'slug'>>>> }
+      ) }> } };
+
 type TagsArchiveQueryVariables = Exact<{
   skip: Scalars['Int'];
   limit: Scalars['Int'];
@@ -7623,16 +7622,25 @@ type TagsArchiveQuery = { readonly allContentfulBlogPost: { readonly edges: Read
         & { readonly description: Maybe<Pick<contentfulBlogPostDescriptionTextNode, 'description'>>, readonly heroImage: Maybe<Pick<ContentfulAsset, 'description' | 'gatsbyImageData'>>, readonly tags: Maybe<ReadonlyArray<Maybe<Pick<ContentfulTag, 'name' | 'slug'>>>> }
       ) }> } };
 
-type IndexArchiveQueryVariables = Exact<{
-  skip: Scalars['Int'];
-  limit: Scalars['Int'];
-}>;
+type GatsbyContentfulFixedFragment = Pick<ContentfulFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
+type GatsbyContentfulFixed_tracedSVGFragment = Pick<ContentfulFixed, 'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet'>;
 
-type IndexArchiveQuery = { readonly allContentfulBlogPost: { readonly edges: ReadonlyArray<{ readonly node: (
-        Pick<ContentfulBlogPost, 'title' | 'slug' | 'publishDate' | 'updatedAt'>
-        & { readonly heroImage: Maybe<Pick<ContentfulAsset, 'gatsbyImageData' | 'description'>>, readonly tags: Maybe<ReadonlyArray<Maybe<Pick<ContentfulTag, 'name' | 'slug'>>>> }
-      ) }> } };
+type GatsbyContentfulFixed_noBase64Fragment = Pick<ContentfulFixed, 'width' | 'height' | 'src' | 'srcSet'>;
+
+type GatsbyContentfulFixed_withWebpFragment = Pick<ContentfulFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
+
+type GatsbyContentfulFixed_withWebp_noBase64Fragment = Pick<ContentfulFixed, 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
+
+type GatsbyContentfulFluidFragment = Pick<ContentfulFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
+
+type GatsbyContentfulFluid_tracedSVGFragment = Pick<ContentfulFluid, 'tracedSVG' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
+
+type GatsbyContentfulFluid_noBase64Fragment = Pick<ContentfulFluid, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
+
+type GatsbyContentfulFluid_withWebpFragment = Pick<ContentfulFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
+
+type GatsbyContentfulFluid_withWebp_noBase64Fragment = Pick<ContentfulFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
 
 type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
@@ -7664,25 +7672,5 @@ type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type PagesQueryQuery = { readonly allSiteFunction: { readonly nodes: ReadonlyArray<Pick<SiteFunction, 'apiRoute'>> }, readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
-
-type GatsbyContentfulFixedFragment = Pick<ContentfulFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
-
-type GatsbyContentfulFixed_tracedSVGFragment = Pick<ContentfulFixed, 'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet'>;
-
-type GatsbyContentfulFixed_noBase64Fragment = Pick<ContentfulFixed, 'width' | 'height' | 'src' | 'srcSet'>;
-
-type GatsbyContentfulFixed_withWebpFragment = Pick<ContentfulFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
-
-type GatsbyContentfulFixed_withWebp_noBase64Fragment = Pick<ContentfulFixed, 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
-
-type GatsbyContentfulFluidFragment = Pick<ContentfulFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyContentfulFluid_tracedSVGFragment = Pick<ContentfulFluid, 'tracedSVG' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyContentfulFluid_noBase64Fragment = Pick<ContentfulFluid, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyContentfulFluid_withWebpFragment = Pick<ContentfulFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type GatsbyContentfulFluid_withWebp_noBase64Fragment = Pick<ContentfulFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
 
 }
