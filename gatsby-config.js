@@ -27,9 +27,6 @@ module.exports = {
   siteMetadata: {
     siteUrl: `https://${process.env.GATSBY_BASE_URL}`,
   },
-  flags: {
-    THE_FLAG: false,
-  },
   plugins: [
     {
       resolve: "gatsby-source-contentful",
